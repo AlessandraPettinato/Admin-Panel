@@ -1,4 +1,4 @@
-const { gql } = require("apollo-server-express")
+import { gql } from "apollo-server-express";
 
 const typeDefs = gql`
 scalar Date
@@ -35,6 +35,7 @@ type PolicyStatus {
 
   type Query {
     books: [Book]
+    policy: [Policy]
   }
 `;
 
