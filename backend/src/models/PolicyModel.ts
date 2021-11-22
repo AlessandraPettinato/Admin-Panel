@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const PolicySchema = new mongoose.Schema({
     id: { type: String },
@@ -16,6 +16,4 @@ const PolicySchema = new mongoose.Schema({
     createdAt: String
 })
 
-const PolicyModel = mongoose.model("Policy", PolicySchema);
-
-module.exports = PolicyModel;
+export const PolicyModel = mongoose.model("policies", PolicySchema);
