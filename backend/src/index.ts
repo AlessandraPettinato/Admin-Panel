@@ -1,14 +1,14 @@
-import { ApolloServer } from "apollo-server-express";
+const { ApolloServer } = require("apollo-server-express");
 const express = require("express");
-const mongoose = require("mongoose");
+const dbmongoose = require("mongoose");
 require('dotenv').config();
 
-const typeDefs = require("./typeDefs.ts");
-const resolvers = require("./resolvers.ts");
+const typeDefs = require("./typeDefs");
+const resolvers = require("./resolvers");
 
-const databaseURL = "mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASSWORD}0.0jhze.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+const databaseURL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster.zuufe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
 
-mongoose.connect(
+dbmongoose.connect(
   databaseURL,
   {
     useUnifiedTopology: true,
@@ -16,6 +16,8 @@ mongoose.connect(
   },
   () => console.log("Database connected")
 );
+
+const port = 8080;
 
 const startServer = async () => {
   const app = express();
@@ -25,7 +27,7 @@ const startServer = async () => {
   await apolloServer.start();
   apolloServer.applyMiddleware({ app });
 
-  app.listen(4000, () => console.log(`Server up and running on port 4000${apolloServer.graphqlPath}`))
+  app.listen(port, () => console.log(`Server up and running on port ${port}${apolloServer.graphqlPath}`))
 };
 
 startServer();

@@ -1,24 +1,21 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
 const PolicySchema = new mongoose.Schema({
+    id: { type: String },
     customer: {
         firstName: { type: String },
         lastName: { type: String },
-        dateOfBirth: { type: Date }
+        dateOfBirth: { type: String }
     },
     provider: String,
-    insuranceType: {
-        insuranceType: { type: String }
-    },
-    status: {
-        policyStatus: { type: String }
-    },
+    insuranceType: String,
+    status: String,
     policyNumber: String,
-    startDate: Date,
-    endDate: Date,
-    createdAt: Date
+    startDate: String,
+    endDate: String,
+    createdAt: String
 })
 
-const PolicyModel = mongoose.model("policy", PolicySchema);
+const PolicyModel = mongoose.model("Policy", PolicySchema);
 
 module.exports = PolicyModel;

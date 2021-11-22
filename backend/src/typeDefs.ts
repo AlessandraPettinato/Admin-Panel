@@ -1,42 +1,35 @@
-import { gql } from "apollo-server-express";
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-scalar Date
+# scalar Date
 
 type Policy {
+  id: ID
   customer: [Customer]
   provider: String
-  insuranceType: [InsuranceType]
-  status: [PolicyStatus]
+  insuranceType: String
+  status: String
   policyNumber: String
-  startDate: Date
-  endDate: Date
-  createdAt: Date
+  startDate: String
+  endDate: String
+  createdAt: String
 }
 
 type Customer {
   firstName: String
   lastName: String
-  dateOfBirth: Date
+  dateOfBirth: String
 }
 
-type InsuranceType {
-  insuranceType: String
+type PolicyList {
+  results: [Policy]
 }
-
-type PolicyStatus {
-  policyStatus: String
-}
-
-  type Book {
-    title: String
-    author: String
-  }
 
   type Query {
-    books: [Book]
-    policy: [Policy]
+    getAllPolicies: PolicyList
   }
 `;
 
 module.exports = typeDefs;
+
+export { }
