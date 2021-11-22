@@ -353,7 +353,7 @@
   dependencies:
     "lru-cache" "^6.0.0"
 
-"apollo-server-core@^3.2.0", "apollo-server-core@^3.5.0":
+"apollo-server-core@^3.5.0":
   "integrity" "sha512-c3wEnPSnzvWvYvRJq1B+yIpa+vBvm0kq0tvD4j/IOw/F1s3sadu43Xr4FiLw++UfeLyh3aS5Wk68hjvrW1ceiQ=="
   "resolved" "https://registry.npmjs.org/apollo-server-core/-/apollo-server-core-3.5.0.tgz"
   "version" "3.5.0"
@@ -392,7 +392,7 @@
   "resolved" "https://registry.npmjs.org/apollo-server-errors/-/apollo-server-errors-3.3.0.tgz"
   "version" "3.3.0"
 
-"apollo-server-express@^3.2.0", "apollo-server-express@^3.5.0":
+"apollo-server-express@^3.5.0":
   "integrity" "sha512-eFyBC4ate/g5GrvxM+HrtiElxCEbvG+CiJ0/R1i62L+wzXDhgD6MU0SW17ceS1mpBJgDxURu/VS5hUSNyWMa3Q=="
   "resolved" "https://registry.npmjs.org/apollo-server-express/-/apollo-server-express-3.5.0.tgz"
   "version" "3.5.0"
@@ -424,15 +424,6 @@
     "apollo-reporting-protobuf" "^3.2.0"
     "apollo-server-caching" "^3.3.0"
     "apollo-server-env" "^4.2.0"
-
-"apollo-server@^3.2.0":
-  "integrity" "sha512-J0lLuWRTWkGaNMzAUr4rLJ14f7/EUv93/YzVocOdGFnrPemYiCsWBoSnlJva/wNu28qlkP9cvvaQTIzF6Vowvw=="
-  "resolved" "https://registry.npmjs.org/apollo-server/-/apollo-server-3.2.0.tgz"
-  "version" "3.2.0"
-  dependencies:
-    "apollo-server-core" "^3.2.0"
-    "apollo-server-express" "^3.2.0"
-    "express" "^4.17.1"
 
 "arg@^4.1.0":
   "integrity" "sha512-58S9QDqG0Xx27YwPSt9fJxivjYl432YCwfDMfZ+71RAqUrZef7LrKQZ3LHLOwCS4FLNBplP533Zx895SeOCHvA=="
@@ -918,7 +909,7 @@
   dependencies:
     "tslib" "^2.1.0"
 
-"graphql@^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0", "graphql@^14.0.0 || ^15.0.0", "graphql@^14.2.1 || ^15.0.0", "graphql@^15.3.0", "graphql@^15.3.0 || ^16.0.0", "graphql@^15.5.1":
+"graphql@^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0", "graphql@^14.0.0 || ^15.0.0", "graphql@^14.2.1 || ^15.0.0", "graphql@^15.3.0 || ^16.0.0", "graphql@^15.5.1":
   "integrity" "sha512-FeTRX67T3LoE3LWAxxOlW2K3Bz+rMYAC18rRguK4wgXaTZMiJwSUwDmPFo3UadAKbzirKIg5Qy+sNJXbpPRnQw=="
   "resolved" "https://registry.npmjs.org/graphql/-/graphql-15.5.1.tgz"
   "version" "15.5.1"

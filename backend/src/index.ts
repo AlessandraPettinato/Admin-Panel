@@ -1,12 +1,18 @@
-import { ApolloServer } from "apollo-server";
-const typeDefs = require("./typeDefs.ts")
-const resolvers = require("./resolvers.ts")
+import { ApolloServer } from "apollo-server-express";
+const express = require("express");
 
-// The ApolloServer constructor requires two parameters: your schema
-// definition and your set of resolvers.
-const server = new ApolloServer({ typeDefs, resolvers });
+const typeDefs = require("./typeDefs.ts");
+const resolvers = require("./resolvers.ts");
 
-// The `listen` method launches a web server.
-server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
-});
+const startServer = async () => {
+  const app = express(); 
+
+  const apolloServer = new ApolloServer({typeDefs, resolvers}); 
+
+  await apolloServer.start(); 
+  apolloServer.applyMiddleware({app}); 
+
+  app.listen(4000, () => console.log(`Server up and running on port 4000${apolloServer.graphqlPath}`))
+};
+
+startServer()
