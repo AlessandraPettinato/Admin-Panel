@@ -76,7 +76,7 @@ const Table: React.FC = () => {
 									>
 										Created At
 									</th>
-									<span className="sr-only">Edit</span>
+									<th className="sr-only">Edit</th>
 								</tr>
 							</thead>
 							<tbody className="bg-white divide-y divide-gray-200">
@@ -84,7 +84,7 @@ const Table: React.FC = () => {
 									return (
 										<tr key={index}>
 											<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-												{item.customer[0].firstName}
+												{item.customer[0].firstName} {item.customer[0].lastName}
 											</td>
 											<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
 												{item.provider}

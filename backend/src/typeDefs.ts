@@ -1,6 +1,6 @@
-const { gql } = require("apollo-server-express");
+import { gql } from "apollo-server-express";
 
-const typeDefs = gql`
+export const typeDefs = gql`
 # scalar Date
 
 type Policy {
@@ -25,11 +25,9 @@ type PolicyList {
   results: [Policy]
 }
 
-  type Query {
+type Query {
     getAllPolicies: PolicyList
   }
 `;
-
-module.exports = typeDefs;
 
 export { }
