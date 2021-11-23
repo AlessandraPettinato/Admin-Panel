@@ -1,21 +1,23 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_GET_ALL_POLICIES = gql`
-query getAllPolicies {
-    results {
-      customer {
-        firstName
-        lastName
-        dateOfBirth
+
+    query getAllPolicies {
+      results {
+        id
+        customer {
+          firstName
+          lastName
+          dateOfBirth
+        }
+        provider
+        insuranceType
+        status
+        policyNumber
+        startDate
+        endDate
+        createdAt
       }
-      provider
-      id
-      insuranceType
-      status
-      policyNumber
-      startDate
-      endDate
-      createdAt
     }
-  }
+  
 `

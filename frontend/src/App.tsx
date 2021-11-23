@@ -1,11 +1,12 @@
 import "./index.css";
 import Provider from "./api/Provider"
+import Table from "./components/Table"
 
 const App: React.FC<{}> = () => {
   return (
     <>
       <Provider>
-        <h1>Hello from App</h1>
+        <Table />
       </Provider>
     </>
   )
