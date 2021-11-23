@@ -1,6 +1,6 @@
 import { PolicyModel } from "./models/PolicyModel";
 
-const resolvers = {
+export const resolvers = {
   Query: {
     getAllPolicies: async () => {
       const results = await PolicyModel.find({});
@@ -10,7 +10,5 @@ const resolvers = {
     }
   },
 };
-
-module.exports = resolvers;
 
 export { }

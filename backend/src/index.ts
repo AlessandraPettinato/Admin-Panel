@@ -3,8 +3,8 @@ const express = require("express");
 const dbmongoose = require("mongoose");
 require('dotenv').config();
 
-const typeDefs = require("./typeDefs");
-const resolvers = require("./resolvers");
+import { typeDefs } from "./typeDefs";
+import { resolvers } from "./resolvers";
 
 const databaseURL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster.zuufe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
 
