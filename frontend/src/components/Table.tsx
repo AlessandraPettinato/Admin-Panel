@@ -1,27 +1,10 @@
 import { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_GET_ALL_POLICIES } from "../queries/Policies";
+import { Policy } from "../types/Types";
 
 import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
 import TableRow from "./TableRow";
-
-type Policy = {
-	id: string;
-	customer: [
-		{
-			firstName: string;
-			lastName: string;
-			dateOfBirth: string;
-		}
-	];
-	provider: string;
-	insuranceType: string;
-	status: string;
-	policyNumber: string;
-	startDate: string;
-	endDate: string;
-	createdAt: string;
-};
 
 const Table: React.FC = () => {
 	const { loading, error, data } = useQuery(QUERY_GET_ALL_POLICIES);
