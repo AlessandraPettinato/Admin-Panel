@@ -1,7 +1,14 @@
 import "./index.css";
+import Provider from "./api/Provider"
 
-function App() {
-  return <h1 className="text-3xl">Fullstack code challenge</h1>;
+const App: React.FC<{}> = () => {
+  return (
+    <>
+      <Provider>
+        <h1>Hello from App</h1>
+      </Provider>
+    </>
+  )
 }
 
 export default App;
