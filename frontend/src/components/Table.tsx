@@ -2,10 +2,32 @@ import { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_GET_ALL_POLICIES } from "../queries/Policies";
 
+import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
+import TableRow from "./TableRow";
+
+type Policy = {
+	id: string;
+	customer: [
+		{
+			firstName: string;
+			lastName: string;
+			dateOfBirth: string;
+		}
+	];
+	provider: string;
+	insuranceType: string;
+	status: string;
+	policyNumber: string;
+	startDate: string;
+	endDate: string;
+	createdAt: string;
+};
+
 const Table: React.FC = () => {
 	const { loading, error, data } = useQuery(QUERY_GET_ALL_POLICIES);
 
 	const [policies, setPolicies] = useState([]);
+	const [sorted, setSorted] = useState(false);
 
 	useEffect(() => {
 		if (!loading && data) {
@@ -29,9 +51,10 @@ const Table: React.FC = () => {
 								<tr>
 									<th
 										scope="col"
-										className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+										className="flex px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
 									>
 										Customer
+										{!sorted ? <TiArrowSortedUp /> : <TiArrowSortedDown />}
 									</th>
 									<th
 										scope="col"
@@ -80,41 +103,31 @@ const Table: React.FC = () => {
 								</tr>
 							</thead>
 							<tbody className="bg-white divide-y divide-gray-200">
-								{policies.map((item: any, index: number) => {
+								{policies.map((policy: Policy) => {
+									const {
+										id,
+										customer,
+										provider,
+										insuranceType,
+										status,
+										policyNumber,
+										startDate,
+										endDate,
+										createdAt,
+									} = policy;
 									return (
-										<tr key={index}>
-											<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-												{item.customer[0].firstName} {item.customer[0].lastName}
-											</td>
-											<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-												{item.provider}
-											</td>
-											<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-												{item.insuranceType}
-											</td>
-											<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-												{item.status}
-											</td>
-											<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-												{item.policyNumber}
-											</td>
-											<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-												{item.startDate}
-											</td>
-											<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-												{item.endDate}
-											</td>
-											<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-												{item.createdAt}
-											</td>
-											<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-												<a
-													href="#"
-													className="text-indigo-600 hover:text-indigo-900"
-												>
-													Edit
-												</a>
-											</td>
+										<tr key={id}>
+											<TableRow
+												id={id}
+												customer={customer}
+												provider={provider}
+												insuranceType={insuranceType}
+												status={status}
+												policyNumber={policyNumber}
+												startDate={startDate}
+												endDate={endDate}
+												createdAt={createdAt}
+											/>
 										</tr>
 									);
 								})}
