@@ -1,49 +1,33 @@
-import { ApolloServer, gql } from "apollo-server";
+const { ApolloServer } = require("apollo-server-express");
+const express = require("express");
+const dbmongoose = require("mongoose");
+require('dotenv').config();
 
-// A schema is a collection of type definitions (hence "typeDefs")
-// that together define the "shape" of queries that are executed against
-// your data.
-const typeDefs = gql`
-  # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
+const typeDefs = require("./typeDefs");
+const resolvers = require("./resolvers");
 
-  # This "Book" type defines the queryable fields for every book in our data source.
-  type Book {
-    title: String
-    author: String
-  }
+const databaseURL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster.zuufe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
 
-  # The "Query" type is special: it lists all of the available queries that
-  # clients can execute, along with the return type for each. In this
-  # case, the "books" query returns an array of zero or more Books (defined above).
-  type Query {
-    books: [Book]
-  }
-`;
-
-const books = [
+dbmongoose.connect(
+  databaseURL,
   {
-    title: "The Awakening",
-    author: "Kate Chopin",
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
   },
-  {
-    title: "City of Glass",
-    author: "Paul Auster",
-  },
-];
+  () => console.log("Database connected")
+);
 
-// Resolvers define the technique for fetching the types defined in the
-// schema. This resolver retrieves books from the "books" array above.
-const resolvers = {
-  Query: {
-    books: () => books,
-  },
+const port = 8080;
+
+const startServer = async () => {
+  const app = express();
+
+  const apolloServer = new ApolloServer({ typeDefs, resolvers });
+
+  await apolloServer.start();
+  apolloServer.applyMiddleware({ app });
+
+  app.listen(port, () => console.log(`Server up and running on port ${port}${apolloServer.graphqlPath}`))
 };
 
-// The ApolloServer constructor requires two parameters: your schema
-// definition and your set of resolvers.
-const server = new ApolloServer({ typeDefs, resolvers });
-
-// The `listen` method launches a web server.
-server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
-});
+startServer();
