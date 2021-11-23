@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_GET_ALL_POLICIES = gql`
-
-    query getAllPolicies {
+query PolicyList {
+    getAllPolicies {
       results {
         id
         customer {
@@ -19,5 +19,5 @@ export const QUERY_GET_ALL_POLICIES = gql`
         createdAt
       }
     }
-  
+} 
 `
