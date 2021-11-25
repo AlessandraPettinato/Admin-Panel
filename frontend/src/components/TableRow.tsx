@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { Policy } from "../types/Types";
 
 const TableRow: React.FC<Policy> = ({
@@ -12,13 +14,43 @@ const TableRow: React.FC<Policy> = ({
 }) => {
 	const { firstName, lastName } = customer[0];
 
+	const completeName = `${firstName} ${lastName}`;
+
+	const [editMode, setEditMode] = useState(false);
+
+	const [edited, setEdited] = useState({
+		completeName,
+		provider,
+		insuranceType,
+		status,
+		policyNumber,
+		startDate,
+		endDate,
+		createdAt,
+	});
+
+	const handleUpdate = (e: any) => {
+		setEdited({
+			...edited,
+			[e.target.name]: e.target.value,
+		});
+	};
+
 	return (
 		<>
 			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-				{lastName} {firstName}
+				<input
+					value={edited.completeName}
+					onChange={handleUpdate}
+					name="completeName"
+				></input>
 			</td>
 			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-				{provider}
+				<input
+					value={edited.provider}
+					onChange={handleUpdate}
+					name="provider"
+				/>
 			</td>
 			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
 				{insuranceType}
