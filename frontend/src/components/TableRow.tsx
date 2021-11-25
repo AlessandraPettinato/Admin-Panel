@@ -36,44 +36,78 @@ const TableRow: React.FC<Policy> = ({
 		});
 	};
 
+	const handleEdit = () => {
+		setEditMode(!editMode);
+	};
+
 	return (
 		<>
 			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
 				<input
 					value={edited.completeName}
-					onChange={handleUpdate}
 					name="completeName"
-				></input>
+					onChange={handleUpdate}
+					disabled={!editMode ? true : false}
+				/>
 			</td>
 			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
 				<input
 					value={edited.provider}
-					onChange={handleUpdate}
 					name="provider"
+					onChange={handleUpdate}
+					disabled={!editMode ? true : false}
 				/>
 			</td>
 			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-				{insuranceType}
+				<input
+					value={edited.insuranceType}
+					name="insuranceType"
+					onChange={handleUpdate}
+					disabled={!editMode ? true : false}
+				/>
 			</td>
 			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-				{status}
+				<input
+					value={edited.status}
+					name="status"
+					onChange={handleUpdate}
+					disabled={!editMode ? true : false}
+				/>
 			</td>
 			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-				{policyNumber}
+				<input
+					value={edited.policyNumber}
+					name="policyNumber"
+					onChange={handleUpdate}
+					disabled={!editMode ? true : false}
+				/>
 			</td>
 			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-				{startDate}
+				<input
+					value={edited.startDate}
+					name="startDate"
+					onChange={handleUpdate}
+					disabled={!editMode ? true : false}
+				/>
 			</td>
 			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-				{endDate}
+				<input value={edited.endDate} name="endDate" onChange={handleUpdate} />
 			</td>
 			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-				{createdAt}
+				<input
+					value={edited.createdAt}
+					name="createdAt"
+					onChange={handleUpdate}
+					disabled={!editMode ? true : false}
+				/>
 			</td>
 			<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-				<a href="#" className="text-indigo-600 hover:text-indigo-900">
+				<button
+					onClick={handleEdit}
+					className="text-indigo-600 hover:text-indigo-900"
+				>
 					Edit
-				</a>
+				</button>
 			</td>
 		</>
 	);
