@@ -4,6 +4,7 @@ export const typeDefs = gql`
 	# scalar Date
 
 	type Policy {
+		id: ID!
 		customer: [Customer]
 		provider: String
 		insuranceType: String
@@ -36,6 +37,18 @@ export const typeDefs = gql`
 
 	type Mutation {
 		addNewPolicy(
+			customer: CustomerInput
+			id: ID!
+			provider: String
+			insuranceType: String
+			status: String
+			policyNumber: String
+			startDate: String
+			endDate: String
+			createdAt: String
+		): Policy
+		updatePolicy(
+			id: ID!
 			customer: CustomerInput
 			provider: String
 			insuranceType: String

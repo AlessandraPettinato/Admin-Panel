@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const PolicySchema = new mongoose.Schema({
+	id: { type: String },
 	customer: [
 		{
 			firstName: { type: String },

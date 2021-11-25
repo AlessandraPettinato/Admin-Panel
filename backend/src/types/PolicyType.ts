@@ -1,4 +1,5 @@
 export type Policy = {
+	id: string;
 	customer: [
 		{
 			firstName: string;
