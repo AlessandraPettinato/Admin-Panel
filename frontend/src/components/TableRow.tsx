@@ -1,8 +1,12 @@
 import { useState } from "react";
+import { useMutation } from "@apollo/client";
 
 import { Policy } from "../types/Types";
 
+import { QUERY_UPDATE_POLICY } from "../queries/Policies";
+
 const TableRow: React.FC<Policy> = ({
+	id,
 	customer,
 	provider,
 	insuranceType,
@@ -19,6 +23,7 @@ const TableRow: React.FC<Policy> = ({
 	const [editMode, setEditMode] = useState(false);
 
 	const [edited, setEdited] = useState({
+		id,
 		completeName,
 		provider,
 		insuranceType,
@@ -37,6 +42,11 @@ const TableRow: React.FC<Policy> = ({
 	};
 
 	const handleEdit = () => {
+		setEditMode(!editMode);
+	};
+
+	const handleClickUpdate = (e: any) => {
+		e.preventDefault(e);
 		setEditMode(!editMode);
 	};
 
@@ -91,7 +101,12 @@ const TableRow: React.FC<Policy> = ({
 				/>
 			</td>
 			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-				<input value={edited.endDate} name="endDate" onChange={handleUpdate} />
+				<input
+					value={edited.endDate}
+					name="endDate"
+					onChange={handleUpdate}
+					disabled={!editMode ? true : false}
+				/>
 			</td>
 			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
 				<input
@@ -103,10 +118,10 @@ const TableRow: React.FC<Policy> = ({
 			</td>
 			<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 				<button
-					onClick={handleEdit}
+					onClick={!editMode ? handleEdit : handleClickUpdate}
 					className="text-indigo-600 hover:text-indigo-900"
 				>
-					Edit
+					{!editMode ? "Edit" : "Save"}
 				</button>
 			</td>
 		</>
