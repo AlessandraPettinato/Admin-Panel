@@ -1,15 +1,15 @@
 import "./index.css";
-import Provider from "./api/Provider"
-import Table from "./components/Table"
+import Provider from "./api/Provider";
+import Table from "./components/Table";
 
 const App: React.FC = () => {
-  return (
-    <>
-      <Provider>
-        <Table />
-      </Provider>
-    </>
-  )
-}
+	return (
+		<div className="container mx-auto p-10">
+			<Provider>
+				<Table />
+			</Provider>
+		</div>
+	);
+};
 
 export default App;
