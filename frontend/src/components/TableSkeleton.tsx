@@ -3,14 +3,13 @@ import { useQuery } from "@apollo/client";
 import { QUERY_GET_ALL_POLICIES } from "../queries/Policies";
 import { Policy } from "../types/Types";
 
-import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
 import TableRow from "./TableRow";
+import TableHead from "./TableHead";
 
 const Table: React.FC = () => {
 	const { loading, error, data } = useQuery(QUERY_GET_ALL_POLICIES);
 
 	const [policies, setPolicies] = useState([]);
-	const [sorted, setSorted] = useState(false);
 	const [sortedField, setSortedField] = useState("");
 
 	let sortedPolicies: any = [...policies];
@@ -53,68 +52,7 @@ const Table: React.FC = () => {
 					<div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
 						<div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"></div>
 						<table className="min-w-full divide-y divide-gray-200 border-collapse border">
-							<thead className="bg-gray-50">
-								<tr>
-									<th
-										scope="col"
-										className="flex px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-										onClick={() => setSortedField("lastName")}
-									>
-										Customer
-										{!sorted ? <TiArrowSortedUp /> : <TiArrowSortedDown />}
-									</th>
-									<th
-										scope="col"
-										className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-									>
-										Date of Birth
-									</th>
-									<th
-										scope="col"
-										className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-									>
-										Provider
-									</th>
-									<th
-										scope="col"
-										className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-									>
-										Insurance Type
-									</th>
-									<th
-										scope="col"
-										className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-									>
-										Status
-									</th>
-									<th
-										scope="col"
-										className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-									>
-										Policy Number
-									</th>
-
-									<th
-										scope="col"
-										className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-									>
-										Start Date
-									</th>
-									<th
-										scope="col"
-										className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-									>
-										End Date
-									</th>
-									<th
-										scope="col"
-										className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-									>
-										Created At
-									</th>
-									<th className="sr-only">Edit</th>
-								</tr>
-							</thead>
+							<TableHead setSortedField={setSortedField} />
 							<tbody className="bg-white divide-y divide-gray-200">
 								{policies.map((policy: Policy) => {
 									const {
