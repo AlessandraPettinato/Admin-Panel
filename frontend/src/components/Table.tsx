@@ -11,6 +11,29 @@ const Table: React.FC = () => {
 
 	const [policies, setPolicies] = useState([]);
 	const [sorted, setSorted] = useState(false);
+	const [sortedField, setSortedField] = useState("");
+
+	let sortedPolicies: any = [...policies];
+	console.log("This is the copy sortedPolicies:", sortedPolicies);
+	if (sortedField !== "") {
+		sortedPolicies.sort((a: any, b: any) => {
+			var lastNameA = a.customer[0].lastName.toUpperCase();
+			var lastNameB = b.customer[0].lastName.toUpperCase();
+			console.log(
+				"These are what's compared in the function:",
+				lastNameB,
+				" and ",
+				lastNameA
+			);
+			if (lastNameA < lastNameB) {
+				return -1;
+			}
+			if (lastNameA > lastNameB) {
+				return 1;
+			}
+			return 0;
+		});
+	}
 
 	useEffect(() => {
 		if (!loading && data) {
@@ -35,6 +58,7 @@ const Table: React.FC = () => {
 									<th
 										scope="col"
 										className="flex px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+										onClick={() => setSortedField("lastName")}
 									>
 										Customer
 										{!sorted ? <TiArrowSortedUp /> : <TiArrowSortedDown />}
