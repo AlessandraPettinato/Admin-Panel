@@ -33,8 +33,6 @@ const TableRow: React.FC<Policy> = ({
 		startDate,
 		endDate,
 		createdAt,
-		firstName,
-		lastName,
 	});
 
 	const handleUpdate = (e: any) => {
@@ -52,23 +50,38 @@ const TableRow: React.FC<Policy> = ({
 		refetchQueries: [QUERY_GET_ALL_POLICIES],
 	});
 
-	const handleClickUpdate = (id: any) => {
+	const handleClickUpdate = () => {
 		setEditMode(!editMode);
 		updatePolicy({
 			variables: {
 				id: edited.id,
+				provider: edited.provider,
+				insuranceType: edited.insuranceType,
+				status: edited.status,
+				policyNumber: edited.policyNumber,
+				startDate: edited.startDate,
+				endDate: edited.endDate,
+				createdAt: edited.createdAt,
+				customer: {
+					firstName: edited.completeName.split(" ")[0],
+					lastName: edited.completeName.split(" ")[1],
+					dateOfBirth: edited.dateOfBirth,
+				},
 			},
 		});
+		console.log(id);
 	};
 
 	console.log(JSON.stringify(error, null, 2));
+
+	console.log(id);
 
 	return (
 		<>
 			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
 				<input
-					value={edited.lastName}
-					name="lastName"
+					value={edited.completeName}
+					name="completeName"
 					onChange={handleUpdate}
 					disabled={!editMode ? true : false}
 				/>
@@ -139,7 +152,7 @@ const TableRow: React.FC<Policy> = ({
 			</td>
 			<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 				<button
-					onClick={!editMode ? handleEdit : (id) => handleClickUpdate(id)}
+					onClick={!editMode ? handleEdit : () => handleClickUpdate()}
 					className="text-indigo-600 hover:text-indigo-900"
 				>
 					{!editMode ? "Edit" : "Save"}

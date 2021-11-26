@@ -1,10 +1,8 @@
 import { gql } from "apollo-server-express";
 
 export const typeDefs = gql`
-	# scalar Date
-
 	type Policy {
-		id: String
+		id: ID
 		customer: [Customer]!
 		provider: String
 		insuranceType: InsuranceType
@@ -51,7 +49,7 @@ export const typeDefs = gql`
 	type Mutation {
 		addNewPolicy(
 			customer: CustomerInput
-			id: String
+			id: ID
 			provider: String
 			insuranceType: String
 			status: String
@@ -61,7 +59,7 @@ export const typeDefs = gql`
 			createdAt: String
 		): Policy
 		updatePolicy(
-			id: String
+			id: ID
 			customer: CustomerInput
 			provider: String
 			insuranceType: String
