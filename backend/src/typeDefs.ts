@@ -4,15 +4,28 @@ export const typeDefs = gql`
 	# scalar Date
 
 	type Policy {
-		id: ID!
-		customer: [Customer]
+		id: String
+		customer: [Customer]!
 		provider: String
-		insuranceType: String
-		status: String
+		insuranceType: InsuranceType
+		status: PolicyStatus
 		policyNumber: String
 		startDate: String
 		endDate: String
 		createdAt: String
+	}
+
+	enum InsuranceType {
+		LIABILITY
+		HOUSEHOLD
+		HEALTH
+	}
+
+	enum PolicyStatus {
+		ACTIVE
+		PENDING
+		CANCELLED
+		DROPPED_OUT
 	}
 
 	type Customer {
@@ -30,15 +43,15 @@ export const typeDefs = gql`
 	}
 
 	input CustomerInput {
-		firstName: String
-		lastName: String
-		dateOfBirth: String
+		firstName: String!
+		lastName: String!
+		dateOfBirth: String!
 	}
 
 	type Mutation {
 		addNewPolicy(
 			customer: CustomerInput
-			id: ID!
+			id: String
 			provider: String
 			insuranceType: String
 			status: String
@@ -48,7 +61,7 @@ export const typeDefs = gql`
 			createdAt: String
 		): Policy
 		updatePolicy(
-			id: ID!
+			id: String
 			customer: CustomerInput
 			provider: String
 			insuranceType: String

@@ -22,9 +22,10 @@ export const QUERY_GET_ALL_POLICIES = gql`
 	}
 `;
 
-export const QUERY_UPDATE_POLICY = gql`
+export const UPDATE_POLICY = gql`
 	mutation Mutation(
-		$updatePolicyId: ID!
+		$id: String
+		$updatePolicyId: String
 		$customer: CustomerInput
 		$provider: String
 		$insuranceType: String
@@ -35,7 +36,7 @@ export const QUERY_UPDATE_POLICY = gql`
 		$createdAt: String
 	) {
 		updatePolicy(
-			id: $updatePolicyId
+			id: $id
 			customer: $customer
 			provider: $provider
 			insuranceType: $insuranceType

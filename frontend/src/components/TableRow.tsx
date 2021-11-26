@@ -3,7 +3,7 @@ import { useMutation } from "@apollo/client";
 
 import { Policy } from "../types/Types";
 
-import { QUERY_UPDATE_POLICY } from "../queries/Policies";
+import { QUERY_GET_ALL_POLICIES, UPDATE_POLICY } from "../queries/Policies";
 
 const TableRow: React.FC<Policy> = ({
 	id,
@@ -16,7 +16,7 @@ const TableRow: React.FC<Policy> = ({
 	endDate,
 	createdAt,
 }) => {
-	const { firstName, lastName } = customer[0];
+	const { firstName, lastName, dateOfBirth } = customer[0];
 
 	const completeName = `${firstName} ${lastName}`;
 
@@ -25,6 +25,7 @@ const TableRow: React.FC<Policy> = ({
 	const [edited, setEdited] = useState({
 		id,
 		completeName,
+		dateOfBirth,
 		provider,
 		insuranceType,
 		status,
@@ -32,6 +33,8 @@ const TableRow: React.FC<Policy> = ({
 		startDate,
 		endDate,
 		createdAt,
+		firstName,
+		lastName,
 	});
 
 	const handleUpdate = (e: any) => {
@@ -45,17 +48,35 @@ const TableRow: React.FC<Policy> = ({
 		setEditMode(!editMode);
 	};
 
-	const handleClickUpdate = (e: any) => {
-		e.preventDefault(e);
+	const [updatePolicy, { loading, error, data }] = useMutation(UPDATE_POLICY, {
+		refetchQueries: [QUERY_GET_ALL_POLICIES],
+	});
+
+	const handleClickUpdate = (id: any) => {
 		setEditMode(!editMode);
+		updatePolicy({
+			variables: {
+				id: edited.id,
+			},
+		});
 	};
+
+	console.log(JSON.stringify(error, null, 2));
 
 	return (
 		<>
 			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
 				<input
-					value={edited.completeName}
-					name="completeName"
+					value={edited.lastName}
+					name="lastName"
+					onChange={handleUpdate}
+					disabled={!editMode ? true : false}
+				/>
+			</td>
+			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+				<input
+					value={edited.dateOfBirth}
+					name="dateOfBirth"
 					onChange={handleUpdate}
 					disabled={!editMode ? true : false}
 				/>
@@ -118,7 +139,7 @@ const TableRow: React.FC<Policy> = ({
 			</td>
 			<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 				<button
-					onClick={!editMode ? handleEdit : handleClickUpdate}
+					onClick={!editMode ? handleEdit : (id) => handleClickUpdate(id)}
 					className="text-indigo-600 hover:text-indigo-900"
 				>
 					{!editMode ? "Edit" : "Save"}
