@@ -4,7 +4,7 @@ import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
 
 import { TableHeadFields } from "./TableHeadFields";
 
-const TableHead: React.FC<{ setSortedField: any }> = ({ setSortedField }) => {
+const TableHead: React.FC<{ requestSort: any }> = ({ requestSort }) => {
 	const [sorted, setSorted] = useState(false);
 	return (
 		<>
@@ -16,7 +16,7 @@ const TableHead: React.FC<{ setSortedField: any }> = ({ setSortedField }) => {
 								key={index}
 								scope="col"
 								className="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider whitespace-pre"
-								onClick={() => setSortedField(item.sortField)}
+								onClick={() => requestSort(item.sortField)}
 							>
 								{item.fieldName}
 							</th>
