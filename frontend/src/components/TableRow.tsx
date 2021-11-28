@@ -54,7 +54,7 @@ const TableRow: React.FC<Policy> = ({
 		setEditMode(!editMode);
 		updatePolicy({
 			variables: {
-				id: edited.id,
+				updatePolicyId: edited.id,
 				provider: edited.provider,
 				insuranceType: edited.insuranceType,
 				status: edited.status,

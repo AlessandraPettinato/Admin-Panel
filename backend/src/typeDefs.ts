@@ -62,8 +62,8 @@ export const typeDefs = gql`
 			id: ID
 			customer: CustomerInput
 			provider: String
-			insuranceType: String
-			status: String
+			insuranceType: InsuranceType
+			status: PolicyStatus
 			policyNumber: String
 			startDate: String
 			endDate: String
