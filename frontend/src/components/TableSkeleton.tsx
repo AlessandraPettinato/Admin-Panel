@@ -17,8 +17,8 @@ const Table: React.FC = () => {
 	console.log("This is the copy sortedPolicies:", sortedPolicies);
 	if (sortedField !== "") {
 		sortedPolicies.sort((a: any, b: any) => {
-			var lastNameA = a.customer[0].lastName.toUpperCase();
-			var lastNameB = b.customer[0].lastName.toUpperCase();
+			var lastNameA = a.customer.lastName.toUpperCase();
+			var lastNameB = b.customer.lastName.toUpperCase();
 			console.log(
 				"These are what's compared in the function:",
 				lastNameB,
@@ -39,7 +39,7 @@ const Table: React.FC = () => {
 		if (!loading && data) {
 			setPolicies(data.getAllPolicies.results);
 		}
-	}, [loading]);
+	}, [loading, data]);
 
 	if (loading) return <p>Give it a minute</p>;
 	if (error) return <p>Something's wrong: {error.message}</p>;
