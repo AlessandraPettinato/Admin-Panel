@@ -1,6 +1,6 @@
 import "./index.css";
 import Provider from "./api/Provider";
-import Table from "./components/Table";
+import Table from "./components/TableSkeleton";
 
 const App: React.FC = () => {
 	return (

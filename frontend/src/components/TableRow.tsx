@@ -16,9 +16,9 @@ const TableRow: React.FC<Policy> = ({
 	endDate,
 	createdAt,
 }) => {
-	const { firstName, lastName, dateOfBirth } = customer[0];
+	const { firstName, lastName, dateOfBirth } = customer;
 
-	const completeName = `${firstName} ${lastName}`;
+	const completeName = `${lastName} ${firstName} `;
 
 	const [editMode, setEditMode] = useState(false);
 
@@ -54,7 +54,7 @@ const TableRow: React.FC<Policy> = ({
 		setEditMode(!editMode);
 		updatePolicy({
 			variables: {
-				id: edited.id,
+				updatePolicyId: edited.id,
 				provider: edited.provider,
 				insuranceType: edited.insuranceType,
 				status: edited.status,
@@ -63,18 +63,15 @@ const TableRow: React.FC<Policy> = ({
 				endDate: edited.endDate,
 				createdAt: edited.createdAt,
 				customer: {
-					firstName: edited.completeName.split(" ")[0],
-					lastName: edited.completeName.split(" ")[1],
+					firstName: edited.completeName.split(" ")[1],
+					lastName: edited.completeName.split(" ")[0],
 					dateOfBirth: edited.dateOfBirth,
 				},
 			},
 		});
-		console.log(id);
 	};
 
-	console.log(JSON.stringify(error, null, 2));
-
-	console.log(id);
+	// console.log(JSON.stringify(error, null, 2));
 
 	return (
 		<>
@@ -163,3 +160,13 @@ const TableRow: React.FC<Policy> = ({
 };
 
 export default TableRow;
+
+// sortedProducts.sort((a, b) => {
+// 	if (a[sortConfig.key] < b[sortConfig.key]) {
+// 	  return sortConfig.direction === 'ascending' ? -1 : 1;
+// 	}
+// 	if (a[sortConfig.key] > b[sortConfig.key]) {
+// 	  return sortConfig.direction === 'ascending' ? 1 : -1;
+// 	}
+// 	return 0;
+//   });
