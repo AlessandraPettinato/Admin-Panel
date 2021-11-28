@@ -3,7 +3,7 @@ import { gql } from "apollo-server-express";
 export const typeDefs = gql`
 	type Policy {
 		id: ID
-		customer: Customer!
+		customer: Customer
 		provider: String
 		insuranceType: InsuranceType
 		status: PolicyStatus
@@ -41,18 +41,18 @@ export const typeDefs = gql`
 	}
 
 	input CustomerInput {
-		firstName: String!
-		lastName: String!
-		dateOfBirth: String!
+		firstName: String
+		lastName: String
+		dateOfBirth: String
 	}
 
 	type Mutation {
 		addNewPolicy(
-			customer: CustomerInput
 			id: ID
+			customer: CustomerInput
 			provider: String
-			insuranceType: String
-			status: String
+			insuranceType: InsuranceType
+			status: PolicyStatus
 			policyNumber: String
 			startDate: String
 			endDate: String
