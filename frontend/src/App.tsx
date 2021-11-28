@@ -1,10 +1,10 @@
 import "./index.css";
 import Provider from "./api/Provider";
-import Table from "./components/TableSkeleton";
+import Table from "./components/Table/TableSkeleton";
 
 const App: React.FC = () => {
 	return (
-		<div className="container mx-auto p-10">
+		<div className="container m-8">
 			<Provider>
 				<Table />
 			</Provider>

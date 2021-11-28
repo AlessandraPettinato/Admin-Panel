@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 
-import { Policy } from "../types/Types";
+import { Policy } from "../../types/Types";
 
-import { QUERY_GET_ALL_POLICIES, UPDATE_POLICY } from "../queries/Policies";
+import { QUERY_GET_ALL_POLICIES, UPDATE_POLICY } from "../../queries/Policies";
 
 const TableRow: React.FC<Policy> = ({
 	id,
@@ -99,7 +99,7 @@ const TableRow: React.FC<Policy> = ({
 					className={
 						!editMode
 							? "border-none appearance-none"
-							: "w-36 h-5 pl-2 pr-6 text-sm border rounded-lg appearance-none focus:shadow-outline"
+							: "w-36 h-5 pl-2 pr-6 text-sm border rounded-lg appearance-none focus:shadow-outline bg-gray-50"
 					}
 					value={edited.insuranceType}
 					name="insuranceType"
@@ -124,11 +124,10 @@ const TableRow: React.FC<Policy> = ({
 			</td>
 			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
 				<select
-					// className={!editMode ? "bg-transparent" : "bg-gray-50"}
 					className={
 						!editMode
 							? "border-none appearance-none"
-							: "w-36 h-5 pl-2 pr-6 text-sm border rounded-lg appearance-none focus:shadow-outline"
+							: "w-36 h-5 pl-2 pr-6 text-sm border rounded-lg appearance-none focus:shadow-outline bg-gray-50"
 					}
 					value={edited.status}
 					name="status"
