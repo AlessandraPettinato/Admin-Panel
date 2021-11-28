@@ -12,34 +12,31 @@ const Table: React.FC = () => {
 	const [policies, setPolicies] = useState([]);
 
 	const [sortedField, setSortedField] = useState("");
-
 	let sortedPolicies: any = [...policies];
-	console.log("This is the copy sortedPolicies:", sortedPolicies);
-	if (sortedField !== "") {
-		sortedPolicies.sort((a: any, b: any) => {
-			var lastNameA = a.customer.lastName.toUpperCase();
-			var lastNameB = b.customer.lastName.toUpperCase();
-			console.log(
-				"These are what's compared in the function:",
-				lastNameB,
-				" and ",
-				lastNameA
-			);
-			if (lastNameA < lastNameB) {
-				return -1;
-			}
-			if (lastNameA > lastNameB) {
-				return 1;
-			}
-			return 0;
-		});
-	}
+
+	sortedPolicies.sort((a: any, b: any) => {
+		let lastNameA = a.customer.lastName.toUpperCase();
+		let lastNameB = b.customer.lastName.toUpperCase();
+		if (lastNameA < lastNameB) {
+			return -1;
+		}
+		if (lastNameA > lastNameB) {
+			return 1;
+		}
+		return 0;
+	});
 
 	useEffect(() => {
 		if (!loading && data) {
 			setPolicies(data.getAllPolicies.results);
 		}
 	}, [loading, data]);
+
+	useEffect(() => {
+		if (sortedField) {
+			setPolicies(sortedPolicies);
+		}
+	}, [sortedField]);
 
 	if (loading) return <p>Give it a minute</p>;
 	if (error) return <p>Something's wrong: {error.message}</p>;
