@@ -3,7 +3,7 @@ import { gql } from "apollo-server-express";
 export const typeDefs = gql`
 	type Policy {
 		id: ID
-		customer: [Customer]!
+		customer: Customer!
 		provider: String
 		insuranceType: InsuranceType
 		status: PolicyStatus

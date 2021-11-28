@@ -1,12 +1,10 @@
 export type Policy = {
 	id: string;
-	customer: [
-		{
-			firstName: string;
-			lastName: string;
-			dateOfBirth: string;
-		}
-	];
+	customer: {
+		firstName: string;
+		lastName: string;
+		dateOfBirth: string;
+	};
 	provider: string;
 	insuranceType: string;
 	status: string;
