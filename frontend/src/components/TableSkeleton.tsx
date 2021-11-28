@@ -10,6 +10,7 @@ const Table: React.FC = () => {
 	const { loading, error, data } = useQuery(QUERY_GET_ALL_POLICIES);
 
 	const [policies, setPolicies] = useState([]);
+
 	const [sortedField, setSortedField] = useState("");
 
 	let sortedPolicies: any = [...policies];
@@ -42,8 +43,6 @@ const Table: React.FC = () => {
 
 	if (loading) return <p>Give it a minute</p>;
 	if (error) return <p>Something's wrong: {error.message}</p>;
-
-	console.log(policies);
 
 	return (
 		<>
