@@ -85,7 +85,6 @@ export const resolvers = {
 					lastName: lastName,
 					dateOfBirth: dateOfBirth,
 				},
-
 				provider: provider,
 				insuranceType: insuranceType,
 				status: status,

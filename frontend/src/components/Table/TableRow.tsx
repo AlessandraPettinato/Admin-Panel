@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 
-import { Policy } from "../types/Types";
+import { Policy } from "../../types/Types";
 
-import { QUERY_GET_ALL_POLICIES, UPDATE_POLICY } from "../queries/Policies";
+import { QUERY_GET_ALL_POLICIES, UPDATE_POLICY } from "../../queries/Policies";
 
 const TableRow: React.FC<Policy> = ({
 	id,
@@ -20,19 +20,23 @@ const TableRow: React.FC<Policy> = ({
 
 	const completeName = `${lastName} ${firstName} `;
 
+	const convertDateToString = (date: Date) => {
+		return new Date(date).toISOString().slice(0, 10);
+	};
+
 	const [editMode, setEditMode] = useState(false);
 
 	const [edited, setEdited] = useState({
 		id,
 		completeName,
-		dateOfBirth,
+		dateOfBirthConverted: convertDateToString(dateOfBirth),
 		provider,
 		insuranceType,
 		status,
 		policyNumber,
-		startDate,
-		endDate,
-		createdAt,
+		startDateConverted: convertDateToString(startDate),
+		endDateConverted: convertDateToString(endDate),
+		createdAtConverted: convertDateToString(createdAt),
 	});
 
 	const handleUpdate = (e: any) => {
@@ -59,13 +63,13 @@ const TableRow: React.FC<Policy> = ({
 				insuranceType: edited.insuranceType,
 				status: edited.status,
 				policyNumber: edited.policyNumber,
-				startDate: edited.startDate,
-				endDate: edited.endDate,
-				createdAt: edited.createdAt,
+				startDate: new Date(edited.startDateConverted),
+				// endDate: new Date(edited.endDateConverted),
+				// createdAt: new Date(edited.createdAtConverted),
 				customer: {
 					firstName: edited.completeName.split(" ")[1],
 					lastName: edited.completeName.split(" ")[0],
-					dateOfBirth: edited.dateOfBirth,
+					// dateOfBirth: new Date(edited.dateOfBirthConverted),
 				},
 			},
 		});
@@ -73,50 +77,55 @@ const TableRow: React.FC<Policy> = ({
 
 	// console.log(JSON.stringify(error, null, 2));
 
+	if (loading) return <p>Give it a minute</p>;
+	if (error) return <p>Something's wrong: {error.message}</p>;
+
 	return (
 		<>
 			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
 				<input
+					className={
+						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
+					}
 					value={edited.completeName}
 					name="completeName"
 					onChange={handleUpdate}
 					disabled={!editMode ? true : false}
 				/>
 			</td>
-			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+			{/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
 				<input
-					value={edited.dateOfBirth}
-					name="dateOfBirth"
+				className={
+						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
+					}
+					value={edited.dateOfBirthConverted}
+					name="dateOfBirthConverted"
 					onChange={handleUpdate}
 					disabled={!editMode ? true : false}
 				/>
-			</td>
+			</td> */}
 			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-				<input
-					value={edited.provider}
-					name="provider"
-					onChange={handleUpdate}
-					disabled={!editMode ? true : false}
-				/>
-			</td>
-			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-				<input
+				<select
+					className={
+						!editMode
+							? "border-none appearance-none"
+							: "w-36 h-5 pl-2 pr-6 text-sm border rounded-lg appearance-none focus:shadow-outline bg-gray-50"
+					}
 					value={edited.insuranceType}
 					name="insuranceType"
 					onChange={handleUpdate}
 					disabled={!editMode ? true : false}
-				/>
+				>
+					<option>LIABILITY</option>
+					<option>HOUSEHOLD</option>
+					<option>HEALTH</option>
+				</select>
 			</td>
 			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
 				<input
-					value={edited.status}
-					name="status"
-					onChange={handleUpdate}
-					disabled={!editMode ? true : false}
-				/>
-			</td>
-			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-				<input
+					className={
+						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
+					}
 					value={edited.policyNumber}
 					name="policyNumber"
 					onChange={handleUpdate}
@@ -124,25 +133,63 @@ const TableRow: React.FC<Policy> = ({
 				/>
 			</td>
 			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+				<select
+					className={
+						!editMode
+							? "border-none appearance-none"
+							: "w-36 h-5 pl-2 pr-6 text-sm border rounded-lg appearance-none focus:shadow-outline bg-gray-50"
+					}
+					value={edited.status}
+					name="status"
+					onChange={handleUpdate}
+					disabled={!editMode ? true : false}
+				>
+					<option>ACTIVE</option>
+					<option>CANCELLED</option>
+					<option>DROPPED_OUT</option>
+					<option>PENDING</option>
+				</select>
+			</td>
+			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
 				<input
-					value={edited.startDate}
-					name="startDate"
+					className={
+						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
+					}
+					value={edited.provider}
+					name="provider"
+					onChange={handleUpdate}
+					disabled={!editMode ? true : false}
+				/>
+			</td>
+			{/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+				<input
+					className={
+						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
+					}
+					value={edited.startDateConverted}
+					name="startDateConverted"
 					onChange={handleUpdate}
 					disabled={!editMode ? true : false}
 				/>
 			</td>
 			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
 				<input
-					value={edited.endDate}
-					name="endDate"
+					className={
+						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
+					}
+					value={edited.endDateConverted}
+					name="endDateConverted"
 					onChange={handleUpdate}
 					disabled={!editMode ? true : false}
 				/>
-			</td>
+			</td> */}
 			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
 				<input
-					value={edited.createdAt}
-					name="createdAt"
+					className={
+						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
+					}
+					value={edited.createdAtConverted}
+					name="createdAtConverted"
 					onChange={handleUpdate}
 					disabled={!editMode ? true : false}
 				/>
@@ -160,13 +207,3 @@ const TableRow: React.FC<Policy> = ({
 };
 
 export default TableRow;
-
-// sortedProducts.sort((a, b) => {
-// 	if (a[sortConfig.key] < b[sortConfig.key]) {
-// 	  return sortConfig.direction === 'ascending' ? -1 : 1;
-// 	}
-// 	if (a[sortConfig.key] > b[sortConfig.key]) {
-// 	  return sortConfig.direction === 'ascending' ? 1 : -1;
-// 	}
-// 	return 0;
-//   });
