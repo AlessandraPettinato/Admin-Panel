@@ -1,14 +1,12 @@
 import "./index.css";
 import Provider from "./api/Provider";
-import Table from "./components/Table/TableSkeleton";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 const App: React.FC = () => {
 	return (
-		<div className="container m-8">
-			<Provider>
-				<Table />
-			</Provider>
-		</div>
+		<Provider>
+			<Dashboard />
+		</Provider>
 	);
 };
 
