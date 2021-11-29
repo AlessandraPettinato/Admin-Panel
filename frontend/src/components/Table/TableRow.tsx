@@ -77,6 +77,9 @@ const TableRow: React.FC<Policy> = ({
 
 	// console.log(JSON.stringify(error, null, 2));
 
+	if (loading) return <p>Give it a minute</p>;
+	if (error) return <p>Something's wrong: {error.message}</p>;
+
 	return (
 		<>
 			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">

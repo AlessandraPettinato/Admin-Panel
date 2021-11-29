@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_GET_ALL_POLICIES } from "../../queries/Policies";
 import { Policy } from "../../types/Types";
@@ -20,25 +20,25 @@ const Table: React.FC = () => {
 	let sortedPolicies: any = [...policies];
 
 	sortedPolicies.sort((a: any, b: any) => {
-		// if (typeof a === "object" && typeof b === "object") {
-		// 	let lastNameA = a.customer.lastName.toUpperCase();
-		// 	let lastNameB = b.customer.lastName.toUpperCase();
-		// 	if (lastNameA < lastNameB) {
-		// 		return sortedField.direction === "ascending" ? -1 : 1;
-		// 	}
-		// 	if (lastNameA > lastNameB) {
-		// 		return sortedField.direction === "ascending" ? 1 : -1;
-		// 	}
-		// 	return 0;
-		// } else {
-		if (a[sortedField.key] < b[sortedField.key]) {
-			return sortedField.direction === "ascending" ? -1 : 1;
+		if (sortedField.key === "lastName") {
+			let lastNameA = a.customer.lastName.toUpperCase();
+			let lastNameB = b.customer.lastName.toUpperCase();
+			if (lastNameA < lastNameB) {
+				return sortedField.direction === "ascending" ? -1 : 1;
+			}
+			if (lastNameA > lastNameB) {
+				return sortedField.direction === "ascending" ? 1 : -1;
+			}
+			return 0;
+		} else {
+			if (a[sortedField.key] < b[sortedField.key]) {
+				return sortedField.direction === "ascending" ? -1 : 1;
+			}
+			if (a[sortedField.key] > b[sortedField.key]) {
+				return sortedField.direction === "ascending" ? 1 : -1;
+			}
+			return 0;
 		}
-		if (a[sortedField.key] > b[sortedField.key]) {
-			return sortedField.direction === "ascending" ? 1 : -1;
-		}
-		return 0;
-		// }
 	});
 
 	const requestSort = (key: any) => {
@@ -64,6 +64,8 @@ const Table: React.FC = () => {
 
 	if (loading) return <p>Give it a minute</p>;
 	if (error) return <p>Something's wrong: {error.message}</p>;
+
+	console.log(policies);
 
 	return (
 		<div className="flex flex-col ">
