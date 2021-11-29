@@ -20,29 +20,23 @@ const TableRow: React.FC<Policy> = ({
 
 	const completeName = `${lastName} ${firstName} `;
 
-	const dateOfBirthConverted = new Date(dateOfBirth).toISOString().slice(0, 10);
-
-	const startDateConverted = new Date(startDate).toISOString().slice(0, 10);
-
-	const endDateConverted = new Date(endDate).toISOString().slice(0, 10);
-
-	const createdAtConverted = new Date(createdAt).toISOString().slice(0, 10);
-
-	console.log(startDateConverted, endDateConverted, createdAtConverted);
+	const convertDateToString = (date: Date) => {
+		return new Date(date).toISOString().slice(0, 10);
+	};
 
 	const [editMode, setEditMode] = useState(false);
 
 	const [edited, setEdited] = useState({
 		id,
 		completeName,
-		dateOfBirthConverted,
+		dateOfBirthConverted: convertDateToString(dateOfBirth),
 		provider,
 		insuranceType,
 		status,
 		policyNumber,
-		startDateConverted,
-		endDateConverted,
-		createdAtConverted,
+		startDateConverted: convertDateToString(startDate),
+		endDateConverted: convertDateToString(endDate),
+		createdAtConverted: convertDateToString(createdAt),
 	});
 
 	const handleUpdate = (e: any) => {
