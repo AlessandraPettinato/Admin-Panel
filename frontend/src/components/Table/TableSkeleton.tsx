@@ -16,6 +16,7 @@ const Table: React.FC = () => {
 		direction: "",
 	});
 	const [sorted, setSorted] = useState(false);
+	const [active, setActive] = useState("");
 
 	let sortedPolicies: any = [...policies];
 
@@ -47,6 +48,7 @@ const Table: React.FC = () => {
 			direction = "descending";
 		}
 		setSortedField({ key, direction });
+		setActive(sortedField.key);
 	};
 
 	useEffect(() => {
@@ -71,7 +73,7 @@ const Table: React.FC = () => {
 		<div className="flex flex-col ">
 			<div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"></div>
 			<table className="min-w-full divide-y divide-gray-200 border-collapse border">
-				<TableHead requestSort={requestSort} sorted={sorted} />
+				<TableHead requestSort={requestSort} sorted={sorted} active={active} />
 				<tbody className="bg-white divide-y divide-gray-200">
 					{policies.map((policy: Policy) => {
 						const {
