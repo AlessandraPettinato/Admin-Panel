@@ -5,6 +5,7 @@ import { Policy } from "../../types/Types";
 
 import TableRow from "./TableRow";
 import TableHead from "./TableHead";
+import Pagination from "../Pagination/Pagination";
 
 const Table: React.FC = () => {
 	const { loading, error, data } = useQuery(QUERY_GET_ALL_POLICIES);
@@ -15,8 +16,11 @@ const Table: React.FC = () => {
 		key: "",
 		direction: "",
 	});
-	const [sorted, setSorted] = useState(false);
-	const [active, setActive] = useState("");
+	const [sorted, setSorted] = useState<boolean>(false);
+	const [active, setActive] = useState<string>("");
+
+	const [currentPage, setCurrentPage] = useState<number>(1);
+	const [policiesPerPage] = useState<number>(5);
 
 	let sortedPolicies: any = [...policies];
 
@@ -51,6 +55,15 @@ const Table: React.FC = () => {
 		setActive(sortedField.key);
 	};
 
+	const indexOfLastPolicy = currentPage * policiesPerPage;
+	const indexOfFirstPolicy = indexOfLastPolicy - policiesPerPage;
+
+	const currentPolicies = policies.slice(indexOfFirstPolicy, indexOfLastPolicy);
+
+	const paginate = (pageNumber: number) => {
+		setCurrentPage(pageNumber);
+	};
+
 	useEffect(() => {
 		if (!loading && data) {
 			setPolicies(data.getAllPolicies.results);
@@ -64,10 +77,10 @@ const Table: React.FC = () => {
 		}
 	}, [sortedField]);
 
+	console.log("This is currentPolicies:", currentPolicies);
+
 	if (loading) return <p>Give it a minute</p>;
 	if (error) return <p>Something's wrong: {error.message}</p>;
-
-	console.log(policies);
 
 	return (
 		<div className="flex flex-col ">
@@ -75,7 +88,7 @@ const Table: React.FC = () => {
 			<table className="min-w-full divide-y divide-gray-200 border-collapse border">
 				<TableHead requestSort={requestSort} sorted={sorted} active={active} />
 				<tbody className="bg-white divide-y divide-gray-200">
-					{policies.map((policy: Policy) => {
+					{currentPolicies.map((policy: Policy) => {
 						const {
 							id,
 							customer,
@@ -105,6 +118,11 @@ const Table: React.FC = () => {
 					})}
 				</tbody>
 			</table>
+			<Pagination
+				policiesPerPage={policiesPerPage}
+				totalPolicies={policies.length}
+				paginate={paginate}
+			/>
 		</div>
 	);
 };
