@@ -1,11 +1,11 @@
-import { useState } from "react";
-
 import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
 
 import { TableHeadFields } from "./TableHeadFields";
 
-const TableHead: React.FC<{ requestSort: any }> = ({ requestSort }) => {
-	const [sorted, setSorted] = useState(false);
+const TableHead: React.FC<{ requestSort: Function; sorted: boolean }> = ({
+	requestSort,
+	sorted,
+}) => {
 	return (
 		<>
 			<thead className="bg-gray-50">
@@ -19,6 +19,11 @@ const TableHead: React.FC<{ requestSort: any }> = ({ requestSort }) => {
 								onClick={() => requestSort(item.sortField)}
 							>
 								{item.fieldName}
+								{sorted ? (
+									<TiArrowSortedUp className={!sorted ? "hidden" : "block"} />
+								) : (
+									<TiArrowSortedDown />
+								)}
 							</th>
 						);
 					})}

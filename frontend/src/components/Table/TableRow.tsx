@@ -20,19 +20,29 @@ const TableRow: React.FC<Policy> = ({
 
 	const completeName = `${lastName} ${firstName} `;
 
+	const dateOfBirthConverted = new Date(dateOfBirth).toISOString().slice(0, 10);
+
+	const startDateConverted = new Date(startDate).toISOString().slice(0, 10);
+
+	const endDateConverted = new Date(endDate).toISOString().slice(0, 10);
+
+	const createdAtConverted = new Date(createdAt).toISOString().slice(0, 10);
+
+	console.log(startDateConverted, endDateConverted, createdAtConverted);
+
 	const [editMode, setEditMode] = useState(false);
 
 	const [edited, setEdited] = useState({
 		id,
 		completeName,
-		dateOfBirth,
+		dateOfBirthConverted,
 		provider,
 		insuranceType,
 		status,
 		policyNumber,
-		startDate,
-		endDate,
-		createdAt,
+		startDateConverted,
+		endDateConverted,
+		createdAtConverted,
 	});
 
 	const handleUpdate = (e: any) => {
@@ -59,13 +69,13 @@ const TableRow: React.FC<Policy> = ({
 				insuranceType: edited.insuranceType,
 				status: edited.status,
 				policyNumber: edited.policyNumber,
-				startDate: edited.startDate,
-				endDate: edited.endDate,
-				createdAt: edited.createdAt,
+				startDate: new Date(edited.startDateConverted),
+				endDate: new Date(edited.endDateConverted),
+				createdAt: new Date(edited.createdAtConverted),
 				customer: {
 					firstName: edited.completeName.split(" ")[1],
 					lastName: edited.completeName.split(" ")[0],
-					dateOfBirth: edited.dateOfBirth,
+					dateOfBirth: new Date(edited.dateOfBirthConverted),
 				},
 			},
 		});
@@ -88,8 +98,11 @@ const TableRow: React.FC<Policy> = ({
 			</td>
 			{/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
 				<input
-					value={edited.dateOfBirth}
-					name="dateOfBirth"
+				className={
+						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
+					}
+					value={edited.dateOfBirthConverted}
+					name="dateOfBirthConverted"
 					onChange={handleUpdate}
 					disabled={!editMode ? true : false}
 				/>
@@ -156,8 +169,8 @@ const TableRow: React.FC<Policy> = ({
 					className={
 						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
 					}
-					value={edited.startDate}
-					name="startDate"
+					value={edited.startDateConverted}
+					name="startDateConverted"
 					onChange={handleUpdate}
 					disabled={!editMode ? true : false}
 				/>
@@ -167,8 +180,8 @@ const TableRow: React.FC<Policy> = ({
 					className={
 						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
 					}
-					value={edited.endDate}
-					name="endDate"
+					value={edited.endDateConverted}
+					name="endDateConverted"
 					onChange={handleUpdate}
 					disabled={!editMode ? true : false}
 				/>
@@ -178,8 +191,8 @@ const TableRow: React.FC<Policy> = ({
 					className={
 						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
 					}
-					value={edited.createdAt}
-					name="createdAt"
+					value={edited.createdAtConverted}
+					name="createdAtConverted"
 					onChange={handleUpdate}
 					disabled={!editMode ? true : false}
 				/>

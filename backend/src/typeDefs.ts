@@ -1,6 +1,8 @@
 import { gql } from "apollo-server-express";
 
 export const typeDefs = gql`
+	scalar Date
+
 	type Policy {
 		id: ID
 		customer: Customer
@@ -8,9 +10,9 @@ export const typeDefs = gql`
 		insuranceType: InsuranceType
 		status: PolicyStatus
 		policyNumber: String
-		startDate: String
-		endDate: String
-		createdAt: String
+		startDate: Date
+		endDate: Date
+		createdAt: Date
 	}
 
 	enum InsuranceType {
@@ -29,7 +31,7 @@ export const typeDefs = gql`
 	type Customer {
 		firstName: String
 		lastName: String
-		dateOfBirth: String
+		dateOfBirth: Date
 	}
 
 	type PolicyList {
@@ -43,7 +45,7 @@ export const typeDefs = gql`
 	input CustomerInput {
 		firstName: String
 		lastName: String
-		dateOfBirth: String
+		dateOfBirth: Date
 	}
 
 	type Mutation {
@@ -54,9 +56,9 @@ export const typeDefs = gql`
 			insuranceType: InsuranceType
 			status: PolicyStatus
 			policyNumber: String
-			startDate: String
-			endDate: String
-			createdAt: String
+			startDate: Date
+			endDate: Date
+			createdAt: Date
 		): Policy
 		updatePolicy(
 			id: ID
@@ -65,9 +67,9 @@ export const typeDefs = gql`
 			insuranceType: InsuranceType
 			status: PolicyStatus
 			policyNumber: String
-			startDate: String
-			endDate: String
-			createdAt: String
+			startDate: Date
+			endDate: Date
+			createdAt: Date
 		): Policy
 	}
 `;

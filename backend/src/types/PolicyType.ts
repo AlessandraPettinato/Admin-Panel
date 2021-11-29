@@ -3,13 +3,13 @@ export type Policy = {
 	customer: {
 		firstName: string;
 		lastName: string;
-		dateOfBirth: string;
+		dateOfBirth: Date;
 	};
 	provider: string;
 	insuranceType: string;
 	status: string;
 	policyNumber: string;
-	startDate: string;
-	endDate: string;
-	createdAt: string;
+	startDate: Date;
+	endDate: Date;
+	createdAt: Date;
 };

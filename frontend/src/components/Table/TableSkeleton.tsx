@@ -5,7 +5,6 @@ import { Policy } from "../../types/Types";
 
 import TableRow from "./TableRow";
 import TableHead from "./TableHead";
-import { TableHeadFields } from "./TableHeadFields";
 
 const Table: React.FC = () => {
 	const { loading, error, data } = useQuery(QUERY_GET_ALL_POLICIES);
@@ -16,19 +15,30 @@ const Table: React.FC = () => {
 		key: "",
 		direction: "",
 	});
+	const [sorted, setSorted] = useState(false);
 
 	let sortedPolicies: any = [...policies];
 
 	sortedPolicies.sort((a: any, b: any) => {
-		let lastNameA = a.customer.lastName.toUpperCase();
-		let lastNameB = b.customer.lastName.toUpperCase();
-		if (lastNameA < lastNameB) {
+		// if (typeof a === "object" && typeof b === "object") {
+		// 	let lastNameA = a.customer.lastName.toUpperCase();
+		// 	let lastNameB = b.customer.lastName.toUpperCase();
+		// 	if (lastNameA < lastNameB) {
+		// 		return sortedField.direction === "ascending" ? -1 : 1;
+		// 	}
+		// 	if (lastNameA > lastNameB) {
+		// 		return sortedField.direction === "ascending" ? 1 : -1;
+		// 	}
+		// 	return 0;
+		// } else {
+		if (a[sortedField.key] < b[sortedField.key]) {
 			return sortedField.direction === "ascending" ? -1 : 1;
 		}
-		if (lastNameA > lastNameB) {
+		if (a[sortedField.key] > b[sortedField.key]) {
 			return sortedField.direction === "ascending" ? 1 : -1;
 		}
 		return 0;
+		// }
 	});
 
 	const requestSort = (key: any) => {
@@ -48,6 +58,7 @@ const Table: React.FC = () => {
 	useEffect(() => {
 		if (sortedField) {
 			setPolicies(sortedPolicies);
+			setSorted(!sorted);
 		}
 	}, [sortedField]);
 
@@ -58,7 +69,7 @@ const Table: React.FC = () => {
 		<div className="flex flex-col ">
 			<div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"></div>
 			<table className="min-w-full divide-y divide-gray-200 border-collapse border">
-				<TableHead requestSort={requestSort} />
+				<TableHead requestSort={requestSort} sorted={sorted} />
 				<tbody className="bg-white divide-y divide-gray-200">
 					{policies.map((policy: Policy) => {
 						const {

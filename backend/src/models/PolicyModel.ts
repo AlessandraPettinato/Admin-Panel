@@ -5,16 +5,16 @@ const PolicySchema = new mongoose.Schema({
 	customer: {
 		firstName: String,
 		lastName: String,
-		dateOfBirth: String,
+		dateOfBirth: Date,
 	},
 
 	provider: String,
 	insuranceType: String,
 	status: String,
 	policyNumber: String,
-	startDate: String,
-	endDate: String,
-	createdAt: String,
+	startDate: Date,
+	endDate: Date,
+	createdAt: Date,
 });
 
 export const PolicyModel = mongoose.model("policies", PolicySchema);

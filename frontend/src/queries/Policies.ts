@@ -30,9 +30,9 @@ export const UPDATE_POLICY = gql`
 		$insuranceType: InsuranceType
 		$status: PolicyStatus
 		$policyNumber: String
-		$startDate: String
-		$endDate: String
-		$createdAt: String
+		$startDate: Date
+		$endDate: Date
+		$createdAt: Date
 	) {
 		updatePolicy(
 			id: $updatePolicyId
