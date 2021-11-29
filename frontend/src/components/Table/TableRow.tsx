@@ -64,12 +64,12 @@ const TableRow: React.FC<Policy> = ({
 				status: edited.status,
 				policyNumber: edited.policyNumber,
 				startDate: new Date(edited.startDateConverted),
-				endDate: new Date(edited.endDateConverted),
-				createdAt: new Date(edited.createdAtConverted),
+				// endDate: new Date(edited.endDateConverted),
+				// createdAt: new Date(edited.createdAtConverted),
 				customer: {
 					firstName: edited.completeName.split(" ")[1],
 					lastName: edited.completeName.split(" ")[0],
-					dateOfBirth: new Date(edited.dateOfBirthConverted),
+					// dateOfBirth: new Date(edited.dateOfBirthConverted),
 				},
 			},
 		});
@@ -161,7 +161,7 @@ const TableRow: React.FC<Policy> = ({
 					disabled={!editMode ? true : false}
 				/>
 			</td>
-			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+			{/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
 				<input
 					className={
 						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
@@ -182,7 +182,7 @@ const TableRow: React.FC<Policy> = ({
 					onChange={handleUpdate}
 					disabled={!editMode ? true : false}
 				/>
-			</td>
+			</td> */}
 			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
 				<input
 					className={

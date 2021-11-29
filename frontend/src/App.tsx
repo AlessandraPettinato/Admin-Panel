@@ -4,9 +4,11 @@ import Dashboard from "./components/Dashboard/Dashboard";
 
 const App: React.FC = () => {
 	return (
-		<Provider>
-			<Dashboard />
-		</Provider>
+		<>
+			<Provider>
+				<Dashboard />
+			</Provider>
+		</>
 	);
 };
 
