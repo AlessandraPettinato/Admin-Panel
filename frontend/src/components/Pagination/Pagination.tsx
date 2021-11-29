@@ -11,16 +11,16 @@ const Pagination: React.FC<{
 
 	return (
 		<nav
-			className="flex z-0 inline-flex justify-evenly items-center rounded-md shadow-sm -space-x-px"
+			className="z-0 inline-flex justify-evenly items-center rounded-md shadow-sm -space-x-px"
 			aria-label="Pagination"
 		>
-			<ul>
+			<ul className="flex">
 				{pageNumbers.map((number) => (
 					<li key={number}>
 						<button
 							onClick={() => paginate(number)}
 							aria-current="page"
-							className="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+							className="z-10 bg-white border-blue-400 text-blue-400 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
 						>
 							{number}
 						</button>

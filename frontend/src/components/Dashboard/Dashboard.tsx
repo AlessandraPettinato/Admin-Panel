@@ -71,7 +71,7 @@ const Dashboard: React.FC = () => {
 	}, [loading, data]);
 
 	return (
-		<div className="flex flex-col justify-center items-center bg-white font-sans leading-normal tracking-normal mt-12 h-screen">
+		<div className="flex flex-col justify-center items-center bg-white font-sans leading-normal tracking-normal h-screen">
 			<Navigation />
 			<Table
 				loading={loading}
