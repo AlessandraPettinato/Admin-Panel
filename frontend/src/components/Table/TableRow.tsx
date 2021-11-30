@@ -50,7 +50,7 @@ const TableRow: React.FC<Policy> = ({
 		setEditMode(!editMode);
 	};
 
-	const [updatePolicy, { loading, error, data }] = useMutation(UPDATE_POLICY, {
+	const [updatePolicy] = useMutation(UPDATE_POLICY, {
 		refetchQueries: [QUERY_GET_ALL_POLICIES],
 	});
 
@@ -75,9 +75,6 @@ const TableRow: React.FC<Policy> = ({
 		});
 	};
 
-	if (loading) return <td>Loading...</td>;
-	if (error) return <td>Something's wrong: {error.message}</td>;
-
 	return (
 		<>
 			<td className="px-6 py-4 whitespace-nowrap text-gray-500">
@@ -96,7 +93,7 @@ const TableRow: React.FC<Policy> = ({
 					className={
 						!editMode
 							? "border-none appearance-none"
-							: "w-36 h-5 pl-2 pr-6 text-sm border rounded-lg appearance-none focus:shadow-outline bg-gray-50"
+							: "form-select border block w-full rounded-lg mt-1 bg-gray-50 pl-2"
 					}
 					value={edited.insuranceType}
 					name="insuranceType"
@@ -124,7 +121,7 @@ const TableRow: React.FC<Policy> = ({
 					className={
 						!editMode
 							? "border-none appearance-none"
-							: "w-36 h-5 pl-2 pr-6 text-sm border rounded-lg appearance-none focus:shadow-outline bg-gray-50"
+							: "form-select border block w-full rounded-lg mt-1 bg-gray-50 pl-2"
 					}
 					value={edited.status}
 					name="status"

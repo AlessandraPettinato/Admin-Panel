@@ -72,21 +72,29 @@ const Dashboard: React.FC = () => {
 
 	return (
 		<div className="flex flex-col justify-center items-center bg-white font-sans leading-normal tracking-normal h-screen">
-			<SearchBar />
-			<Table
-				loading={loading}
-				error={error}
-				sortedField={sortedField}
-				requestSort={requestSort}
-				activeField={activeField}
-				setActiveField={setActiveField}
-				currentPolicies={currentPolicies}
-			/>
-			<Pagination
-				policiesPerPage={policiesPerPage}
-				totalPolicies={policies.length}
-				paginate={paginate}
-			/>
+			{!loading ? (
+				<>
+					<SearchBar />
+					<Table
+						loading={loading}
+						error={error}
+						sortedField={sortedField}
+						requestSort={requestSort}
+						activeField={activeField}
+						setActiveField={setActiveField}
+						currentPolicies={currentPolicies}
+					/>
+					<Pagination
+						policiesPerPage={policiesPerPage}
+						totalPolicies={policies.length}
+						paginate={paginate}
+					/>
+				</>
+			) : (
+				<div className="flex justify-center items-center">
+					<div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-400" />
+				</div>
+			)}
 		</div>
 	);
 };
