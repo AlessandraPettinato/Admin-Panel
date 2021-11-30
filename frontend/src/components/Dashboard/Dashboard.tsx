@@ -10,7 +10,7 @@ import Pagination from "../Pagination/Pagination";
 const Dashboard: React.FC = () => {
 	const { loading, error, data } = useQuery(QUERY_GET_ALL_POLICIES);
 
-	const [policies, setPolicies] = useState([]);
+	const [policies, setPolicies] = useState<Array<Policy>>([]);
 
 	const [sortedField, setSortedField] = useState({
 		key: "",
@@ -22,10 +22,13 @@ const Dashboard: React.FC = () => {
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [policiesPerPage] = useState<number>(5);
 
-	const indexOfLastPolicy = currentPage * policiesPerPage;
-	const indexOfFirstPolicy = indexOfLastPolicy - policiesPerPage;
+	const indexOfLastPolicy: number = currentPage * policiesPerPage;
+	const indexOfFirstPolicy: number = indexOfLastPolicy - policiesPerPage;
 
-	const currentPolicies = policies.slice(indexOfFirstPolicy, indexOfLastPolicy);
+	const currentPolicies: Array<Policy> = policies.slice(
+		indexOfFirstPolicy,
+		indexOfLastPolicy
+	);
 
 	const paginate = (pageNumber: number) => {
 		setCurrentPage(pageNumber);
@@ -53,7 +56,7 @@ const Dashboard: React.FC = () => {
 		}
 	});
 
-	const requestSort = (key: any) => {
+	const requestSort = (key: string) => {
 		let direction = "ascending";
 		if (sortedField.key === key && sortedField.direction === "ascending") {
 			direction = "descending";

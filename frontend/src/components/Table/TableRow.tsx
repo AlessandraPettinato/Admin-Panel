@@ -18,13 +18,13 @@ const TableRow: React.FC<Policy> = ({
 }) => {
 	const { firstName, lastName, dateOfBirth } = customer;
 
-	const completeName = `${lastName} ${firstName} `;
+	const completeName: string = `${lastName} ${firstName} `;
 
-	const convertDateToString = (date: Date) => {
+	const convertDateToString: Function = (date: Date) => {
 		return new Date(date).toISOString().slice(0, 10);
 	};
 
-	const [editMode, setEditMode] = useState(false);
+	const [editMode, setEditMode] = useState<boolean>(false);
 
 	const [edited, setEdited] = useState({
 		id,

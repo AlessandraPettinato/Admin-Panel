@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import TableRow from "./TableRow";
 import TableHead from "./TableHead";
 import { Policy } from "../../types/Types";
