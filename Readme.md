@@ -80,7 +80,7 @@ https://user-images.githubusercontent.com/73818991/144071680-b6629eb3-8576-4591-
 
 
 ### Insert Data into your Database
-At this point you only need to feed some sample data! Please copy the content of the **DataSample.json** file that you can find at the root of the backend folder. On your cloud, click on **Insert Document** and then **{}**, delete the object and paste the DataSample.txt. Click on **Insert** to save. 
+At this point you only need to feed some sample data! Please copy the content of the **DataSample.json** file that you can find at the root of the backend folder. On your cloud, click on **Insert Document** and then **{}**, delete the object and paste the DataSample.json. Click on **Insert** to save. 
 
 
 https://user-images.githubusercontent.com/73818991/144071725-94b17bc8-b1df-4c82-ab82-77947c96e7f2.mov
