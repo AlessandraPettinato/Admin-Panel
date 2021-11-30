@@ -10,7 +10,7 @@ import Pagination from "../Pagination/Pagination";
 const Dashboard: React.FC = () => {
 	const { loading, error, data } = useQuery(QUERY_GET_ALL_POLICIES);
 
-	const [policies, setPolicies] = useState<Array<Policy>>([]);
+	const [policies, setPolicies] = useState([]);
 
 	const [sortedField, setSortedField] = useState({
 		key: "",
@@ -31,9 +31,7 @@ const Dashboard: React.FC = () => {
 		setCurrentPage(pageNumber);
 	};
 
-	let sortedPolicies: any = [...policies];
-
-	sortedPolicies.sort((a: any, b: any) => {
+	currentPolicies.sort((a: any, b: any) => {
 		if (sortedField.key === "lastName") {
 			let lastNameA = a.customer.lastName.toUpperCase();
 			let lastNameB = b.customer.lastName.toUpperCase();
@@ -43,6 +41,7 @@ const Dashboard: React.FC = () => {
 			if (lastNameA > lastNameB) {
 				return sortedField.direction === "ascending" ? 1 : -1;
 			}
+			return 0;
 		} else {
 			if (a[sortedField.key] < b[sortedField.key]) {
 				return sortedField.direction === "ascending" ? -1 : 1;
@@ -50,6 +49,7 @@ const Dashboard: React.FC = () => {
 			if (a[sortedField.key] > b[sortedField.key]) {
 				return sortedField.direction === "ascending" ? 1 : -1;
 			}
+			return 0;
 		}
 	});
 
@@ -74,8 +74,6 @@ const Dashboard: React.FC = () => {
 				loading={loading}
 				error={error}
 				sortedField={sortedField}
-				setPolicies={setPolicies}
-				sortedPolicies={sortedPolicies}
 				requestSort={requestSort}
 				activeField={activeField}
 				setActiveField={setActiveField}

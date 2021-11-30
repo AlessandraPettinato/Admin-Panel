@@ -8,8 +8,6 @@ const Table: React.FC<{
 	loading: any;
 	error: any;
 	sortedField: any;
-	setPolicies: Function;
-	sortedPolicies: Array<Policy>;
 	requestSort: Function;
 	activeField: string;
 	setActiveField: Function;
@@ -18,19 +16,11 @@ const Table: React.FC<{
 	loading,
 	error,
 	sortedField,
-	setPolicies,
-	sortedPolicies,
 	requestSort,
 	activeField,
 	setActiveField,
 	currentPolicies,
 }) => {
-	useEffect(() => {
-		if (sortedField) {
-			setPolicies(sortedPolicies);
-		}
-	}, [sortedField]);
-
 	if (loading) return <p>Give it a minute</p>;
 	if (error) return <p>Something's wrong: {error.message}</p>;
 
@@ -38,7 +28,7 @@ const Table: React.FC<{
 		<>
 			<div className="flex flex-col container mx-auto px-4 py-12">
 				<div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"></div>
-				<table className="table-fixed divide-y divide-gray-200 border-collapse border">
+				<table className="table-auto divide-y divide-gray-200 border-collapse border">
 					<TableHead
 						requestSort={requestSort}
 						activeField={activeField}

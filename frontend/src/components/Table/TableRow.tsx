@@ -82,7 +82,7 @@ const TableRow: React.FC<Policy> = ({
 
 	return (
 		<>
-			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+			<td className="p-3 whitespace-nowrap text-sm text-gray-500">
 				<input
 					className={
 						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
@@ -93,7 +93,7 @@ const TableRow: React.FC<Policy> = ({
 					disabled={!editMode ? true : false}
 				/>
 			</td>
-			{/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+			{/* <td className="p-3 whitespace-nowrap text-sm text-gray-500">
 				<input
 				className={
 						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
@@ -104,7 +104,7 @@ const TableRow: React.FC<Policy> = ({
 					disabled={!editMode ? true : false}
 				/>
 			</td> */}
-			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+			<td className="p-3 whitespace-nowrap text-sm text-gray-500">
 				<select
 					className={
 						!editMode
@@ -121,7 +121,7 @@ const TableRow: React.FC<Policy> = ({
 					<option>HEALTH</option>
 				</select>
 			</td>
-			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+			<td className="p-3 whitespace-nowrap text-sm text-gray-500">
 				<input
 					className={
 						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
@@ -132,7 +132,7 @@ const TableRow: React.FC<Policy> = ({
 					disabled={!editMode ? true : false}
 				/>
 			</td>
-			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+			<td className="p-3 whitespace-nowrap text-sm text-gray-500">
 				<select
 					className={
 						!editMode
@@ -150,7 +150,7 @@ const TableRow: React.FC<Policy> = ({
 					<option>PENDING</option>
 				</select>
 			</td>
-			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+			<td className="p-3 whitespace-nowrap text-sm text-gray-500">
 				<input
 					className={
 						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
@@ -161,7 +161,7 @@ const TableRow: React.FC<Policy> = ({
 					disabled={!editMode ? true : false}
 				/>
 			</td>
-			{/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+			{/* <td className="p-3 whitespace-nowrap text-sm text-gray-500">
 				<input
 					className={
 						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
@@ -172,7 +172,7 @@ const TableRow: React.FC<Policy> = ({
 					disabled={!editMode ? true : false}
 				/>
 			</td>
-			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+			<td className="p-3 whitespace-nowrap text-sm text-gray-500">
 				<input
 					className={
 						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
@@ -183,7 +183,7 @@ const TableRow: React.FC<Policy> = ({
 					disabled={!editMode ? true : false}
 				/>
 			</td> */}
-			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+			<td className="p-3 whitespace-nowrap text-sm text-gray-500">
 				<input
 					className={
 						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
@@ -194,7 +194,7 @@ const TableRow: React.FC<Policy> = ({
 					disabled={!editMode ? true : false}
 				/>
 			</td>
-			<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+			<td className="pr-6 whitespace-nowrap text-right text-sm font-medium">
 				<button
 					onClick={!editMode ? handleEdit : () => handleClickUpdate()}
 					className="text-indigo-600 hover:text-indigo-900"

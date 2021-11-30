@@ -18,10 +18,10 @@ export const resolvers = {
 	InsuranceType,
 	PolicyStatus,
 	Query: {
-		getAllPolicies: async (_: any, { limit }: any) => {
+		getAllPolicies: async () => {
 			const results = await PolicyModel.find({});
 			return {
-				results: results.slice(0, limit),
+				results: results,
 			};
 		},
 	},
