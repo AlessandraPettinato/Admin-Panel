@@ -25,7 +25,7 @@ const Pagination: React.FC<{
 										<button
 											onClick={() => paginate(number)}
 											aria-current="page"
-											className="z-10 bg-white border-gray-200 text-blue-400 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+											className="z-10 bg-white border-gray-200 text-blue-400 hover:text-blue-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
 										>
 											{number}
 										</button>

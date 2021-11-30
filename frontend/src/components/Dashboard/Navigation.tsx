@@ -4,24 +4,26 @@ const Navigation: React.FC = () => {
 	return (
 		<nav className="bg-blue-400 pt-2 md:pt-1 pb-1 px-1 mt-0 h-auto fixed w-full z-20 top-0">
 			<div className="flex flex-wrap items-center">
-				<div className="flex flex-shrink md:w-1/3 justify-center md:justify-start text-white"></div>
+				<div className="flex flex-shrink md:w-1/3 justify-center md:justify-start text-white" />
 
 				<div className="flex flex-1 md:w-1/3 justify-center md:justify-start text-white px-2 py-4">
-					<span className="relative w-full">
+					<div className="relative">
 						<input
-							placeholder="Search"
-							className="w-full bg-blue-600 text-white transition border border-transparent focus:outline-none focus:border-gray-400 rounded py-3 px-2 pl-10 appearance-none leading-normal"
+							className="h-14 w-96 pr-8 pl-5 rounded z-0 focus:shadow focus:outline-none text-gray-600"
+							placeholder="What are you looking for?"
 						/>
-						<div className="absolute" style={{ top: "1rem", left: "30rem" }}>
-							<BiSearch />
+						<div className="absolute top-5 right-3">
+							<BiSearch style={{ color: "gray" }} />
 						</div>
-					</span>
+					</div>
 				</div>
 
 				<div className="flex w-full pt-2 content-center justify-between md:w-1/3 md:justify-end">
 					<ul className="list-reset flex justify-between flex-1 md:flex-none items-center">
 						<li className="flex-1 md:flex-none md:mr-3">
-							<div className="relative inline-block text-white">Admin</div>
+							<div className="relative inline-block text-white font-semibold pr-6 cursor-pointer">
+								Admin
+							</div>
 						</li>
 					</ul>
 				</div>

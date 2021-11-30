@@ -162,7 +162,7 @@ const TableRow: React.FC<Policy> = ({
 			<td className="pr-6 whitespace-nowrap text-right text-sm font-medium">
 				<button
 					onClick={!editMode ? handleEdit : () => handleClickUpdate()}
-					className="text-indigo-600 hover:text-indigo-900"
+					className="text-blue-400 hover:text-blue-600"
 				>
 					{!editMode ? "Edit" : "Save"}
 				</button>
