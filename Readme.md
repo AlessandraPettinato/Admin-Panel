@@ -71,6 +71,21 @@ You will authenticate the connection to your database through **Username** and *
 
 https://user-images.githubusercontent.com/73818991/144071623-c53e1f3b-848b-4089-b356-b1147fe4524e.mov
 
+
+### Create a Database
+To create a database, click on **Browse Collection** and then **Add my own Data**. The configuration of this app expect to connect to a database called **Data**, whose **Collection Name** is **policies**. Provide the abovementioned information and move on by clicking on **Create**:
+
+
+https://user-images.githubusercontent.com/73818991/144071680-b6629eb3-8576-4591-ae19-d730aada3190.mov
+
+
+### Insert Data into your Database
+At this point you only need to feed some sample data! Please copy the content of the **DataSample.txt** file that you can find at the root of the backend folder. On your cloud, click on **Insert Document** and then **{}**, delete the object and paste the DataSample.txt. Click on **Insert** to save. 
+
+
+https://user-images.githubusercontent.com/73818991/144071725-94b17bc8-b1df-4c82-ab82-77947c96e7f2.mov
+
+
 ### Create an .env file
 You will need to add a new **.env** file at the root of the backend folder with the following information: 
 
@@ -81,24 +96,10 @@ DB_PASSWORD=YourChosenPassword
 **_Remember to include the .env file in your .gitignore._**
 
 
-### Create a Database
-To create a database, click on **Browse Collection** and then **Add my own Data**. The configuration of this app expect to connect to database called **Data**, whose **Collection Name** is **policies**. Provide the abovementioned information and move on by clicking on **Create**:
-
-
-https://user-images.githubusercontent.com/73818991/144071680-b6629eb3-8576-4591-ae19-d730aada3190.mov
-
-
-### Insert Data into your Database
-At this point you only need to feed some sample datas to the database! Please copy the content of the **DataSample.txt** file that you can find at the root of the backend folder. On your cloud, click on **Insert Document** and then **{}**, delete the object and paste the DataSample.txt. Click on **Insert** to save. 
-
-
-https://user-images.githubusercontent.com/73818991/144071725-94b17bc8-b1df-4c82-ab82-77947c96e7f2.mov
-
-
 ### Connect to your Cluster
-The file **dbconnection.ts** contains a string saved in the variable **databaseURL** that you will need to update. From the **Database Deplyoments** page, click on **Connect**, then **Connect your application**. Copy the connection string and assign it as the new value of **databaseURL**.
+We're almost there! The file **dbconnection.ts** contains a string saved in the variable **databaseURL** that you will need to update. From the **Database Deplyoments** page, click on **Connect**, then **Connect your application**. Copy the connection string and assign it as the new value of **databaseURL**.
 
-Replace your **Username** and **Password** with the environmental variables that you have just created and **MyFirstDatabase** with the name of your database. 
+Replace your **Username** and **Password** with the environmental variables that you have just created and **MyFirstDatabase** with the name of your database (which, if you have followed these instructions, is **Data**). 
 
 
 https://user-images.githubusercontent.com/73818991/144085297-078135b2-c581-4026-b43b-549966eecfa2.mov
