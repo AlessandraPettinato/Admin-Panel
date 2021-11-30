@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 import { QUERY_GET_ALL_POLICIES } from "../../queries/Policies";
 import { Policy } from "../../types/Types";
 
-import Navigation from "./Navigation";
+import SearchBar from "./SearchBar";
 import Table from "../Table/TableSkeleton";
 import Pagination from "../Pagination/Pagination";
 
@@ -72,7 +72,7 @@ const Dashboard: React.FC = () => {
 
 	return (
 		<div className="flex flex-col justify-center items-center bg-white font-sans leading-normal tracking-normal h-screen">
-			<Navigation />
+			<SearchBar />
 			<Table
 				loading={loading}
 				error={error}
