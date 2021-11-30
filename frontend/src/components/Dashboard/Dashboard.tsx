@@ -16,7 +16,7 @@ const Dashboard: React.FC = () => {
 		key: "",
 		direction: "",
 	});
-	const [sorted, setSorted] = useState<boolean>(false);
+	// const [sorted, setSorted] = useState<boolean>(false);
 	const [active, setActive] = useState<string>("");
 
 	const [currentPage, setCurrentPage] = useState<number>(1);
@@ -43,7 +43,6 @@ const Dashboard: React.FC = () => {
 			if (lastNameA > lastNameB) {
 				return sortedField.direction === "ascending" ? 1 : -1;
 			}
-			return 0;
 		} else {
 			if (a[sortedField.key] < b[sortedField.key]) {
 				return sortedField.direction === "ascending" ? -1 : 1;
@@ -51,7 +50,6 @@ const Dashboard: React.FC = () => {
 			if (a[sortedField.key] > b[sortedField.key]) {
 				return sortedField.direction === "ascending" ? 1 : -1;
 			}
-			return 0;
 		}
 	});
 
@@ -61,7 +59,6 @@ const Dashboard: React.FC = () => {
 			direction = "descending";
 		}
 		setSortedField({ key, direction });
-		setActive(sortedField.key);
 	};
 
 	useEffect(() => {
@@ -78,11 +75,12 @@ const Dashboard: React.FC = () => {
 				error={error}
 				sortedField={sortedField}
 				setPolicies={setPolicies}
-				sorted={sorted}
-				setSorted={setSorted}
+				// sorted={sorted}
+				// setSorted={setSorted}
 				sortedPolicies={sortedPolicies}
 				requestSort={requestSort}
 				active={active}
+				setActive={setActive}
 				currentPolicies={currentPolicies}
 			/>
 			<Pagination
