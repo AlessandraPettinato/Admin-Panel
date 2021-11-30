@@ -81,16 +81,6 @@ DB_PASSWORD=YourChosenPassword
 **_Remember to include the .env file in your .gitignore._**
 
 
-### Connect to your Cluster
-The file **dbconnection.ts** contains a string saved in the variable **databaseURL** that you will need to update. From the **Database Deplyoments** page, click on **Connect**, then **Connect your application**. Copy the connection string and assign it as the new value of **databaseURL**.
-
-Replace your **Username** and **Password** with the environmental variables that you have just created and **MyFirstDatabase** with the name of your database. 
-
-
-https://user-images.githubusercontent.com/73818991/144085297-078135b2-c581-4026-b43b-549966eecfa2.mov
-
-
-
 ### Create a Database
 To create a database, click on **Browse Collection** and then **Add my own Data**. The configuration of this app expect to connect to database called **Data**, whose **Collection Name** is **policies**. Provide the abovementioned information and move on by clicking on **Create**:
 
@@ -103,6 +93,16 @@ At this point you only need to feed some sample datas to the database! Please co
 
 
 https://user-images.githubusercontent.com/73818991/144071725-94b17bc8-b1df-4c82-ab82-77947c96e7f2.mov
+
+
+### Connect to your Cluster
+The file **dbconnection.ts** contains a string saved in the variable **databaseURL** that you will need to update. From the **Database Deplyoments** page, click on **Connect**, then **Connect your application**. Copy the connection string and assign it as the new value of **databaseURL**.
+
+Replace your **Username** and **Password** with the environmental variables that you have just created and **MyFirstDatabase** with the name of your database. 
+
+
+https://user-images.githubusercontent.com/73818991/144085297-078135b2-c581-4026-b43b-549966eecfa2.mov
+
 
 
 ## How to run
