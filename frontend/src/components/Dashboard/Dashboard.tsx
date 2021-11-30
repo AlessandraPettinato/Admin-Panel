@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 import { QUERY_GET_ALL_POLICIES } from "../../queries/Policies";
 import { Policy } from "../../types/Types";
 
-import Navigation from "./Navigation";
+import SearchBar from "./SearchBar";
 import Table from "../Table/TableSkeleton";
 import Pagination from "../Pagination/Pagination";
 
@@ -16,24 +16,25 @@ const Dashboard: React.FC = () => {
 		key: "",
 		direction: "",
 	});
-	const [sorted, setSorted] = useState<boolean>(false);
-	const [active, setActive] = useState<string>("");
+
+	const [activeField, setActiveField] = useState<string>("");
 
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [policiesPerPage] = useState<number>(5);
 
-	const indexOfLastPolicy = currentPage * policiesPerPage;
-	const indexOfFirstPolicy = indexOfLastPolicy - policiesPerPage;
+	const indexOfLastPolicy: number = currentPage * policiesPerPage;
+	const indexOfFirstPolicy: number = indexOfLastPolicy - policiesPerPage;
 
-	const currentPolicies = policies.slice(indexOfFirstPolicy, indexOfLastPolicy);
+	const currentPolicies: Array<Policy> = policies.slice(
+		indexOfFirstPolicy,
+		indexOfLastPolicy
+	);
 
 	const paginate = (pageNumber: number) => {
 		setCurrentPage(pageNumber);
 	};
 
-	let sortedPolicies: any = [...policies];
-
-	sortedPolicies.sort((a: any, b: any) => {
+	currentPolicies.sort((a: any, b: any) => {
 		if (sortedField.key === "lastName") {
 			let lastNameA = a.customer.lastName.toUpperCase();
 			let lastNameB = b.customer.lastName.toUpperCase();
@@ -55,13 +56,12 @@ const Dashboard: React.FC = () => {
 		}
 	});
 
-	const requestSort = (key: any) => {
+	const requestSort = (key: string) => {
 		let direction = "ascending";
 		if (sortedField.key === key && sortedField.direction === "ascending") {
 			direction = "descending";
 		}
 		setSortedField({ key, direction });
-		setActive(sortedField.key);
 	};
 
 	useEffect(() => {
@@ -72,24 +72,29 @@ const Dashboard: React.FC = () => {
 
 	return (
 		<div className="flex flex-col justify-center items-center bg-white font-sans leading-normal tracking-normal h-screen">
-			<Navigation />
-			<Table
-				loading={loading}
-				error={error}
-				sortedField={sortedField}
-				setPolicies={setPolicies}
-				sorted={sorted}
-				setSorted={setSorted}
-				sortedPolicies={sortedPolicies}
-				requestSort={requestSort}
-				active={active}
-				currentPolicies={currentPolicies}
-			/>
-			<Pagination
-				policiesPerPage={policiesPerPage}
-				totalPolicies={policies.length}
-				paginate={paginate}
-			/>
+			{!loading ? (
+				<>
+					<SearchBar />
+					<Table
+						loading={loading}
+						error={error}
+						sortedField={sortedField}
+						requestSort={requestSort}
+						activeField={activeField}
+						setActiveField={setActiveField}
+						currentPolicies={currentPolicies}
+					/>
+					<Pagination
+						policiesPerPage={policiesPerPage}
+						totalPolicies={policies.length}
+						paginate={paginate}
+					/>
+				</>
+			) : (
+				<div className="flex justify-center items-center">
+					<div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-400" />
+				</div>
+			)}
 		</div>
 	);
 };

@@ -49,17 +49,6 @@ export const typeDefs = gql`
 	}
 
 	type Mutation {
-		addNewPolicy(
-			id: ID
-			customer: CustomerInput
-			provider: String
-			insuranceType: InsuranceType
-			status: PolicyStatus
-			policyNumber: String
-			startDate: Date
-			endDate: Date
-			createdAt: Date
-		): Policy
 		updatePolicy(
 			id: ID
 			customer: CustomerInput

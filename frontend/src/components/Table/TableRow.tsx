@@ -18,13 +18,13 @@ const TableRow: React.FC<Policy> = ({
 }) => {
 	const { firstName, lastName, dateOfBirth } = customer;
 
-	const completeName = `${lastName} ${firstName} `;
+	const completeName: string = `${lastName} ${firstName} `;
 
-	const convertDateToString = (date: Date) => {
+	const convertDateToString: Function = (date: Date) => {
 		return new Date(date).toISOString().slice(0, 10);
 	};
 
-	const [editMode, setEditMode] = useState(false);
+	const [editMode, setEditMode] = useState<boolean>(false);
 
 	const [edited, setEdited] = useState({
 		id,
@@ -50,7 +50,7 @@ const TableRow: React.FC<Policy> = ({
 		setEditMode(!editMode);
 	};
 
-	const [updatePolicy, { loading, error, data }] = useMutation(UPDATE_POLICY, {
+	const [updatePolicy] = useMutation(UPDATE_POLICY, {
 		refetchQueries: [QUERY_GET_ALL_POLICIES],
 	});
 
@@ -64,25 +64,20 @@ const TableRow: React.FC<Policy> = ({
 				status: edited.status,
 				policyNumber: edited.policyNumber,
 				startDate: new Date(edited.startDateConverted),
-				// endDate: new Date(edited.endDateConverted),
-				// createdAt: new Date(edited.createdAtConverted),
+				endDate: new Date(edited.endDateConverted),
+				createdAt: new Date(edited.createdAtConverted),
 				customer: {
 					firstName: edited.completeName.split(" ")[1],
 					lastName: edited.completeName.split(" ")[0],
-					// dateOfBirth: new Date(edited.dateOfBirthConverted),
+					dateOfBirth: new Date(edited.dateOfBirthConverted),
 				},
 			},
 		});
 	};
 
-	// console.log(JSON.stringify(error, null, 2));
-
-	if (loading) return <p>Give it a minute</p>;
-	if (error) return <p>Something's wrong: {error.message}</p>;
-
 	return (
 		<>
-			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+			<td className="px-6 py-4 whitespace-nowrap text-gray-500">
 				<input
 					className={
 						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
@@ -93,23 +88,12 @@ const TableRow: React.FC<Policy> = ({
 					disabled={!editMode ? true : false}
 				/>
 			</td>
-			{/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-				<input
-				className={
-						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
-					}
-					value={edited.dateOfBirthConverted}
-					name="dateOfBirthConverted"
-					onChange={handleUpdate}
-					disabled={!editMode ? true : false}
-				/>
-			</td> */}
-			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+			<td className="px-6 py-4 whitespace-nowrap text-gray-500">
 				<select
 					className={
 						!editMode
 							? "border-none appearance-none"
-							: "w-36 h-5 pl-2 pr-6 text-sm border rounded-lg appearance-none focus:shadow-outline bg-gray-50"
+							: "form-select border block w-full rounded-lg mt-1 bg-gray-50 pl-2"
 					}
 					value={edited.insuranceType}
 					name="insuranceType"
@@ -121,7 +105,7 @@ const TableRow: React.FC<Policy> = ({
 					<option>HEALTH</option>
 				</select>
 			</td>
-			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+			<td className="px-6 py-4 whitespace-nowrap text-gray-500">
 				<input
 					className={
 						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
@@ -132,12 +116,12 @@ const TableRow: React.FC<Policy> = ({
 					disabled={!editMode ? true : false}
 				/>
 			</td>
-			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+			<td className="px-6 py-4 whitespace-nowrap text-gray-500">
 				<select
 					className={
 						!editMode
 							? "border-none appearance-none"
-							: "w-36 h-5 pl-2 pr-6 text-sm border rounded-lg appearance-none focus:shadow-outline bg-gray-50"
+							: "form-select border block w-full rounded-lg mt-1 bg-gray-50 pl-2"
 					}
 					value={edited.status}
 					name="status"
@@ -150,7 +134,7 @@ const TableRow: React.FC<Policy> = ({
 					<option>PENDING</option>
 				</select>
 			</td>
-			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+			<td className="px-6 py-4 whitespace-nowrap text-gray-500">
 				<input
 					className={
 						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
@@ -161,29 +145,7 @@ const TableRow: React.FC<Policy> = ({
 					disabled={!editMode ? true : false}
 				/>
 			</td>
-			{/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-				<input
-					className={
-						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
-					}
-					value={edited.startDateConverted}
-					name="startDateConverted"
-					onChange={handleUpdate}
-					disabled={!editMode ? true : false}
-				/>
-			</td>
-			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-				<input
-					className={
-						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
-					}
-					value={edited.endDateConverted}
-					name="endDateConverted"
-					onChange={handleUpdate}
-					disabled={!editMode ? true : false}
-				/>
-			</td> */}
-			<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+			<td className="px-6 py-4 whitespace-nowrap text-gray-500">
 				<input
 					className={
 						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
@@ -194,10 +156,10 @@ const TableRow: React.FC<Policy> = ({
 					disabled={!editMode ? true : false}
 				/>
 			</td>
-			<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+			<td className="pr-6 whitespace-nowrap text-right text-sm font-medium">
 				<button
 					onClick={!editMode ? handleEdit : () => handleClickUpdate()}
-					className="text-indigo-600 hover:text-indigo-900"
+					className="text-blue-400 hover:text-blue-600"
 				>
 					{!editMode ? "Edit" : "Save"}
 				</button>
