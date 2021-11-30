@@ -89,13 +89,16 @@ const Dashboard: React.FC = () => {
 						activeField={activeField}
 						setActiveField={setActiveField}
 						currentPolicies={currentPolicies}
+						policies={policies}
 						searchTerm={searchTerm}
 					/>
-					<Pagination
-						policiesPerPage={policiesPerPage}
-						totalPolicies={policies.length}
-						paginate={paginate}
-					/>
+					{searchTerm === "" ? (
+						<Pagination
+							policiesPerPage={policiesPerPage}
+							totalPolicies={policies.length}
+							paginate={paginate}
+						/>
+					) : null}
 				</>
 			) : (
 				<div className="flex justify-center items-center">

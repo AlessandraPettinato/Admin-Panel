@@ -10,7 +10,8 @@ const Table: React.FC<{
 	activeField: string;
 	setActiveField: Function;
 	currentPolicies: Array<Policy>;
-	searchTerm: string;
+	searchTerm: any;
+	policies: Array<Policy>;
 }> = ({
 	loading,
 	error,
@@ -20,6 +21,7 @@ const Table: React.FC<{
 	setActiveField,
 	currentPolicies,
 	searchTerm,
+	policies,
 }) => {
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Something's wrong: {error.message}</p>;
@@ -38,7 +40,7 @@ const Table: React.FC<{
 									sortedField={sortedField}
 								/>
 								<tbody className="bg-white divide-y divide-gray-200">
-									{currentPolicies
+									{(searchTerm === "" ? currentPolicies : policies)
 										.filter((policy: any) => {
 											if (searchTerm === "") {
 												return policy;
@@ -64,13 +66,11 @@ const Table: React.FC<{
 														) {
 															return policy;
 														}
-													} else if (!searchTerm) {
-														<p>Record doesn't exist!</p>;
 													}
 												}
 											}
 										})
-										.map((policy: any) => {
+										.map((policy: Policy) => {
 											const {
 												id,
 												customer,
