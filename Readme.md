@@ -72,13 +72,23 @@ You will authenticate the connection to your database through **Username** and *
 https://user-images.githubusercontent.com/73818991/144071623-c53e1f3b-848b-4089-b356-b1147fe4524e.mov
 
 ### Create an .env file
-The link to connect your local environment to the database is already written in the file **dbconnection.ts**. You will just need to add a new **.env** file at the root of the backend folder with the following information: 
+You will need to add a new **.env** file at the root of the backend folder with the following information: 
 
 DB_USER=YourChosenUsername
 
 DB_PASSWORD=YourChosenPassword
 
 **_Remember to include the .env file in your .gitignore._**
+
+
+### Connect to your Cluster
+The file **dbconnection.ts** contains a string saved in the variable **databaseURL** that you will need to update. From the **Database Deplyoments** page, click on **Connect**, then **Connect your application**. Copy the connection string and assign it as the new value of **databaseURL**.
+
+Replace your **Username** and **Password** with the environmental variables that you have just created and **MyFirstDatabase** with the name of your database. 
+
+
+https://user-images.githubusercontent.com/73818991/144085297-078135b2-c581-4026-b43b-549966eecfa2.mov
+
 
 
 ### Create a Database
@@ -88,7 +98,7 @@ To create a database, click on **Browse Collection** and then **Add my own Data*
 https://user-images.githubusercontent.com/73818991/144071680-b6629eb3-8576-4591-ae19-d730aada3190.mov
 
 
-### Insert Data into the Database
+### Insert Data into your Database
 At this point you only need to feed some sample datas to the database! Please copy the content of the **DataSample.txt** file that you can find at the root of the backend folder. On your cloud, click on **Insert Document** and then **{}**, delete the object and paste the DataSample.txt. Click on **Insert** to save. 
 
 
@@ -100,7 +110,7 @@ https://user-images.githubusercontent.com/73818991/144071725-94b17bc8-b1df-4c82-
 To run your server, please navigate to the root of the backend folder and run: 
 
 ```bash
-nodemon
+npm run dev
 ```
 
 To run your client, please navigate to the root of the frontend folder and run:
