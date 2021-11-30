@@ -1,64 +1,89 @@
 # Feather - Fullstack Engineer code challenge
 
-In this code challenge you'll need to create a simple admin panel from scratch. It would need to have a single table view to list insurance policies showcasing all the various field they may have.
+This repository contains the solution of an exercise provided by the team of [Feather](https://feather-insurance.com/) as part of their application process.
 
-The [frontend](./frontend) part would communicate with the [backend](./backend) through a GraphQL API. You need to implement both.
+The aim was to create an admin panel starting from a simple boilerplate provided by the company. 
+The [frontend](./frontend) part would communicate with the [backend](./backend) through a GraphQL API.
 
-We've generated some boilerplate for you to get started.
 
-## What we'll be looking at
+## Built with
 
-- How you write idiomatic code.
-- How you deal with UI/UX.
-- How you navigate the requirements.
-- How you test & write testable code.
-- How you package the code.
-- How you deal with the security concerns.
-- How you communicate with your fellow programmers.
+• [Apollo Server](https://www.apollographql.com/docs/apollo-server)
 
-## Tasks
+• [Express](https://expressjs.com/)
 
-1. On the [backend](./backend), change the GraphQL schema to reflect the [Data structure](#Data-structure)
-2. On the [frontend](./frontend), fetch the data returned by the GraphQL endpoint with the help of the [Apollo client](https://www.apollographql.com)
-3. On the [frontend](./frontend), display all the data returned by the endpoint in a table with the help of [tailwindcss](https://tailwindcss.com)
-   - At least several fields should be editable in place
-   - The table should have pagination and sorting on each of the columns
-   - (Bonus) Add a text search input
-   - (Bonus) Let the admin filter policies by insurance type or other fields
-4. (Bonus) Package the app with Docker
-5. (Bonus) Authenticate admins using login/password
-6. (Bonus) Create more screens (e.g. customer profile, policy page…)
+• [GraphQL](https://graphql.org/)
 
-## Data structure
+• [mongoose](https://mongoosejs.com/)
 
-To make it all work, you have to define a [GraphQL schema first](https://www.apollographql.com/docs/apollo-server/schema/schema/). No need to back it with a real database, however this would make sense to demonstrate the "edit" function.
-Each policy should have at least the following fields:
+• [Apollo Client](https://www.apollographql.com/docs/react/)
 
-### Policy
+• [React](https://reactjs.org/)
 
-| fields         | type                            | comment                                       |
-| -------------- | ------------------------------- | --------------------------------------------- |
-| customer       | [Customer](#Customer)           | Object holding the customer's informations    |
-| provider       | string                          | Name of the provider (Allianz, AXA…)          |
-| insurance type | [InsuranceType](#InsuranceType) | Type of the insurance (Liability, Household…) |
-| status         | [PolicyStatus](#PolicyStatus)   | Status of the insurance (Active, Cancelled)   |
-| policyNumber   | string                          | Used to identify the policy                   |
-| startDate      | date                            | Date when the policy should start             |
-| endDate        | date                            | Date when the policy ends                     |
-| createdAt      | date                            | Date when the record was created              |
+• [TailwindCSS](https://tailwindcss.com/)
 
-### Customer
+• [TypeScript](https://www.typescriptlang.org/)
 
-| fields      | type   | comment                  |
-| ----------- | ------ | ------------------------ |
-| firstName   | string | Customer’s first name    |
-| lastName    | string | Customer’s last name     |
-| dateOfBirth | date   | Customer’s date of birth |
 
-### InsuranceType
+## Installation 
 
-InsuranceType can be of `Liability`, `Household`, `Health`
+Clone this repository.
 
-### PolicyStatus
+Make sure you have [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/) and [node](https://nodejs.org/en/) installed on your machine, then navigate to the [backend](./backend) folder and run in the terminal:
 
-PolicyStatus can be of `Active`, `Pending`, `Cancelled` and `Dropped out`
+```bash
+npm install
+```
+
+You will need to navigate also to the [frontend](./frontend) folder and run the same command. 
+
+This command installs a package and any packages that it depends on.
+
+By default, this command will install all modules listed as dependencies in package.json.
+
+
+## Database 
+
+To run the server, first you need to create a simple [mongoDB](https://www.mongodb.com/) database. If you don't have an account yet, you can create one here: [Sign Up](https://account.mongodb.com/account/register). If you have already an account, just [Log In](https://account.mongodb.com/account/login) and click on "New Project". 
+
+After entering the information required by the sign-up process, please perform the following steps to set up your cloud database: 
+
+• When choosing what kind of database you'd like to create, select "Shared". You will select [AWS](https://aws.amazon.com/) as your cloud provider. Select your preferred region and move on by clicking on "Create Cluster":
+
+![alt text](https://res.cloudinary.com/dg5lakmem/video/upload/v1638281197/Feather/Screen_Recording_2021-11-30_at_15.04.07_eop3on.mov)
+
+• You will authenticate the connection to your database through "Username" and "Password" and you will connect from your "Local Environment". Please provide the information requested and move on by clicking on "Finish and Close", then on "Go to database":  
+
+![alt text](https://res.cloudinary.com/dg5lakmem/video/upload/v1638281617/Feather/Untitled_homzkr.mov)
+
+• The link to connect your local environment to the database is already written in the file dbconnection.ts. You will just need to add a new .env file at the root of the backend folder with the following information: 
+
+DB_USER=YourChosenUsername
+DB_PASSWORD=YourChosenPassword
+
+Remember to include the .env file in your .gitignore. 
+
+• To create a database, click on "Browse Collection" and then "Add my own Data". The configuration of this app expect to connect to database called "Data", whose "Collection Name" is "policies". Provide the abovementioned information and move on by clicking on "Create":
+
+![alt text](https://res.cloudinary.com/dg5lakmem/video/upload/v1638282620/Feather/Untitled1_hekzxp.mov)
+
+• At this point you only need to feed some sample datas to the database! Please copy the content of the DataSample.txt file that you can find at the root of the backend folder. On your cloud, click on "Insert Document" and then {}, delete the object and paste the DataSample.txt. Click on "Insert" to save. 
+
+![alt text](https://res.cloudinary.com/dg5lakmem/video/upload/v1638283013/Feather/Screen_Recording_2021-11-30_at_15.34.44_rprxll.mov)
+
+
+## How to run
+
+To run your server, please navigate to the root of the backend folder and run: 
+
+```bash
+nodemon
+```
+
+To run your client, please navigate to the root of the frontend folder and run:
+
+```bash
+npm start
+```
+
+You can visit http://localhost:3000 to view the app in the browser.
