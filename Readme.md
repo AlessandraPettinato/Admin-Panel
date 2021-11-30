@@ -3,7 +3,7 @@
 This repository contains the solution of an exercise provided by the team of [Feather](https://feather-insurance.com/) as part of their application process.
 
 The aim was to create an admin panel starting from a simple boilerplate provided by the company. 
-The [frontend](./frontend) part would communicate with the [backend](./backend) through a GraphQL API.
+The [frontend](./frontend) part communicate with the [backend](./backend) through a GraphQL API.
 
 
 
