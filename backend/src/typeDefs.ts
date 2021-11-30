@@ -39,7 +39,7 @@ export const typeDefs = gql`
 	}
 
 	type Query {
-		getAllPolicies: PolicyList
+		getAllPolicies(limit: Int): PolicyList
 	}
 
 	input CustomerInput {

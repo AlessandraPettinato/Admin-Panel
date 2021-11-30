@@ -9,30 +9,25 @@ const Table: React.FC<{
 	error: any;
 	sortedField: any;
 	setPolicies: Function;
-	// sorted: boolean;
-	// setSorted: Function;
 	sortedPolicies: Array<Policy>;
 	requestSort: Function;
-	active: string;
-	setActive: Function;
+	activeField: string;
+	setActiveField: Function;
 	currentPolicies: Array<Policy>;
 }> = ({
 	loading,
 	error,
 	sortedField,
 	setPolicies,
-	// setSorted,
-	// sorted,
 	sortedPolicies,
 	requestSort,
-	active,
-	setActive,
+	activeField,
+	setActiveField,
 	currentPolicies,
 }) => {
 	useEffect(() => {
 		if (sortedField) {
 			setPolicies(sortedPolicies);
-			// setSorted(!sorted);
 		}
 	}, [sortedField]);
 
@@ -46,9 +41,8 @@ const Table: React.FC<{
 				<table className="table-fixed divide-y divide-gray-200 border-collapse border">
 					<TableHead
 						requestSort={requestSort}
-						// sorted={sorted}
-						active={active}
-						setActive={setActive}
+						activeField={activeField}
+						setActiveField={setActiveField}
 						sortedField={sortedField}
 					/>
 					<tbody className="bg-white divide-y divide-gray-200">

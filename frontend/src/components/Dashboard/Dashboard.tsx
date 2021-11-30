@@ -16,8 +16,8 @@ const Dashboard: React.FC = () => {
 		key: "",
 		direction: "",
 	});
-	// const [sorted, setSorted] = useState<boolean>(false);
-	const [active, setActive] = useState<string>("");
+
+	const [activeField, setActiveField] = useState<string>("");
 
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [policiesPerPage] = useState<number>(5);
@@ -75,12 +75,10 @@ const Dashboard: React.FC = () => {
 				error={error}
 				sortedField={sortedField}
 				setPolicies={setPolicies}
-				// sorted={sorted}
-				// setSorted={setSorted}
 				sortedPolicies={sortedPolicies}
 				requestSort={requestSort}
-				active={active}
-				setActive={setActive}
+				activeField={activeField}
+				setActiveField={setActiveField}
 				currentPolicies={currentPolicies}
 			/>
 			<Pagination

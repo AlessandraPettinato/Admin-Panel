@@ -1,18 +1,13 @@
-import {
-	TiArrowSortedUp,
-	TiArrowSortedDown,
-	TiArrowUnsorted,
-} from "react-icons/ti";
+import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
 
 import { TableHeadFields } from "./data/TableHeadFields";
 
 const TableHead: React.FC<{
 	requestSort: Function;
-	// sorted: boolean;
-	active: string;
-	setActive: Function;
+	activeField: string;
+	setActiveField: Function;
 	sortedField: any;
-}> = ({ requestSort, active, setActive, sortedField }) => {
+}> = ({ requestSort, activeField, setActiveField, sortedField }) => {
 	return (
 		<>
 			<thead className="bg-gray-50">
@@ -24,17 +19,17 @@ const TableHead: React.FC<{
 								scope="col"
 								className=" px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider whitespace-pre"
 								onClick={(e) => {
-									setActive(item.sortField);
+									setActiveField(item.sortField);
 									requestSort(item.sortField);
 								}}
 							>
 								{item.fieldName}
 								<div className="inline-table align-text-bottom">
-									{item.sortField === active &&
+									{item.sortField === activeField &&
 									sortedField.direction === "ascending" ? (
 										<TiArrowSortedUp />
 									) : (
-										item.sortField === active &&
+										item.sortField === activeField &&
 										sortedField.direction === "descending" && (
 											<TiArrowSortedDown />
 										)
