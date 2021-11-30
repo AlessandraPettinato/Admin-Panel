@@ -10,6 +10,8 @@ const Table: React.FC<{
 	activeField: string;
 	setActiveField: Function;
 	currentPolicies: Array<Policy>;
+	searchTerm: any;
+	policies: Array<Policy>;
 }> = ({
 	loading,
 	error,
@@ -18,6 +20,8 @@ const Table: React.FC<{
 	activeField,
 	setActiveField,
 	currentPolicies,
+	searchTerm,
+	policies,
 }) => {
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Something's wrong: {error.message}</p>;
@@ -36,34 +40,64 @@ const Table: React.FC<{
 									sortedField={sortedField}
 								/>
 								<tbody className="bg-white divide-y divide-gray-200">
-									{currentPolicies.map((policy: Policy) => {
-										const {
-											id,
-											customer,
-											provider,
-											insuranceType,
-											status,
-											policyNumber,
-											startDate,
-											endDate,
-											createdAt,
-										} = policy;
-										return (
-											<tr key={id}>
-												<TableRow
-													id={id}
-													customer={customer}
-													provider={provider}
-													insuranceType={insuranceType}
-													status={status}
-													policyNumber={policyNumber}
-													startDate={startDate}
-													endDate={endDate}
-													createdAt={createdAt}
-												/>
-											</tr>
-										);
-									})}
+									{(searchTerm === "" ? currentPolicies : policies)
+										.filter((policy: any) => {
+											if (searchTerm === "") {
+												return policy;
+											} else {
+												for (let values of Object.values(policy)) {
+													if (typeof values === "object") {
+														let { firstName, lastName }: any = values;
+														if (
+															firstName
+																.toUpperCase()
+																.includes(searchTerm.toUpperCase()) ||
+															lastName
+																.toUpperCase()
+																.includes(searchTerm.toUpperCase())
+														) {
+															return policy;
+														}
+													} else if (typeof values === "string") {
+														if (
+															values
+																.toUpperCase()
+																.includes(searchTerm.toUpperCase())
+														) {
+															return policy;
+														}
+													}
+												}
+											}
+										})
+										.map((policy: Policy) => {
+											const {
+												id,
+												customer,
+												provider,
+												insuranceType,
+												status,
+												policyNumber,
+												startDate,
+												endDate,
+												createdAt,
+											} = policy;
+											return (
+												<tr key={id}>
+													<TableRow
+														id={id}
+														customer={customer}
+														provider={provider}
+														insuranceType={insuranceType}
+														status={status}
+														policyNumber={policyNumber}
+														startDate={startDate}
+														endDate={endDate}
+														createdAt={createdAt}
+													/>
+												</tr>
+											);
+										})}
 								</tbody>
 							</table>
 						</div>

@@ -93,7 +93,7 @@ const TableRow: React.FC<Policy> = ({
 					className={
 						!editMode
 							? "border-none appearance-none"
-							: "form-select border block w-full rounded-lg mt-1 bg-gray-50 pl-2"
+							: "form-select w-max border block w-full rounded-lg mt-1 bg-gray-50 pl-2"
 					}
 					value={edited.insuranceType}
 					name="insuranceType"
@@ -121,7 +121,7 @@ const TableRow: React.FC<Policy> = ({
 					className={
 						!editMode
 							? "border-none appearance-none"
-							: "form-select border block w-full rounded-lg mt-1 bg-gray-50 pl-2"
+							: "form-select w-max border block w-full rounded-lg mt-1 bg-gray-50 pl-2"
 					}
 					value={edited.status}
 					name="status"

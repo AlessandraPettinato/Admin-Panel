@@ -22,6 +22,8 @@ const Dashboard: React.FC = () => {
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [policiesPerPage] = useState<number>(5);
 
+	const [searchTerm, setSearchTerm] = useState<string>("");
+
 	const indexOfLastPolicy: number = currentPage * policiesPerPage;
 	const indexOfFirstPolicy: number = indexOfLastPolicy - policiesPerPage;
 
@@ -64,6 +66,10 @@ const Dashboard: React.FC = () => {
 		setSortedField({ key, direction });
 	};
 
+	const handleSearch = (e: any) => {
+		setSearchTerm(e.target.value.trim());
+	};
+
 	useEffect(() => {
 		if (!loading && data) {
 			setPolicies(data.getAllPolicies.results);
@@ -74,7 +80,7 @@ const Dashboard: React.FC = () => {
 		<div className="flex flex-col justify-center items-center bg-white font-sans leading-normal tracking-normal h-screen">
 			{!loading ? (
 				<>
-					<SearchBar />
+					<SearchBar handleSearch={handleSearch} />
 					<Table
 						loading={loading}
 						error={error}
@@ -83,12 +89,16 @@ const Dashboard: React.FC = () => {
 						activeField={activeField}
 						setActiveField={setActiveField}
 						currentPolicies={currentPolicies}
+						policies={policies}
+						searchTerm={searchTerm}
 					/>
-					<Pagination
-						policiesPerPage={policiesPerPage}
-						totalPolicies={policies.length}
-						paginate={paginate}
-					/>
+					{searchTerm === "" ? (
+						<Pagination
+							policiesPerPage={policiesPerPage}
+							totalPolicies={policies.length}
+							paginate={paginate}
+						/>
+					) : null}
 				</>
 			) : (
 				<div className="flex justify-center items-center">

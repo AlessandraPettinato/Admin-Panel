@@ -344,7 +344,11 @@
         "customer": {
             "firstName": "Veronica",
             "lastName": "Mars",
-            "dateOfBirth": "1990-07-17"
+            "dateOfBirth": {
+                "$date": {
+                    "$numberLong": "648172800000"
+                }
+            }
         },
         "provider": "Generali",
         "insuranceType": "Health",
@@ -370,8 +374,12 @@
         "id": "13",
         "customer": {
             "firstName": "Paperon",
-            "lastName": "De Paperoni",
-            "dateOfBirth": "1903-04-20"
+            "lastName": "Paperoni",
+            "dateOfBirth": {
+                "$date": {
+                    "$numberLong": "-2104963200000"
+                }
+            }
         },
         "provider": "Axa",
         "insuranceType": "Household",
@@ -397,8 +405,12 @@
         "id": "14",
         "customer": {
             "firstName": "Mafalda",
-            "lastName": "De Mafaldis",
-            "dateOfBirth": "1980-09-13"
+            "lastName": "Mafaldis",
+            "dateOfBirth": {
+                "$date": {
+                    "$numberLong": "337651200000"
+                }
+            }
         },
         "provider": "Allianz",
         "insuranceType": "Liability",
@@ -423,10 +435,14 @@
     {
         "id": "15",
         "customer": {
-            "firstName": "Barbra",
-            "lastName": "D'Urso",
-            "dateOfBirth": "1963-03-10"
-        },
+        "firstName": "Barbara",
+        "lastName": "D'Urso",
+        "dateOfBirth": {
+            "$date": {
+                "$numberLong": "-215049600000"
+            }
+        }
+    },
         "provider": "Sara",
         "insuranceType": "Household",
         "policyNumber": "729737283",
