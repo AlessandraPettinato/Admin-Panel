@@ -17,7 +17,7 @@ const TableHead: React.FC<{
 							<th
 								key={index}
 								scope="col"
-								className=" p-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider whitespace-pre"
+								className="w-44 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap cursor-pointer"
 								onClick={(e) => {
 									setActiveField(item.sortField);
 									requestSort(item.sortField);

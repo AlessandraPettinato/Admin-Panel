@@ -64,25 +64,23 @@ const TableRow: React.FC<Policy> = ({
 				status: edited.status,
 				policyNumber: edited.policyNumber,
 				startDate: new Date(edited.startDateConverted),
-				// endDate: new Date(edited.endDateConverted),
-				// createdAt: new Date(edited.createdAtConverted),
+				endDate: new Date(edited.endDateConverted),
+				createdAt: new Date(edited.createdAtConverted),
 				customer: {
 					firstName: edited.completeName.split(" ")[1],
 					lastName: edited.completeName.split(" ")[0],
-					// dateOfBirth: new Date(edited.dateOfBirthConverted),
+					dateOfBirth: new Date(edited.dateOfBirthConverted),
 				},
 			},
 		});
 	};
 
-	// console.log(JSON.stringify(error, null, 2));
-
-	if (loading) return <p>Give it a minute</p>;
-	if (error) return <p>Something's wrong: {error.message}</p>;
+	if (loading) return <td>Loading...</td>;
+	if (error) return <td>Something's wrong: {error.message}</td>;
 
 	return (
 		<>
-			<td className="p-3 whitespace-nowrap text-sm text-gray-500">
+			<td className="px-6 py-4 whitespace-nowrap text-gray-500">
 				<input
 					className={
 						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
@@ -93,18 +91,7 @@ const TableRow: React.FC<Policy> = ({
 					disabled={!editMode ? true : false}
 				/>
 			</td>
-			{/* <td className="p-3 whitespace-nowrap text-sm text-gray-500">
-				<input
-				className={
-						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
-					}
-					value={edited.dateOfBirthConverted}
-					name="dateOfBirthConverted"
-					onChange={handleUpdate}
-					disabled={!editMode ? true : false}
-				/>
-			</td> */}
-			<td className="p-3 whitespace-nowrap text-sm text-gray-500">
+			<td className="px-6 py-4 whitespace-nowrap text-gray-500">
 				<select
 					className={
 						!editMode
@@ -121,7 +108,7 @@ const TableRow: React.FC<Policy> = ({
 					<option>HEALTH</option>
 				</select>
 			</td>
-			<td className="p-3 whitespace-nowrap text-sm text-gray-500">
+			<td className="px-6 py-4 whitespace-nowrap text-gray-500">
 				<input
 					className={
 						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
@@ -132,7 +119,7 @@ const TableRow: React.FC<Policy> = ({
 					disabled={!editMode ? true : false}
 				/>
 			</td>
-			<td className="p-3 whitespace-nowrap text-sm text-gray-500">
+			<td className="px-6 py-4 whitespace-nowrap text-gray-500">
 				<select
 					className={
 						!editMode
@@ -150,7 +137,7 @@ const TableRow: React.FC<Policy> = ({
 					<option>PENDING</option>
 				</select>
 			</td>
-			<td className="p-3 whitespace-nowrap text-sm text-gray-500">
+			<td className="px-6 py-4 whitespace-nowrap text-gray-500">
 				<input
 					className={
 						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
@@ -161,29 +148,7 @@ const TableRow: React.FC<Policy> = ({
 					disabled={!editMode ? true : false}
 				/>
 			</td>
-			{/* <td className="p-3 whitespace-nowrap text-sm text-gray-500">
-				<input
-					className={
-						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
-					}
-					value={edited.startDateConverted}
-					name="startDateConverted"
-					onChange={handleUpdate}
-					disabled={!editMode ? true : false}
-				/>
-			</td>
-			<td className="p-3 whitespace-nowrap text-sm text-gray-500">
-				<input
-					className={
-						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
-					}
-					value={edited.endDateConverted}
-					name="endDateConverted"
-					onChange={handleUpdate}
-					disabled={!editMode ? true : false}
-				/>
-			</td> */}
-			<td className="p-3 whitespace-nowrap text-sm text-gray-500">
+			<td className="px-6 py-4 whitespace-nowrap text-gray-500">
 				<input
 					className={
 						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
