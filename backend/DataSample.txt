@@ -1,0 +1,450 @@
+[
+    {
+        "id": "1",
+        "customer": {
+            "firstName": "Alessandra",
+            "lastName": "Pettinato",
+            "dateOfBirth": {
+                "$date": {
+                    "$numberLong": "719452800000"
+                }
+            }
+        },
+        "provider": "Generali",
+        "insuranceType": "Liability",
+        "policyNumber": "748283920",
+        "status": "Active",
+        "startDate": {
+            "$date": {
+                "$numberLong": "1634601600000"
+            }
+        },
+        "endDate": {
+            "$date": {
+                "$numberLong": "1654041600000"
+            }
+        },
+        "createdAt": {
+            "$date": {
+                "$numberLong": "1632528000000"
+            }
+        }
+    },
+    {
+        "id": "2",
+        "customer": {
+            "firstName": "Lukas",
+            "lastName": "Kreibig",
+            "dateOfBirth": {
+                "$date": {
+                    "$numberLong": "0"
+                }
+            }
+        },
+        "provider": "UnipolSal",
+        "insuranceType": "Household",
+        "policyNumber": "98765432",
+        "status": "Cancelled",
+        "startDate": {
+            "$date": {
+                "$numberLong": "1548979200000"
+            }
+        },
+        "endDate": {
+            "$date": {
+                "$numberLong": "1606780800000"
+            }
+        },
+        "createdAt": {
+            "$date": {
+                "$numberLong": "1547769600000"
+            }
+        }
+    },
+    {
+        "id": "3",
+        "customer": {
+            "firstName": "Benedetta",
+            "lastName": "Pettinato",
+            "dateOfBirth": {
+                "$date": {
+                    "$numberLong": "977616000000"
+                }
+            }
+        },
+        "provider": "Axa",
+        "insuranceType": "Health",
+        "policyNumber": "4892754928",
+        "status": "Cancelled",
+        "startDate": {
+            "$date": {
+                "$numberLong": "1640995200000"
+            }
+        },
+        "endDate": {
+            "$date": {
+                "$numberLong": "1672444800000"
+            }
+        },
+        "createdAt": {
+            "$date": {
+                "$numberLong": "1637712000000"
+            }
+        }
+    },
+    { "id": "4",
+        "customer": {
+            "firstName": "Ludovica",
+            "lastName": "Loria",
+            "dateOfBirth": {
+                "$date": {
+                    "$numberLong": "722476800000"
+                }
+            }
+        },
+        "provider": "UnipolSal",
+        "insuranceType": "Liability",
+        "status": "Dropped out",
+        "policyNumber": "3736759275",
+        "startDate": {
+            "$date": {
+                "$numberLong": "1535760000000"
+            }
+        },
+        "endDate": {
+            "$date": {
+                "$numberLong": "1763683200000"
+            }
+        },
+        "createdAt": {
+            "$date": {
+                "$numberLong": "1528243200000"
+            }
+    }   
+    },
+    {
+        "id": "5",
+        "customer": {
+            "firstName": "Anca",
+            "lastName": "Gheorghe",
+            "dateOfBirth": {
+                "$date": {
+                    "$numberLong": "840412800000"
+                }
+            }
+        },
+        "provider": "Generali",
+        "insuranceType": "Liability",
+        "status": "Cancelled",
+        "policyNumber": "7839297481",
+        "startDate": {
+            "$date": {
+                "$numberLong": "1469577600000"
+            }
+        },
+        "endDate": {
+            "$date": {
+                "$numberLong": "1761868800000"
+            }
+        },
+        "createdAt": {
+            "$date": {
+                "$numberLong": "1467331200000"
+            }
+        }
+    },
+   {
+        "id": "6",
+        "customer": {
+            "firstName": "Enrica",
+            "lastName": "Satriano",
+            "dateOfBirth": {
+                "$date": {
+                    "$numberLong": "-175910400000"
+                }
+            }
+        },
+        "provider": "Sara",
+        "insuranceType": "Liability",
+        "policyNumber": "79787326",
+        "status": "Active",
+        "startDate": {
+            "$date": {
+                "$numberLong": "788918400000"
+            }
+        },
+        "endDate": {
+            "$date": {
+                "$numberLong": "1672444800000"
+            }
+        },
+        "createdAt": {
+            "$date": {
+                "$numberLong": "788313600000"
+            }
+        }
+    },
+    {
+        "id": "7",
+        "customer": {
+            "firstName": "Daniele",
+            "lastName": "Piras",
+            "dateOfBirth": {
+                "$date": {
+                    "$numberLong": "396316800000"
+                }
+            }
+        },
+        "provider": "Zurich",
+        "insuranceType": "Health",
+        "policyNumber": "38927264",
+        "status": "Cancelled",
+        "startDate": {
+            "$date": {
+                "$numberLong": "1274918400000"
+            }
+        },
+        "endDate": {
+            "$date": {
+                "$numberLong": "1446249600000"
+            }
+        },
+        "createdAt": {
+            "$date": {
+                "$numberLong": "1265155200000"
+            }
+        }
+    },
+    {
+        "id": "8",
+        "customer": {
+            "firstName": "Antonella",
+            "lastName": "Orlando",
+            "dateOfBirth": {
+                "$date": {
+                    "$numberLong": "891129600000"
+                }
+            }
+        },
+        "provider": "Allianz",
+        "insuranceType": "Household",
+        "policyNumber": "398482974",
+        "status": "Dropped out",
+        "startDate": {
+            "$date": {
+                "$numberLong": "1362355200000"
+            }
+        },
+        "endDate": {
+            "$date": {
+                "$numberLong": "1436054400000"
+            }
+        },
+        "createdAt": {
+            "$date": {
+                "$numberLong": "1533254400000"
+            }
+        }
+    },
+    {
+        "id": "9",
+        "customer": {
+            "firstName": "John",
+            "lastName": "Doe",
+            "dateOfBirth": {
+                "$date": {
+                    "$numberLong": "-493603200000"
+                }
+            }
+        },
+        "provider": "Allianz",
+        "insuranceType": "Health",
+        "policyNumber": "482948758",
+        "status": "Cancelled",
+        "startDate": {
+            "$date": {
+                "$numberLong": "1454371200000"
+            }
+        },
+        "endDate": {
+            "$date": {
+                "$numberLong": "1546300800000"
+            }
+        },
+        "createdAt": {
+            "$date": {
+                "$numberLong": "1446249600000"
+            }
+        }
+    },
+    {
+        "id": "10",
+        "customer": {
+            "firstName": "Anelisy",
+            "lastName": "Nagano",
+            "dateOfBirth": {
+                "$date": {
+                    "$numberLong": "630288000000"
+                }
+            }
+        },
+        "provider": "Zurich",
+        "insuranceType": "Liability",
+        "policyNumber": "274958372",
+        "status": "Active",
+        "startDate": {
+            "$date": {
+                "$numberLong": "1488326400000"
+            }
+        },
+        "endDate": {
+            "$date": {
+                "$numberLong": "1735689600000"
+            }
+        },
+        "createdAt": {
+            "$date": {
+                "$numberLong": "1486339200000"
+            }
+        }
+    },
+    {
+        "id": "11",
+        "customer": {
+            "firstName": "Azzurra",
+            "lastName": "Parrella",
+            "dateOfBirth": {
+                "$date": {
+                    "$numberLong": "516412800000"
+                }
+            }
+        },
+        "provider": "Axa",
+        "insuranceType": "Liability",
+        "policyNumber": "1382764682",
+        "status": "Active",
+        "startDate": {
+            "$date": {
+                "$numberLong": "1409529600000"
+            }
+        },
+        "endDate": {
+            "$date": {
+                "$numberLong": "1859155200000"
+            }
+        },
+        "createdAt": {
+            "$date": {
+                "$numberLong": "1388534400000"
+            }
+        }
+    },
+    {
+        "id": "12",
+        "customer": {
+            "firstName": "Veronica",
+            "lastName": "Mars",
+            "dateOfBirth": "1990-07-17"
+        },
+        "provider": "Generali",
+        "insuranceType": "Health",
+        "policyNumber": "372817646",
+        "status": "Cancelled",
+        "startDate": {
+            "$date": {
+                "$numberLong": "1350518400000"
+            }
+        },
+        "endDate": {
+            "$date": {
+                "$numberLong": "1432857600000"
+            }
+        },
+        "createdAt": {
+            "$date": {
+                "$numberLong": "1333584000000"
+            }
+        }
+    },
+    {
+        "id": "13",
+        "customer": {
+            "firstName": "Paperon",
+            "lastName": "De Paperoni",
+            "dateOfBirth": "1903-04-20"
+        },
+        "provider": "Axa",
+        "insuranceType": "Household",
+        "policyNumber": "728276463",
+        "status": "Cancelled",
+        "startDate": {
+            "$date": {
+                "$numberLong": "-1253318400000"
+            }
+        },
+        "endDate": {
+            "$date": {
+                "$numberLong": "-522633600000"
+            }
+        },
+        "createdAt": {
+            "$date": {
+                "$numberLong": "-1258848000000"
+            }
+        }
+    },
+    {
+        "id": "14",
+        "customer": {
+            "firstName": "Mafalda",
+            "lastName": "De Mafaldis",
+            "dateOfBirth": "1980-09-13"
+        },
+        "provider": "Allianz",
+        "insuranceType": "Liability",
+        "policyNumber": "448388462",
+        "status": "Pending",
+        "startDate": {
+            "$date": {
+                "$numberLong": "1636761600000"
+            }
+        },
+        "endDate": {
+            "$date": {
+                "$numberLong": "1753920000000"
+            }
+        },
+        "createdAt": {
+            "$date": {
+                "$numberLong": "1633910400000"
+            }
+        }
+    },
+    {
+        "id": "15",
+        "customer": {
+            "firstName": "Barbra",
+            "lastName": "D'Urso",
+            "dateOfBirth": "1963-03-10"
+        },
+        "provider": "Sara",
+        "insuranceType": "Household",
+        "policyNumber": "729737283",
+        "status": "Active",
+        "startDate": {
+            "$date": {
+                "$numberLong": "1275350400000"
+            }
+        },
+        "endDate": {
+            "$date": {
+                "$numberLong": "1906502400000"
+            }
+        },
+        "createdAt": {
+            "$date": {
+                "$numberLong": "1274054400000"
+            }
+        }
+    }
+]
