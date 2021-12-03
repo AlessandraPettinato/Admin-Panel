@@ -3,11 +3,20 @@ import { useQuery } from "@apollo/client";
 import { QUERY_GET_ALL_POLICIES } from "../../queries/Policies";
 import { Policy } from "../../types/Types";
 
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
+
 import SearchBar from "./SearchBar";
 import Table from "../Table/TableSkeleton";
 import Pagination from "../Pagination/Pagination";
 
 const Dashboard: React.FC = () => {
+	const navigate = useNavigate();
+
+	if (!Cookies.get("token")) {
+		navigate("/");
+	}
+
 	const { loading, error, data } = useQuery(QUERY_GET_ALL_POLICIES);
 
 	const [policies, setPolicies] = useState<Array<Policy>>([]);
