@@ -1,4 +1,21 @@
+import { useState } from "react";
+import { useNavigate } from "react-router";
+
 const Login: React.FC = () => {
+	const navigate = useNavigate();
+	const [formState, setFormState] = useState({
+		login: true,
+		email: "",
+		password: "",
+		name: "",
+	});
+
+	const handleLoginInput = (e: any) => {
+		setFormState({
+			...formState,
+			[e.target.name]: e.target.value,
+		});
+	};
 	return (
 		<div className="min-h-full flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
 			<div className="max-w-md w-full space-y-8">
@@ -15,12 +32,14 @@ const Login: React.FC = () => {
 						</label>
 						<input
 							id="email-address"
+							value={formState.email}
 							name="email"
 							type="email"
 							autoComplete="email"
 							required
 							className="appearance-none rounded-none relative block w-full px-12 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-400 focus:border-blue-400 focus:z-10 sm:text-sm"
 							placeholder="Email address"
+							onChange={handleLoginInput}
 						/>
 					</div>
 					<div>
@@ -29,12 +48,14 @@ const Login: React.FC = () => {
 						</label>
 						<input
 							id="password"
+							value={formState.password}
 							name="password"
 							type="password"
 							autoComplete="current-password"
 							required
 							className="appearance-none rounded-none relative block w-full px-12 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-400 focus:border-blue-400 focus:z-10 sm:text-sm"
 							placeholder="Password"
+							onChange={handleLoginInput}
 						/>
 					</div>
 				</div>
