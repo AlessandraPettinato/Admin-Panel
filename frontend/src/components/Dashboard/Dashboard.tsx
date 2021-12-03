@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEventHandler } from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_GET_ALL_POLICIES } from "../../queries/Policies";
 import { Policy } from "../../types/Types";
@@ -32,7 +32,7 @@ const Dashboard: React.FC = () => {
 		indexOfLastPolicy
 	);
 
-	const paginate = (pageNumber: number) => {
+	const paginate: Function = (pageNumber: number) => {
 		setCurrentPage(pageNumber);
 	};
 
@@ -58,7 +58,7 @@ const Dashboard: React.FC = () => {
 		}
 	});
 
-	const requestSort = (key: string) => {
+	const requestSort: Function = (key: string) => {
 		let direction = "ascending";
 		if (sortedField.key === key && sortedField.direction === "ascending") {
 			direction = "descending";
@@ -66,7 +66,7 @@ const Dashboard: React.FC = () => {
 		setSortedField({ key, direction });
 	};
 
-	const handleSearch = (e: any) => {
+	const handleSearch: ChangeEventHandler<HTMLInputElement> = (e: any) => {
 		setSearchTerm(e.target.value.trim());
 	};
 

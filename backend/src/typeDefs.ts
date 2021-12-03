@@ -34,12 +34,24 @@ export const typeDefs = gql`
 		dateOfBirth: Date
 	}
 
+	type User {
+		id: ID
+		email: String
+		password: String
+	}
+
+	type UserList {
+		results: [User]
+	}
+
 	type PolicyList {
 		results: [Policy]
 	}
 
 	type Query {
 		getAllPolicies: PolicyList
+		getAllUsers: UserList
+		getOneUser(email: String, password: String): User
 	}
 
 	input CustomerInput {

@@ -1,5 +1,7 @@
 import { PolicyModel } from "./models/PolicyModel";
-import { Policy } from "./types/PolicyType";
+import { UserModel } from "./models/UserModel";
+import { PolicyType } from "./types/PolicyType";
+import { UserType } from "./types/UserType";
 
 enum InsuranceType {
 	LIABILITY = "Liability",
@@ -24,6 +26,16 @@ export const resolvers = {
 				results: results,
 			};
 		},
+		getAllUsers: async () => {
+			const results = await UserModel.find({});
+			return {
+				results: results,
+			};
+		},
+		getOneUser: async (_: any, { email, password }: UserType) => {
+			const user = await UserModel.findOne({ email, password });
+			return user;
+		},
 	},
 
 	Mutation: {
@@ -39,7 +51,7 @@ export const resolvers = {
 				startDate,
 				endDate,
 				createdAt,
-			}: Policy
+			}: PolicyType
 		) => {
 			const { firstName, lastName, dateOfBirth }: any = customer;
 

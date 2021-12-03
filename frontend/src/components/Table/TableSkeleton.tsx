@@ -1,10 +1,11 @@
 import TableRow from "./TableRow";
 import TableHead from "./TableHead";
 import { Policy } from "../../types/Types";
+import { ApolloError } from "@apollo/client";
 
 const Table: React.FC<{
-	loading: any;
-	error: any;
+	loading: boolean;
+	error: ApolloError | undefined;
 	sortedField: any;
 	requestSort: Function;
 	activeField: string;

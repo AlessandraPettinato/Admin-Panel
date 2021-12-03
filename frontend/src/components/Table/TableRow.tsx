@@ -20,7 +20,7 @@ const TableRow: React.FC<Policy> = ({
 
 	const completeName: string = `${lastName} ${firstName} `;
 
-	const convertDateToString: Function = (date: Date) => {
+	const convertDateToString = (date: Date) => {
 		return new Date(date).toISOString().slice(0, 10);
 	};
 

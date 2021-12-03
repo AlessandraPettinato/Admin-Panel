@@ -1,6 +1,7 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
+import { PolicyType } from "../types/PolicyType";
 
-const PolicySchema = new mongoose.Schema({
+const PolicySchema: Schema<PolicyType> = new Schema({
 	id: { type: String },
 	customer: {
 		firstName: String,
@@ -17,4 +18,7 @@ const PolicySchema = new mongoose.Schema({
 	createdAt: Date,
 });
 
-export const PolicyModel = mongoose.model("policies", PolicySchema);
+export const PolicyModel: mongoose.Model<PolicyType> = mongoose.model(
+	"policies",
+	PolicySchema
+);

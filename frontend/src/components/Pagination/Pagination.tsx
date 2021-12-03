@@ -3,7 +3,7 @@ const Pagination: React.FC<{
 	totalPolicies: number;
 	paginate: Function;
 }> = ({ policiesPerPage, totalPolicies, paginate }) => {
-	const pageNumbers = [];
+	const pageNumbers: Array<number> = [];
 
 	for (let i = 1; i <= Math.ceil(totalPolicies / policiesPerPage); i++) {
 		pageNumbers.push(i);
