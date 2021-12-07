@@ -20,6 +20,17 @@ enum PolicyStatus {
 	DROPPED_OUT = "Dropped out",
 }
 
+const generateToken = (user: any) => {
+	return jwt.sign(
+		{
+			id: user.id,
+			email: user.email,
+		},
+		`${process.env.SECRET_KEY}`,
+		{ expiresIn: "1h" }
+	);
+};
+
 export const resolvers = {
 	InsuranceType,
 	PolicyStatus,
@@ -35,10 +46,6 @@ export const resolvers = {
 			return {
 				results: results,
 			};
-		},
-		getOneUser: async (_: any, { email, password }: UserType) => {
-			const user = await UserModel.findOne({ email, password });
-			return user;
 		},
 	},
 
@@ -84,12 +91,9 @@ export const resolvers = {
 
 			return updatedPolicy;
 		},
-		registerUser: async (
-			_: any,
-			{ registerInput: { email, password } }: any
-		) => {
+		registerUser: async (_: any, { email, password }: UserType) => {
 			const user = await UserModel.findOne({ email });
-			if (email) {
+			if (user) {
 				throw new Error("One user already registered with this email");
 			}
 
@@ -101,17 +105,34 @@ export const resolvers = {
 			});
 
 			const res = newUser;
+			const token = generateToken(res);
 
-			const token = jwt.sign(
-				{
-					id: res.id,
-					email: res.email,
-				},
-				`${process.env.SECRET_KEY}`,
-				{ expiresIn: "1h" }
-			);
 			return {
-				id: newUser._id,
+				email: res.email,
+				password: res.password,
+				id: res._id,
+				token,
+			};
+		},
+		login: async (_: any, { email, password }: UserType) => {
+			const user = await UserModel.findOne({ email });
+
+			if (!user) {
+				throw new Error("User not found");
+			}
+
+			const match = await bcrypt.compare(password, user?.password);
+
+			if (!match) {
+				throw new Error("Password is incorrect");
+			}
+
+			const token = generateToken(user);
+
+			return {
+				email: user.email,
+				password: user.password,
+				id: user._id,
 				token,
 			};
 		},

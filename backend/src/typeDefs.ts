@@ -52,18 +52,12 @@ export const typeDefs = gql`
 	type Query {
 		getAllPolicies: PolicyList
 		getAllUsers: UserList
-		getOneUser(email: String, password: String): User
 	}
 
 	input CustomerInput {
 		firstName: String
 		lastName: String
 		dateOfBirth: Date
-	}
-
-	input RegisterInput {
-		email: String
-		password: String
 	}
 
 	type Mutation {
@@ -78,7 +72,8 @@ export const typeDefs = gql`
 			endDate: Date
 			createdAt: Date
 		): Policy
-		registerUser(registerInput: RegisterInput): User
+		registerUser(email: String, password: String): User
+		login(email: String, password: String): User
 	}
 `;
 
