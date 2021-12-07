@@ -88,6 +88,11 @@ export const resolvers = {
 			_: any,
 			{ registerInput: { email, password } }: any
 		) => {
+			const user = await UserModel.findOne({ email });
+			if (email) {
+				throw new Error("One user already registered with this email");
+			}
+
 			password = await bcrypt.hash(password, 12);
 
 			const newUser = await UserModel.create({
