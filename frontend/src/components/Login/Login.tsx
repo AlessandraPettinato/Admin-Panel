@@ -17,41 +17,6 @@ const Login: React.FC = () => {
 		});
 	};
 
-	const submitLogin = (e: any) => {
-		e.preventDefault();
-
-		const url = "http://localhost:3000/";
-
-		const options = {
-			method: "post",
-			headers: {
-				"Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-			},
-			body: `email=${formState.email}&password=${formState.password}`,
-		};
-
-		fetch(url, options)
-			.then((response) => {
-				if (!response.ok) {
-					if (response.status === 404) {
-						alert("Email not found, please retry");
-					}
-					if (response.status === 401) {
-						alert("Email and password do not match, please retry");
-					}
-				}
-				return response;
-			})
-			.then((response) => response.json())
-			.then((data) => {
-				if (data.success) {
-					document.cookie = "token=" + data.token;
-					navigate("/admin");
-				}
-				console.log(data.token);
-			});
-	};
-
 	return (
 		<div className="min-h-full flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
 			<div className="max-w-md w-full space-y-8">
@@ -59,7 +24,7 @@ const Login: React.FC = () => {
 					Log in to your account
 				</h2>
 			</div>
-			<form className="mt-8 space-y-6" onSubmit={submitLogin}>
+			<form className="mt-8 space-y-6">
 				<input type="hidden" name="remember" defaultValue="true" />
 				<div className="rounded-md shadow-sm -space-y-px">
 					<div>

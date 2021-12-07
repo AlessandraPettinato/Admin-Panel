@@ -38,6 +38,7 @@ export const typeDefs = gql`
 		id: ID
 		email: String
 		password: String
+		token: String
 	}
 
 	type UserList {
@@ -60,6 +61,11 @@ export const typeDefs = gql`
 		dateOfBirth: Date
 	}
 
+	input RegisterInput {
+		email: String
+		password: String
+	}
+
 	type Mutation {
 		updatePolicy(
 			id: ID
@@ -72,6 +78,7 @@ export const typeDefs = gql`
 			endDate: Date
 			createdAt: Date
 		): Policy
+		registerUser(registerInput: RegisterInput): User
 	}
 `;
 

@@ -11,11 +11,11 @@ import Table from "../Table/TableSkeleton";
 import Pagination from "../Pagination/Pagination";
 
 const Dashboard: React.FC = () => {
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
 
-	if (!Cookies.get("token")) {
-		navigate("/");
-	}
+	// if (!Cookies.get("token")) {
+	// 	navigate("/");
+	// }
 
 	const { loading, error, data } = useQuery(QUERY_GET_ALL_POLICIES);
 

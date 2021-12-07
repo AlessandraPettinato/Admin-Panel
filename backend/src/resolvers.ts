@@ -1,3 +1,7 @@
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
+
 import { PolicyModel } from "./models/PolicyModel";
 import { UserModel } from "./models/UserModel";
 import { PolicyType } from "./types/PolicyType";
@@ -79,6 +83,32 @@ export const resolvers = {
 			);
 
 			return updatedPolicy;
+		},
+		registerUser: async (
+			_: any,
+			{ registerInput: { email, password } }: any
+		) => {
+			password = await bcrypt.hash(password, 12);
+
+			const newUser = await UserModel.create({
+				email,
+				password,
+			});
+
+			const res = newUser;
+
+			const token = jwt.sign(
+				{
+					id: res.id,
+					email: res.email,
+				},
+				`${process.env.SECRET_KEY}`,
+				{ expiresIn: "1h" }
+			);
+			return {
+				id: newUser._id,
+				token,
+			};
 		},
 	},
 };
