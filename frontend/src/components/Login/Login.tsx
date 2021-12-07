@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { useMutation } from "@apollo/client";
+
+import { LOGIN_USER } from "../../queries/User";
 
 const Login: React.FC = () => {
-	const navigate = useNavigate();
 	const [formState, setFormState] = useState({
-		login: true,
 		email: "",
 		password: "",
-		name: "",
 	});
 
 	const handleLoginInput = (e: any) => {
@@ -17,6 +17,18 @@ const Login: React.FC = () => {
 		});
 	};
 
+	const [login] = useMutation(LOGIN_USER, {
+		variables: {
+			email: formState.email,
+			password: formState.password,
+		},
+	});
+
+	const submitLogin = (e: any) => {
+		e.preventDefault();
+		login();
+	};
+
 	return (
 		<div className="min-h-full flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
 			<div className="max-w-md w-full space-y-8">
@@ -24,7 +36,7 @@ const Login: React.FC = () => {
 					Log in to your account
 				</h2>
 			</div>
-			<form className="mt-8 space-y-6">
+			<form className="mt-8 space-y-6" onSubmit={submitLogin}>
 				<input type="hidden" name="remember" defaultValue="true" />
 				<div className="rounded-md shadow-sm -space-y-px">
 					<div>
