@@ -57,7 +57,6 @@ export const typeDefs = gql`
 
 	type Query {
 		getAllPolicies: PolicyList
-		getAllUsers: UserList
 	}
 
 	input CustomerInput {

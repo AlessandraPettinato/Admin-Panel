@@ -59,12 +59,6 @@ export const resolvers = {
 				);
 			}
 		},
-		getAllUsers: async () => {
-			const results = await UserModel.find({});
-			return {
-				results: results,
-			};
-		},
 	},
 
 	Mutation: {
@@ -80,7 +74,8 @@ export const resolvers = {
 				startDate,
 				endDate,
 				createdAt,
-			}: PolicyType
+			}: PolicyType,
+			context: any
 		) => {
 			const { firstName, lastName, dateOfBirth }: any = customer;
 
@@ -101,13 +96,21 @@ export const resolvers = {
 				createdAt: createdAt,
 			};
 
-			let updatedPolicy = await PolicyModel.findOneAndUpdate(
-				filter,
-				{ $set: update },
-				{ new: true }
-			);
+			const user = auth(context);
 
-			return updatedPolicy;
+			if (user.roles === "Admin") {
+				let updatedPolicy = await PolicyModel.findOneAndUpdate(
+					filter,
+					{ $set: update },
+					{ new: true }
+				);
+
+				return updatedPolicy;
+			} else {
+				throw new AuthenticationError(
+					"You do not have the rights to perform this action"
+				);
+			}
 		},
 
 		registerUser: async (_: any, { email, password }: UserType) => {
