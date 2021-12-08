@@ -1,13 +1,17 @@
 import { useContext } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import Dashboard from "../components/Dashboard/Dashboard";
 
 import { AuthContext } from "../context/auth-context";
 
-const AuthRoute = ({ component: Component, ...rest }: any) => {
+const AuthRoute = ({ children }: { children: any }) => {
+	let location = useLocation();
 	const { user } = useContext(AuthContext);
 
-	return user ? <Navigate to="/" /> : <Dashboard />;
+	if (!user) {
+		return <Navigate to="/" state={{ from: location }} />;
+	}
+	return children;
 };
 
 export default AuthRoute;

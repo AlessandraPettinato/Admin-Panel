@@ -4,9 +4,9 @@ import { AuthProvider } from "./context/auth-context";
 import AuthRoute from "./util/AuthRoute";
 
 import Provider from "./api/Provider";
-import Dashboard from "./components/Dashboard/Dashboard";
 import Login from "./components/Login/Login";
 import "./index.css";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 const App: React.FC = () => {
 	return (
@@ -15,7 +15,14 @@ const App: React.FC = () => {
 				<Router>
 					<Routes>
 						<Route path="/" element={<Login props />} />
-						<Route path="/admin" element={<AuthRoute />} />
+						<Route
+							path="/admin"
+							element={
+								<AuthRoute>
+									<Dashboard />
+								</AuthRoute>
+							}
+						/>
 					</Routes>
 				</Router>
 			</Provider>
