@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import { useMutation } from "@apollo/client";
 
 import { LOGIN_USER } from "../../queries/User";
+import { AuthContext } from "../../context/auth-context";
 
 const Login: React.FC<{ props: any }> = ({ props }) => {
+	const context = useContext(AuthContext);
+
 	const navigate = useNavigate();
 	const [formState, setFormState] = useState({
 		email: "",
@@ -18,8 +21,8 @@ const Login: React.FC<{ props: any }> = ({ props }) => {
 	};
 
 	const [login] = useMutation(LOGIN_USER, {
-		update(_, result) {
-			console.log(result);
+		update(_, { data: { login: userData } }) {
+			context.login(userData);
 			navigate("/admin");
 		},
 		variables: {
