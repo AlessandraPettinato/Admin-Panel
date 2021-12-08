@@ -19,6 +19,7 @@ const Login: React.FC<{ props: any }> = ({ props }) => {
 
 	const [login] = useMutation(LOGIN_USER, {
 		update(_, result) {
+			console.log(result);
 			navigate("/admin");
 		},
 		variables: {
