@@ -1,6 +1,8 @@
-import { useState, useEffect, ChangeEventHandler } from "react";
+import { useState, useEffect, ChangeEventHandler, useContext } from "react";
 import { useQuery } from "@apollo/client";
+
 import { QUERY_GET_ALL_POLICIES } from "../../queries/Policies";
+import { AuthContext } from "../../context/auth-context";
 import { Policy } from "../../types/Types";
 
 import SearchBar from "./SearchBar";
@@ -8,6 +10,8 @@ import Table from "../Table/TableSkeleton";
 import Pagination from "../Pagination/Pagination";
 
 const Dashboard: React.FC = () => {
+	const { user } = useContext(AuthContext);
+
 	const { loading, error, data } = useQuery(QUERY_GET_ALL_POLICIES);
 
 	const [policies, setPolicies] = useState<Array<Policy>>([]);
@@ -77,35 +81,39 @@ const Dashboard: React.FC = () => {
 	}, [loading, data]);
 
 	return (
-		<div className="flex flex-col justify-center items-center bg-white font-sans leading-normal tracking-normal h-screen">
-			{!loading ? (
-				<>
-					<SearchBar handleSearch={handleSearch} />
-					<Table
-						loading={loading}
-						error={error}
-						sortedField={sortedField}
-						requestSort={requestSort}
-						activeField={activeField}
-						setActiveField={setActiveField}
-						currentPolicies={currentPolicies}
-						policies={policies}
-						searchTerm={searchTerm}
-					/>
-					{searchTerm === "" ? (
-						<Pagination
-							policiesPerPage={policiesPerPage}
-							totalPolicies={policies.length}
-							paginate={paginate}
-						/>
-					) : null}
-				</>
-			) : (
-				<div className="flex justify-center items-center">
-					<div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-400" />
+		<>
+			{user && (
+				<div className="flex flex-col justify-center items-center bg-white font-sans leading-normal tracking-normal h-screen">
+					{!loading ? (
+						<>
+							<SearchBar handleSearch={handleSearch} />
+							<Table
+								loading={loading}
+								error={error}
+								sortedField={sortedField}
+								requestSort={requestSort}
+								activeField={activeField}
+								setActiveField={setActiveField}
+								currentPolicies={currentPolicies}
+								policies={policies}
+								searchTerm={searchTerm}
+							/>
+							{searchTerm === "" ? (
+								<Pagination
+									policiesPerPage={policiesPerPage}
+									totalPolicies={policies.length}
+									paginate={paginate}
+								/>
+							) : null}
+						</>
+					) : (
+						<div className="flex justify-center items-center">
+							<div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-400" />
+						</div>
+					)}
 				</div>
 			)}
-		</div>
+		</>
 	);
 };
 
