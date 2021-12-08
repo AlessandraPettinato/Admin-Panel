@@ -4,12 +4,12 @@ import { useMutation } from "@apollo/client";
 
 import { LOGIN_USER } from "../../queries/User";
 
-const Login: React.FC = () => {
+const Login: React.FC<{ props: any }> = ({ props }) => {
+	const navigate = useNavigate();
 	const [formState, setFormState] = useState({
 		email: "",
 		password: "",
 	});
-
 	const handleLoginInput = (e: any) => {
 		setFormState({
 			...formState,
@@ -18,6 +18,9 @@ const Login: React.FC = () => {
 	};
 
 	const [login] = useMutation(LOGIN_USER, {
+		update(_, result) {
+			navigate("/admin");
+		},
 		variables: {
 			email: formState.email,
 			password: formState.password,
