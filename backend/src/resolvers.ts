@@ -1,11 +1,14 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { AuthenticationError } = require("apollo-server-express");
 require("dotenv").config();
 
 import { PolicyModel } from "./models/PolicyModel";
 import { UserModel } from "./models/UserModel";
 import { PolicyType } from "./types/PolicyType";
 import { UserType } from "./types/UserType";
+
+const auth = require("./util/auth");
 
 enum InsuranceType {
 	LIABILITY = "Liability",
@@ -20,11 +23,17 @@ enum PolicyStatus {
 	DROPPED_OUT = "Dropped out",
 }
 
+enum Roles {
+	ADMIN = "Admin",
+	EDITOR = "Editor",
+}
+
 const generateToken = (user: any) => {
 	return jwt.sign(
 		{
 			id: user.id,
 			email: user.email,
+			roles: user.roles,
 		},
 		`${process.env.SECRET_KEY}`,
 		{ expiresIn: "1h" }
@@ -34,12 +43,21 @@ const generateToken = (user: any) => {
 export const resolvers = {
 	InsuranceType,
 	PolicyStatus,
+	Roles,
 	Query: {
-		getAllPolicies: async () => {
-			const results = await PolicyModel.find({});
-			return {
-				results: results,
-			};
+		getAllPolicies: async (_: any, __: any, context: any) => {
+			const user = auth(context);
+
+			if (user.roles === "Admin") {
+				const results = await PolicyModel.find({});
+				return {
+					results: results,
+				};
+			} else {
+				throw new AuthenticationError(
+					"You do not have the rights to perform this action"
+				);
+			}
 		},
 		getAllUsers: async () => {
 			const results = await UserModel.find({});
@@ -91,6 +109,7 @@ export const resolvers = {
 
 			return updatedPolicy;
 		},
+
 		registerUser: async (_: any, { email, password }: UserType) => {
 			const user = await UserModel.findOne({ email });
 			if (user) {
@@ -132,6 +151,7 @@ export const resolvers = {
 			return {
 				email: user.email,
 				password: user.password,
+				roles: user.roles,
 				id: user._id,
 				token,
 			};

@@ -10,7 +10,11 @@ const port: number = 8080;
 const startServer = async () => {
 	const app = express();
 
-	const apolloServer = new ApolloServer({ typeDefs, resolvers });
+	const apolloServer = new ApolloServer({
+		typeDefs,
+		resolvers,
+		context: ({ req }: any) => ({ req }),
+	});
 
 	await apolloServer.start();
 	apolloServer.applyMiddleware({ app });

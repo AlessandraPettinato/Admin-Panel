@@ -34,10 +34,16 @@ export const typeDefs = gql`
 		dateOfBirth: Date
 	}
 
+	enum Roles {
+		ADMIN
+		EDITOR
+	}
+
 	type User {
 		id: ID
 		email: String
 		password: String
+		roles: Roles
 		token: String
 	}
 

@@ -5,6 +5,7 @@ const UserSchema: Schema<UserType> = new Schema({
 	id: String,
 	email: String,
 	password: String,
+	roles: String,
 	token: String,
 });
 
