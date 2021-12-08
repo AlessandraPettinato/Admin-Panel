@@ -21,6 +21,12 @@ const SearchBar: React.FC<{
 						</div>
 					</div>
 				</div>
+				<button
+					className="bg-white text-blue-400 
+				hover:text-blue-600 font-semibold py-2 px-4 border border-blue-500 hover:border-blue-600 rounded mr-8"
+				>
+					Logout
+				</button>
 			</div>
 		</nav>
 	);
