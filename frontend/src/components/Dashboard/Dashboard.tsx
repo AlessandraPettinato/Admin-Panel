@@ -5,7 +5,7 @@ import { QUERY_GET_ALL_POLICIES } from "../../queries/Policies";
 import { AuthContext } from "../../context/auth-context";
 import { Policy } from "../../types/Types";
 
-import SearchBar from "./SearchBar";
+import MenuBar from "./MenuBar";
 import Table from "../Table/TableSkeleton";
 import Pagination from "../Pagination/Pagination";
 
@@ -86,7 +86,7 @@ const Dashboard: React.FC = () => {
 				<div className="flex flex-col justify-center items-center bg-white font-sans leading-normal tracking-normal h-screen">
 					{!loading ? (
 						<>
-							<SearchBar handleSearch={handleSearch} />
+							<MenuBar handleSearch={handleSearch} />
 							<Table
 								loading={loading}
 								error={error}

@@ -3,7 +3,7 @@ import { AuthContext } from "../../context/auth-context";
 
 import { BiSearch } from "react-icons/bi";
 
-const SearchBar: React.FC<{
+const MenuBar: React.FC<{
 	handleSearch: ChangeEventHandler<HTMLInputElement>;
 }> = ({ handleSearch }) => {
 	const { logout } = useContext(AuthContext);
@@ -37,4 +37,4 @@ const SearchBar: React.FC<{
 	);
 };
 
-export default SearchBar;
+export default MenuBar;
