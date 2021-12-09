@@ -97,6 +97,9 @@ https://user-images.githubusercontent.com/73818991/144085297-078135b2-c581-4026-
 
 In order to access the app, you need first to create a new account. You can do so on [Apollo Sandbox](https://www.apollographql.com/docs/apollo-server/testing/build-run-queries/). Please visit http://localhost:8080/graphql to run the **registerUser** mutation againts your GraphQL API and provide all the variables requested as inputs: **email**, **password**, and **roles** (you can choose between _ADMIN_ or _EDITOR_). The values will be stored into a new Collections of your database caller **Users**. For security concerns, the password will be hashed with [bcrypt](https://www.npmjs.com/package/bcrypt).
 
+https://user-images.githubusercontent.com/73818991/145446531-7e59becd-fb04-4eb8-9d25-e24e4da0ffd7.mov
+
+
 ## How to run
 
 To run your server, please navigate to the root of the backend folder and run:
