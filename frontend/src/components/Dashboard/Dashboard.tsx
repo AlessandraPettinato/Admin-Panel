@@ -1,16 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEventHandler, useContext } from "react";
 import { useQuery } from "@apollo/client";
+
 import { QUERY_GET_ALL_POLICIES } from "../../queries/Policies";
+import { AuthContext } from "../../context/auth-context";
 import { Policy } from "../../types/Types";
 
-import SearchBar from "./SearchBar";
+import MenuBar from "./MenuBar";
 import Table from "../Table/TableSkeleton";
 import Pagination from "../Pagination/Pagination";
 
 const Dashboard: React.FC = () => {
+	const { user } = useContext(AuthContext);
+
 	const { loading, error, data } = useQuery(QUERY_GET_ALL_POLICIES);
 
-	const [policies, setPolicies] = useState<Array<Policy>>([]);
+	// const [policies, setPolicies] = useState<Array<Policy>>([]);
 
 	const [sortedField, setSortedField] = useState({
 		key: "",
@@ -24,7 +28,19 @@ const Dashboard: React.FC = () => {
 
 	const [searchTerm, setSearchTerm] = useState<string>("");
 
+	if (loading)
+		return (
+			<div className="flex justify-center items-center">
+				<div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-400" />
+			</div>
+		);
+
+	if (!data?.getAllPolicies?.results) return <p>No data</p>;
+
+	const policies = data.getAllPolicies.results;
+
 	const indexOfLastPolicy: number = currentPage * policiesPerPage;
+
 	const indexOfFirstPolicy: number = indexOfLastPolicy - policiesPerPage;
 
 	const currentPolicies: Array<Policy> = policies.slice(
@@ -32,7 +48,7 @@ const Dashboard: React.FC = () => {
 		indexOfLastPolicy
 	);
 
-	const paginate = (pageNumber: number) => {
+	const paginate: Function = (pageNumber: number) => {
 		setCurrentPage(pageNumber);
 	};
 
@@ -58,7 +74,7 @@ const Dashboard: React.FC = () => {
 		}
 	});
 
-	const requestSort = (key: string) => {
+	const requestSort: Function = (key: string) => {
 		let direction = "ascending";
 		if (sortedField.key === key && sortedField.direction === "ascending") {
 			direction = "descending";
@@ -66,46 +82,66 @@ const Dashboard: React.FC = () => {
 		setSortedField({ key, direction });
 	};
 
-	const handleSearch = (e: any) => {
+	const handleSearch: ChangeEventHandler<HTMLInputElement> = (e: any) => {
 		setSearchTerm(e.target.value.trim());
 	};
 
-	useEffect(() => {
-		if (!loading && data) {
-			setPolicies(data.getAllPolicies.results);
+	const filteredPolicies = currentPolicies.filter((policy: any) => {
+		if (searchTerm === "") {
+			return policy;
+		} else {
+			for (let values of Object.values(policy)) {
+				if (typeof values === "object") {
+					let { firstName, lastName }: any = values;
+					if (
+						firstName.toUpperCase().includes(searchTerm.toUpperCase()) ||
+						lastName.toUpperCase().includes(searchTerm.toUpperCase())
+					) {
+						return policy;
+					}
+				} else if (typeof values === "string") {
+					if (values.toUpperCase().includes(searchTerm.toUpperCase())) {
+						return policy;
+					}
+				}
+			}
 		}
-	}, [loading, data]);
+	});
+
+	// useEffect(() => {
+	// 	if (!loading && data) {
+	// 		setPolicies(data.getAllPolicies.results);
+	// 	}
+	// }, [loading, data]);
 
 	return (
-		<div className="flex flex-col justify-center items-center bg-white font-sans leading-normal tracking-normal h-screen">
-			{!loading ? (
-				<>
-					<SearchBar handleSearch={handleSearch} />
-					<Table
-						loading={loading}
-						error={error}
-						sortedField={sortedField}
-						requestSort={requestSort}
-						activeField={activeField}
-						setActiveField={setActiveField}
-						currentPolicies={currentPolicies}
-						policies={policies}
-						searchTerm={searchTerm}
-					/>
-					{searchTerm === "" ? (
-						<Pagination
-							policiesPerPage={policiesPerPage}
-							totalPolicies={policies.length}
-							paginate={paginate}
+		<>
+			{user && (
+				<div className="flex flex-col justify-center items-center bg-white font-sans leading-normal tracking-normal h-screen">
+					<>
+						<MenuBar handleSearch={handleSearch} />
+						{}
+						<Table
+							loading={loading}
+							error={error}
+							sortedField={sortedField}
+							requestSort={requestSort}
+							activeField={activeField}
+							setActiveField={setActiveField}
+							policies={filteredPolicies}
+							searchTerm={searchTerm}
 						/>
-					) : null}
-				</>
-			) : (
-				<div className="flex justify-center items-center">
-					<div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-400" />
+						{searchTerm === "" ? (
+							<Pagination
+								policiesPerPage={policiesPerPage}
+								totalPolicies={policies.length}
+								paginate={paginate}
+							/>
+						) : null}
+					</>
 				</div>
 			)}
-		</div>
+		</>
 	);
 };
 

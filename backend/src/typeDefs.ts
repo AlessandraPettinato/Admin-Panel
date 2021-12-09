@@ -34,6 +34,23 @@ export const typeDefs = gql`
 		dateOfBirth: Date
 	}
 
+	enum Roles {
+		ADMIN
+		EDITOR
+	}
+
+	type User {
+		id: ID
+		email: String
+		password: String
+		roles: Roles
+		token: String
+	}
+
+	type UserList {
+		results: [User]
+	}
+
 	type PolicyList {
 		results: [Policy]
 	}
@@ -60,6 +77,8 @@ export const typeDefs = gql`
 			endDate: Date
 			createdAt: Date
 		): Policy
+		registerUser(email: String, password: String, roles: Roles): User
+		login(email: String, password: String): User
 	}
 `;
 

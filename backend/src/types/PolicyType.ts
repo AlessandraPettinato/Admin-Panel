@@ -1,4 +1,4 @@
-export type Policy = {
+export type PolicyType = {
 	id: string;
 	customer: {
 		firstName: string;

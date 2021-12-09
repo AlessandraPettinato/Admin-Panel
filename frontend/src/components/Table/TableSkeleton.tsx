@@ -1,15 +1,15 @@
 import TableRow from "./TableRow";
 import TableHead from "./TableHead";
 import { Policy } from "../../types/Types";
+import { ApolloError } from "@apollo/client";
 
 const Table: React.FC<{
-	loading: any;
-	error: any;
+	loading: boolean;
+	error: ApolloError | undefined;
 	sortedField: any;
 	requestSort: Function;
 	activeField: string;
 	setActiveField: Function;
-	currentPolicies: Array<Policy>;
 	searchTerm: any;
 	policies: Array<Policy>;
 }> = ({
@@ -19,7 +19,6 @@ const Table: React.FC<{
 	requestSort,
 	activeField,
 	setActiveField,
-	currentPolicies,
 	searchTerm,
 	policies,
 }) => {
@@ -40,64 +39,34 @@ const Table: React.FC<{
 									sortedField={sortedField}
 								/>
 								<tbody className="bg-white divide-y divide-gray-200">
-									{(searchTerm === "" ? currentPolicies : policies)
-										.filter((policy: any) => {
-											if (searchTerm === "") {
-												return policy;
-											} else {
-												for (let values of Object.values(policy)) {
-													if (typeof values === "object") {
-														let { firstName, lastName }: any = values;
-														if (
-															firstName
-																.toUpperCase()
-																.includes(searchTerm.toUpperCase()) ||
-															lastName
-																.toUpperCase()
-																.includes(searchTerm.toUpperCase())
-														) {
-															return policy;
-														}
-													} else if (typeof values === "string") {
-														if (
-															values
-																.toUpperCase()
-																.includes(searchTerm.toUpperCase())
-														) {
-															return policy;
-														}
-													}
-												}
-											}
-										})
-										.map((policy: Policy) => {
-											const {
-												id,
-												customer,
-												provider,
-												insuranceType,
-												status,
-												policyNumber,
-												startDate,
-												endDate,
-												createdAt,
-											} = policy;
-											return (
-												<tr key={id}>
-													<TableRow
-														id={id}
-														customer={customer}
-														provider={provider}
-														insuranceType={insuranceType}
-														status={status}
-														policyNumber={policyNumber}
-														startDate={startDate}
-														endDate={endDate}
-														createdAt={createdAt}
-													/>
-												</tr>
-											);
-										})}
+									{policies.map((policy: Policy) => {
+										const {
+											id,
+											customer,
+											provider,
+											insuranceType,
+											status,
+											policyNumber,
+											startDate,
+											endDate,
+											createdAt,
+										} = policy;
+										return (
+											<tr key={id}>
+												<TableRow
+													id={id}
+													customer={customer}
+													provider={provider}
+													insuranceType={insuranceType}
+													status={status}
+													policyNumber={policyNumber}
+													startDate={startDate}
+													endDate={endDate}
+													createdAt={createdAt}
+												/>
+											</tr>
+										);
+									})}
 								</tbody>
 							</table>
 						</div>
