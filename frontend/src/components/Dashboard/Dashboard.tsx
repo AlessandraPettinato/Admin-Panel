@@ -14,8 +14,6 @@ const Dashboard: React.FC = () => {
 
 	const { loading, error, data } = useQuery(QUERY_GET_ALL_POLICIES);
 
-	// const [policies, setPolicies] = useState<Array<Policy>>([]);
-
 	const [sortedField, setSortedField] = useState({
 		key: "",
 		direction: "",
@@ -108,19 +106,12 @@ const Dashboard: React.FC = () => {
 		}
 	});
 
-	// useEffect(() => {
-	// 	if (!loading && data) {
-	// 		setPolicies(data.getAllPolicies.results);
-	// 	}
-	// }, [loading, data]);
-
 	return (
 		<>
 			{user && (
 				<div className="flex flex-col justify-center items-center bg-white font-sans leading-normal tracking-normal h-screen">
 					<>
 						<MenuBar handleSearch={handleSearch} />
-						{}
 						<Table
 							loading={loading}
 							error={error}
