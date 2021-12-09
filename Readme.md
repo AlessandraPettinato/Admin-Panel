@@ -83,6 +83,10 @@ DB_USER=YourChosenUsername
 
 DB_PASSWORD=YourChosenPassword
 
+SECRET_KEY=YourChosenSecretKey
+
+The **SECRET_KEY** is a key the code will use to generate a token to authenticate the user login. Feel free to make it as intricate as possible. 
+
 **_Remember to include the .env file in your .gitignore._**
 
 ### Connect to your Cluster
