@@ -14,7 +14,7 @@ const Dashboard: React.FC = () => {
 
 	const { loading, error, data } = useQuery(QUERY_GET_ALL_POLICIES);
 
-	const [policies, setPolicies] = useState<Array<Policy>>([]);
+	// const [policies, setPolicies] = useState<Array<Policy>>([]);
 
 	const [sortedField, setSortedField] = useState({
 		key: "",
@@ -28,7 +28,19 @@ const Dashboard: React.FC = () => {
 
 	const [searchTerm, setSearchTerm] = useState<string>("");
 
+	if (loading)
+		return (
+			<div className="flex justify-center items-center">
+				<div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-400" />
+			</div>
+		);
+
+	if (!data?.getAllPolicies?.results) return <p>No data</p>;
+
+	const policies = data.getAllPolicies.results;
+
 	const indexOfLastPolicy: number = currentPage * policiesPerPage;
+
 	const indexOfFirstPolicy: number = indexOfLastPolicy - policiesPerPage;
 
 	const currentPolicies: Array<Policy> = policies.slice(
@@ -74,43 +86,59 @@ const Dashboard: React.FC = () => {
 		setSearchTerm(e.target.value.trim());
 	};
 
-	useEffect(() => {
-		if (!loading && data) {
-			setPolicies(data.getAllPolicies.results);
+	const filteredPolicies = currentPolicies.filter((policy: any) => {
+		if (searchTerm === "") {
+			return policy;
+		} else {
+			for (let values of Object.values(policy)) {
+				if (typeof values === "object") {
+					let { firstName, lastName }: any = values;
+					if (
+						firstName.toUpperCase().includes(searchTerm.toUpperCase()) ||
+						lastName.toUpperCase().includes(searchTerm.toUpperCase())
+					) {
+						return policy;
+					}
+				} else if (typeof values === "string") {
+					if (values.toUpperCase().includes(searchTerm.toUpperCase())) {
+						return policy;
+					}
+				}
+			}
 		}
-	}, [loading, data]);
+	});
+
+	// useEffect(() => {
+	// 	if (!loading && data) {
+	// 		setPolicies(data.getAllPolicies.results);
+	// 	}
+	// }, [loading, data]);
 
 	return (
 		<>
 			{user && (
 				<div className="flex flex-col justify-center items-center bg-white font-sans leading-normal tracking-normal h-screen">
-					{!loading ? (
-						<>
-							<MenuBar handleSearch={handleSearch} />
-							<Table
-								loading={loading}
-								error={error}
-								sortedField={sortedField}
-								requestSort={requestSort}
-								activeField={activeField}
-								setActiveField={setActiveField}
-								currentPolicies={currentPolicies}
-								policies={policies}
-								searchTerm={searchTerm}
+					<>
+						<MenuBar handleSearch={handleSearch} />
+						{}
+						<Table
+							loading={loading}
+							error={error}
+							sortedField={sortedField}
+							requestSort={requestSort}
+							activeField={activeField}
+							setActiveField={setActiveField}
+							policies={filteredPolicies}
+							searchTerm={searchTerm}
+						/>
+						{searchTerm === "" ? (
+							<Pagination
+								policiesPerPage={policiesPerPage}
+								totalPolicies={policies.length}
+								paginate={paginate}
 							/>
-							{searchTerm === "" ? (
-								<Pagination
-									policiesPerPage={policiesPerPage}
-									totalPolicies={policies.length}
-									paginate={paginate}
-								/>
-							) : null}
-						</>
-					) : (
-						<div className="flex justify-center items-center">
-							<div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-400" />
-						</div>
-					)}
+						) : null}
+					</>
 				</div>
 			)}
 		</>

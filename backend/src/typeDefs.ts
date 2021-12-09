@@ -77,7 +77,7 @@ export const typeDefs = gql`
 			endDate: Date
 			createdAt: Date
 		): Policy
-		registerUser(email: String, password: String): User
+		registerUser(email: String, password: String, roles: Roles): User
 		login(email: String, password: String): User
 	}
 `;

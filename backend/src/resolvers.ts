@@ -30,11 +30,13 @@ enum Roles {
 
 const generateToken = (user: any) => {
 	return jwt.sign(
+		//payload
 		{
 			id: user.id,
 			email: user.email,
 			roles: user.roles,
 		},
+		//options
 		`${process.env.SECRET_KEY}`,
 		{ expiresIn: "1h" }
 	);
@@ -113,7 +115,7 @@ export const resolvers = {
 			}
 		},
 
-		registerUser: async (_: any, { email, password }: UserType) => {
+		registerUser: async (_: any, { email, password, roles }: UserType) => {
 			const user = await UserModel.findOne({ email });
 			if (user) {
 				throw new Error("One user already registered with this email");
@@ -124,6 +126,7 @@ export const resolvers = {
 			const newUser = await UserModel.create({
 				email,
 				password,
+				roles,
 			});
 
 			const res = newUser;
@@ -132,6 +135,7 @@ export const resolvers = {
 			return {
 				email: res.email,
 				password: res.password,
+				roles: res.roles,
 				id: res._id,
 				token,
 			};
@@ -143,7 +147,7 @@ export const resolvers = {
 				throw new Error("User not found");
 			}
 
-			const match = await bcrypt.compare(password, user?.password);
+			const match = await bcrypt.compare(password, user.password);
 
 			if (!match) {
 				throw new Error("Password is incorrect");

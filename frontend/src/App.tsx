@@ -16,7 +16,7 @@ const App: React.FC = () => {
 					<Routes>
 						<Route path="/" element={<Login props />} />
 						<Route
-							path="/admin"
+							path="/dashboard"
 							element={
 								<AuthRoute>
 									<Dashboard />

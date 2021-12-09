@@ -8,8 +8,10 @@ module.exports = (context: { req: { headers: { authorization: any } } }) => {
 		const token = authHeader.split("Bearer ")[1];
 		if (token) {
 			try {
+				//verify given token using SECRET_KEY to get a decoded token
 				const user = jwt.verify(token, `${process.env.SECRET_KEY}`);
 				return user;
+				//if fails, goes to catch and send error message
 			} catch (err) {
 				throw new AuthenticationError("Invalid/Expired token");
 			}

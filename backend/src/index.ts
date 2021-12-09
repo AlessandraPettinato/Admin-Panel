@@ -13,6 +13,7 @@ const startServer = async () => {
 	const apolloServer = new ApolloServer({
 		typeDefs,
 		resolvers,
+		// forward the request body to context and access its header for auth
 		context: ({ req }: any) => ({ req }),
 	});
 

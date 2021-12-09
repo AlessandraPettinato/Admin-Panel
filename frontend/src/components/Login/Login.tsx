@@ -13,6 +13,7 @@ const Login: React.FC<{ props: any }> = ({ props }) => {
 		email: "",
 		password: "",
 	});
+
 	const handleLoginInput = (e: any) => {
 		setFormState({
 			...formState,
@@ -23,7 +24,7 @@ const Login: React.FC<{ props: any }> = ({ props }) => {
 	const [login] = useMutation(LOGIN_USER, {
 		update(_, { data: { login: userData } }) {
 			context.login(userData);
-			navigate("/admin");
+			navigate("/dashboard");
 		},
 		variables: {
 			email: formState.email,
