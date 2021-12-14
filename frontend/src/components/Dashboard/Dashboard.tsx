@@ -8,6 +8,7 @@ import { Policy } from "../../types/Types";
 import MenuBar from "./MenuBar";
 import Table from "../Table/TableSkeleton";
 import Pagination from "../Pagination/Pagination";
+import SideMenu from "../SideMenu/SideMenu";
 
 const Dashboard: React.FC = () => {
 	const { user } = useContext(AuthContext);
@@ -111,6 +112,7 @@ const Dashboard: React.FC = () => {
 			{user && (
 				<div className="flex flex-col justify-center items-center bg-white font-sans leading-normal tracking-normal h-screen">
 					<>
+						<SideMenu />
 						<MenuBar handleSearch={handleSearch} />
 						<Table
 							loading={loading}
