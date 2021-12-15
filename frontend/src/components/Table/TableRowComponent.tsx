@@ -1,3 +1,10 @@
+import TableCell from "@mui/material/TableCell";
+import TextField from "@mui/material/TextField";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import Button from "@mui/material/Button";
+
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 
@@ -5,7 +12,7 @@ import { Policy } from "../../types/Types";
 
 import { QUERY_GET_ALL_POLICIES, UPDATE_POLICY } from "../../queries/Policies";
 
-const TableRow: React.FC<Policy> = ({
+const TableRowComponent: React.FC<Policy> = ({
 	id,
 	customer,
 	provider,
@@ -77,95 +84,81 @@ const TableRow: React.FC<Policy> = ({
 
 	return (
 		<>
-			<td className="px-6 py-4 whitespace-nowrap text-gray-500">
-				<input
-					className={
-						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
-					}
+			<TableCell>
+				<TextField
+					sx={{ fontSize: "0.5rem" }}
+					size="small"
 					value={edited.completeName}
 					name="completeName"
 					onChange={handleUpdate}
 					disabled={!editMode ? true : false}
 				/>
-			</td>
-			<td className="px-6 py-4 whitespace-nowrap text-gray-500">
-				<select
-					className={
-						!editMode
-							? "border-none appearance-none"
-							: "form-select w-max border block w-full rounded-lg mt-1 bg-gray-50 pl-2"
-					}
+			</TableCell>
+			<TableCell>
+				<Select
+					size="small"
 					value={edited.insuranceType}
 					name="insuranceType"
 					onChange={handleUpdate}
 					disabled={!editMode ? true : false}
 				>
-					<option>LIABILITY</option>
-					<option>HOUSEHOLD</option>
-					<option>HEALTH</option>
-				</select>
-			</td>
-			<td className="px-6 py-4 whitespace-nowrap text-gray-500">
-				<input
-					className={
-						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
-					}
+					<MenuItem value={"LIABILITY"}>LIABILITY</MenuItem>
+					<MenuItem value={"HOUSEHOLD"}>HOUSEHOLD</MenuItem>
+					<MenuItem value={"HEALTH"}>HEALTH</MenuItem>
+				</Select>
+			</TableCell>
+			<TableCell>
+				<TextField
+					size="small"
 					value={edited.policyNumber}
 					name="policyNumber"
 					onChange={handleUpdate}
 					disabled={!editMode ? true : false}
 				/>
-			</td>
-			<td className="px-6 py-4 whitespace-nowrap text-gray-500">
-				<select
-					className={
-						!editMode
-							? "border-none appearance-none"
-							: "form-select w-max border block w-full rounded-lg mt-1 bg-gray-50 pl-2"
-					}
+			</TableCell>
+			<TableCell>
+				<Select
+					size="small"
 					value={edited.status}
 					name="status"
 					onChange={handleUpdate}
 					disabled={!editMode ? true : false}
 				>
-					<option>ACTIVE</option>
-					<option>CANCELLED</option>
-					<option>DROPPED_OUT</option>
-					<option>PENDING</option>
-				</select>
-			</td>
-			<td className="px-6 py-4 whitespace-nowrap text-gray-500">
-				<input
-					className={
-						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
-					}
+					<MenuItem value={"ACTIVE"}>ACTIVE</MenuItem>
+					<MenuItem value={"CANCELLED"}>CANCELLED</MenuItem>
+					<MenuItem value={"DROPPED_OUT"}>DROPPED_OUT</MenuItem>
+					<MenuItem value={"PENDING"}>PENDING</MenuItem>
+				</Select>
+			</TableCell>
+			<TableCell>
+				<TextField
+					size="small"
 					value={edited.provider}
 					name="provider"
 					onChange={handleUpdate}
 					disabled={!editMode ? true : false}
 				/>
-			</td>
-			<td className="px-6 py-4 whitespace-nowrap text-gray-500">
-				<input
-					className={
-						!editMode ? "bg-transparent" : "bg-gray-50 border rounded-lg pl-2"
-					}
+			</TableCell>
+			<TableCell>
+				<TextField
+					size="small"
 					value={edited.createdAtConverted}
 					name="createdAtConverted"
 					onChange={handleUpdate}
 					disabled={!editMode ? true : false}
 				/>
-			</td>
-			<td className="pr-6 whitespace-nowrap text-right text-sm font-medium">
-				<button
+			</TableCell>
+			<TableCell>
+				<Button
+					variant="text"
 					onClick={!editMode ? handleEdit : () => handleClickUpdate()}
 					className="text-blue-400 hover:text-blue-600"
 				>
 					{!editMode ? "Edit" : "Save"}
-				</button>
-			</td>
+				</Button>
+			</TableCell>
 		</>
 	);
 };
 
-export default TableRow;
+export default TableRowComponent;

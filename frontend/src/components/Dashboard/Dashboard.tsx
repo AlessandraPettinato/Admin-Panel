@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEventHandler, useContext } from "react";
+import { useState, ChangeEventHandler, useContext } from "react";
 import { useQuery } from "@apollo/client";
 
 import { QUERY_GET_ALL_POLICIES } from "../../queries/Policies";
@@ -6,9 +6,8 @@ import { AuthContext } from "../../context/auth-context";
 import { Policy } from "../../types/Types";
 
 import MenuBar from "./MenuBar";
-import Table from "../Table/TableSkeleton";
-import Pagination from "../Pagination/Pagination";
 import SideMenu from "../SideMenu/SideMenu";
+import TableSkeleton from "../Table/TableSkeleton";
 
 const Dashboard: React.FC = () => {
 	const { user } = useContext(AuthContext);
@@ -114,7 +113,7 @@ const Dashboard: React.FC = () => {
 					<>
 						<SideMenu />
 						<MenuBar handleSearch={handleSearch} />
-						<Table
+						<TableSkeleton
 							loading={loading}
 							error={error}
 							sortedField={sortedField}
@@ -123,14 +122,10 @@ const Dashboard: React.FC = () => {
 							setActiveField={setActiveField}
 							policies={filteredPolicies}
 							searchTerm={searchTerm}
+							policiesPerPage={policiesPerPage}
+							paginate={paginate}
+							totalPolicies={policies.length}
 						/>
-						{searchTerm === "" ? (
-							<Pagination
-								policiesPerPage={policiesPerPage}
-								totalPolicies={policies.length}
-								paginate={paginate}
-							/>
-						) : null}
 					</>
 				</div>
 			)}

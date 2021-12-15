@@ -1,8 +1,11 @@
+import { TableCell } from "@mui/material";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
 import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
 
 import { TableHeadFields } from "./data/TableHeadFields";
 
-const TableHead: React.FC<{
+const TableHeadComponent: React.FC<{
 	requestSort: Function;
 	activeField: string;
 	setActiveField: Function;
@@ -10,21 +13,27 @@ const TableHead: React.FC<{
 }> = ({ requestSort, activeField, setActiveField, sortedField }) => {
 	return (
 		<>
-			<thead className="bg-gray-50">
-				<tr>
+			<TableHead>
+				<TableRow>
 					{TableHeadFields.map((item, index) => {
 						return (
-							<th
-								key={index}
+							<TableCell
+								style={{
+									textTransform: "uppercase",
+									color: "slategrey",
+									whiteSpace: "nowrap",
+								}}
+								align="left"
+								component="th"
 								scope="col"
-								className="w-44 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap cursor-pointer"
+								key={index}
 								onClick={(e) => {
 									setActiveField(item.sortField);
 									requestSort(item.sortField);
 								}}
 							>
 								{item.fieldName}
-								<div className="inline-table align-text-bottom">
+								<div>
 									{item.sortField === activeField &&
 									sortedField.direction === "ascending" ? (
 										<TiArrowSortedUp />
@@ -35,14 +44,14 @@ const TableHead: React.FC<{
 										)
 									)}
 								</div>
-							</th>
+							</TableCell>
 						);
 					})}
-					<th className="sr-only">Edit</th>
-				</tr>
-			</thead>
+					<TableCell align="left" />
+				</TableRow>
+			</TableHead>
 		</>
 	);
 };
 
-export default TableHead;
+export default TableHeadComponent;

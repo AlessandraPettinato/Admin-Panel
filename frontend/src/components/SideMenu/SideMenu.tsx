@@ -6,10 +6,10 @@ const SideMenu: React.FC = () => {
 
 	return (
 		<div className="flex md:flex-row-reverse flex-wrap">
-			<div className="w-full md:w-1/5 bg-gray-900 md:bg-gray-900 px-2 text-center fixed bottom-0 md:pt-8 md:top-0 md:left-0 h-16 md:h-screen md:border-r-4 md:border-gray-600">
+			<div className="w-full md:w-1/5 bg-gray-900 md:bg-gray-900 px-2 text-center fixed bottom-0 md:pt-24 md:top-0 md:left-0 h-16 md:h-screen md:border-r-4 md:border-gray-900">
 				<div className="md:relative mx-auto lg:float-right lg:px-6">
 					<ul className="list-reset flex flex-row md:flex-col text-center md:text-left">
-						<li className="mr-3 flex-1">
+						<li className="mr-3 flex-1 ">
 							<a
 								href="#"
 								className="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500"
@@ -20,7 +20,7 @@ const SideMenu: React.FC = () => {
 								</span>
 							</a>
 						</li>
-						<li className="mr-3 flex-1">
+						<li className="mr-3 flex-1 pt-4">
 							<a
 								href="#"
 								className="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500"
@@ -31,7 +31,7 @@ const SideMenu: React.FC = () => {
 								</span>
 							</a>
 						</li>
-						<li className="mr-3 flex-1">
+						<li className="mr-3 flex-1 pt-4">
 							<a
 								href="#"
 								className="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-pink-600"
@@ -42,7 +42,7 @@ const SideMenu: React.FC = () => {
 								</span>
 							</a>
 						</li>
-						<li className="mr-3 flex-1">
+						<li className="mr-3 flex-1 pt-4">
 							<a
 								href="#"
 								className="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500"
@@ -53,7 +53,7 @@ const SideMenu: React.FC = () => {
 								</span>
 							</a>
 						</li>
-						<li>
+						<li className="mr-3 flex-1 pt-4">
 							<button
 								onClick={logout}
 								className="bg-white text-gray-900 
