@@ -1,9 +1,12 @@
-# Feather - Fullstack Engineer code challenge
+# Admin Panel
 
-This repository contains the solution of an exercise provided by the team of [Feather](https://feather-insurance.com/) as part of their application process.
+The **Admin Panel** is a full-stack project I created in order to train my skills in **TypeScript**, **mongoDB**, and **Apollo**.
 
-The aim was to create an admin panel starting from a simple boilerplate provided by the company.
-The [frontend](./frontend) part communicates with the [backend](./backend) through a GraphQL API.
+The [frontend](./frontend) part communicates with the [backend](./backend) through a **GraphQL API**.
+
+It features a **login** and a **dashboard** with a **table** that displays information about policies purchased by customers.
+
+I am currently working on creating a page for each **customers** which contains more information related to them.
 
 ## Built with
 
@@ -11,9 +14,9 @@ The [frontend](./frontend) part communicates with the [backend](./backend) throu
 
 • [Express](https://expressjs.com/)
 
-• [GraphQL](https://graphql.org/)
-
 • [mongoose](https://mongoosejs.com/)
+
+• [GraphQL](https://graphql.org/)
 
 • [Apollo Client](https://www.apollographql.com/docs/react/)
 
