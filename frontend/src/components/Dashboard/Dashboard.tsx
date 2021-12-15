@@ -1,5 +1,6 @@
 import { useState, ChangeEventHandler, useContext } from "react";
 import { useQuery } from "@apollo/client";
+import { Box, Container, CircularProgress } from "@mui/material";
 
 import { QUERY_GET_ALL_POLICIES } from "../../queries/Policies";
 import { AuthContext } from "../../context/auth-context";
@@ -27,9 +28,9 @@ const Dashboard: React.FC = () => {
 
 	if (loading)
 		return (
-			<div className="flex justify-center items-center">
-				<div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-400" />
-			</div>
+			<Box>
+				<CircularProgress />
+			</Box>
 		);
 
 	if (!data?.getAllPolicies?.results) return <p>No data</p>;
@@ -108,7 +109,7 @@ const Dashboard: React.FC = () => {
 	return (
 		<>
 			{user && (
-				<div className="flex flex-col justify-center items-center bg-white font-sans leading-normal tracking-normal h-screen">
+				<Container maxWidth="xl" style={{ padding: "0" }}>
 					<>
 						<MenuBar handleSearch={handleSearch} />
 						<TableSkeleton
@@ -125,7 +126,7 @@ const Dashboard: React.FC = () => {
 							totalPolicies={policies.length}
 						/>
 					</>
-				</div>
+				</Container>
 			)}
 		</>
 	);

@@ -1,13 +1,16 @@
-import Container from "@mui/material/Container";
-import TableContainer from "@mui/material/TableContainer";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
+import {
+	Container,
+	TableContainer,
+	Table,
+	TableBody,
+	TableRow,
+	TableFooter,
+	Paper,
+} from "@mui/material";
 
 import TableRowComponent from "./TableRowComponent";
 import TableHeadComponent from "./TableHeadComponent";
-import Pagination from "../Pagination/Pagination";
+import TableFooterComponent from "./TableFooterComponent";
 import { Policy } from "../../types/Types";
 import { ApolloError } from "@apollo/client";
 
@@ -39,9 +42,9 @@ const TableSkeleton: React.FC<{
 	if (error) return <p>Something's wrong: {error.message}</p>;
 
 	return (
-		<Container>
+		<Container style={{ paddingTop: "4rem" }}>
 			<TableContainer component={Paper}>
-				<Table sx={{ minWidth: 650 }} aria-label="policies-table">
+				<Table aria-label="policies-table">
 					<TableHeadComponent
 						requestSort={requestSort}
 						activeField={activeField}
@@ -83,13 +86,15 @@ const TableSkeleton: React.FC<{
 							);
 						})}
 					</TableBody>
+					<TableFooter>
+						<TableFooterComponent
+							policiesPerPage={policiesPerPage}
+							totalPolicies={totalPolicies}
+							paginate={paginate}
+						/>
+					</TableFooter>
 				</Table>
 			</TableContainer>
-			<Pagination
-				policiesPerPage={policiesPerPage}
-				totalPolicies={totalPolicies}
-				paginate={paginate}
-			/>
 		</Container>
 	);
 };

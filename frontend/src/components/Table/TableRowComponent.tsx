@@ -1,9 +1,4 @@
-import TableCell from "@mui/material/TableCell";
-import TextField from "@mui/material/TextField";
-import InputLabel from "@mui/material/InputLabel";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import Button from "@mui/material/Button";
+import { TableCell, TextField, Select, MenuItem, Button } from "@mui/material";
 
 import { useState } from "react";
 import { useMutation } from "@apollo/client";

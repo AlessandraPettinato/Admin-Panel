@@ -1,6 +1,4 @@
-import { TableCell } from "@mui/material";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
+import { TableCell, TableHead, TableRow } from "@mui/material";
 import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
 
 import { TableHeadFields } from "./data/TableHeadFields";

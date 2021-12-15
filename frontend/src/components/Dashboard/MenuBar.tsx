@@ -1,18 +1,14 @@
 import { ChangeEventHandler, useContext, useState } from "react";
 import { AuthContext } from "../../context/auth-context";
 
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import { TextField } from "@mui/material";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
+import {
+	AppBar,
+	Box,
+	Toolbar,
+	Typography,
+	TextField,
+	Button,
+} from "@mui/material";
 
 const MenuBar: React.FC<{
 	handleSearch: ChangeEventHandler<HTMLInputElement>;
