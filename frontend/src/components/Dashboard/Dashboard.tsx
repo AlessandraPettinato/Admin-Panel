@@ -6,7 +6,6 @@ import { AuthContext } from "../../context/auth-context";
 import { Policy } from "../../types/Types";
 
 import MenuBar from "./MenuBar";
-import SideMenu from "../SideMenu/SideMenu";
 import TableSkeleton from "../Table/TableSkeleton";
 
 const Dashboard: React.FC = () => {
@@ -111,7 +110,6 @@ const Dashboard: React.FC = () => {
 			{user && (
 				<div className="flex flex-col justify-center items-center bg-white font-sans leading-normal tracking-normal h-screen">
 					<>
-						<SideMenu />
 						<MenuBar handleSearch={handleSearch} />
 						<TableSkeleton
 							loading={loading}

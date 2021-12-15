@@ -152,7 +152,6 @@ const TableRowComponent: React.FC<Policy> = ({
 				<Button
 					variant="text"
 					onClick={!editMode ? handleEdit : () => handleClickUpdate()}
-					className="text-blue-400 hover:text-blue-600"
 				>
 					{!editMode ? "Edit" : "Save"}
 				</Button>
