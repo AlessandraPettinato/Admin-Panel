@@ -1,12 +1,12 @@
-# Admin Panel
+# Admin Panel (in development :tractor:)
 
-The **Admin Panel** is a full-stack project I created in order to train my skills in **TypeScript**, **mongoDB**, and **Apollo**.
+The **Admin Panel** is a full-stack project I am creating in order to experiment with **TypeScript**, **mongoDB**, and **Apollo**.
 
 The [frontend](./frontend) part communicates with the [backend](./backend) through a **GraphQL API**.
 
-It features a **login** and a **dashboard** with a **table** that displays information about policies purchased by customers.
+It features a **login** page and a **dashboard**, which contains a **table** that displays information about policies purchased by some customers.
 
-I am currently working on creating a page for each **customers** which contains more information related to them.
+I am currently working on restyling each page using **material-ui** components, and on creating a page for each **customers** which contains more information related to them.
 
 ## Built with
 
