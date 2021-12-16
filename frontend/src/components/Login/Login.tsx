@@ -2,13 +2,24 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import { useMutation } from "@apollo/client";
 
-import { Button, Container, TextField, Typography } from "@mui/material";
+import {
+	Button,
+	Container,
+	TextField,
+	Typography,
+	CssBaseline,
+	Avatar,
+} from "@mui/material";
+import LockIcon from "@mui/icons-material/Lock";
 
+import useStyles from "./useStyles";
 import { LOGIN_USER } from "../../queries/User";
 import { AuthContext } from "../../context/auth-context";
 import { Box } from "@mui/system";
 
 const Login: React.FC<{ props: any }> = ({ props }) => {
+	const classes = useStyles();
+
 	const context = useContext(AuthContext);
 
 	const navigate = useNavigate();
@@ -41,58 +52,54 @@ const Login: React.FC<{ props: any }> = ({ props }) => {
 	};
 
 	return (
-		<Container
-			style={{
-				display: "flex",
-				flexDirection: "column",
-				alignItems: "center",
-			}}
-		>
-			<Typography variant="h2" sx={{ textTransform: "uppercase" }}>
-				Login to your account
-			</Typography>
-
-			<form
-				style={{
-					display: "flex",
-					flexDirection: "column",
-					alignItems: "center",
-				}}
-				onSubmit={submitLogin}
-			>
-				<Box>
-					<Box sx={{ paddingTop: "1rem" }}>
+		<Container component="main" maxWidth={false}>
+			<CssBaseline />
+			<Box className={classes.box}>
+				<Avatar className={classes.avatar}>
+					<LockIcon />
+				</Avatar>
+				<Typography variant="h4" className={classes.login}>
+					Login
+				</Typography>
+				<form className={classes.form} onSubmit={submitLogin}>
+					<Box component="form" noValidate>
 						<TextField
 							value={formState.email}
-							name="email"
-							type="email"
+							margin="normal"
 							required
-							id="outlined-required"
+							fullWidth
+							id="email"
 							label="Email Address"
-							defaultValue="Email Address"
-							placeholder="email@domain.org"
+							name="email"
+							autoComplete="email"
+							autoFocus
 							onChange={handleLoginInput}
 						/>
-					</Box>
-					<Box sx={{ paddingTop: "1rem" }}>
+
 						<TextField
 							value={formState.password}
+							margin="normal"
+							required
+							fullWidth
 							name="password"
-							type="password"
 							label="Password"
-							defaultValue="Password"
-							placeholder="password"
+							type="password"
+							id="password"
+							autoComplete="current-password"
 							onChange={handleLoginInput}
 						/>
 					</Box>
-				</Box>
 
-				<Box sx={{ paddingTop: "1rem" }}>
-					<Button type="submit" variant="outlined">
+					<Button
+						type="submit"
+						fullWidth
+						variant="contained"
+						className={classes.button}
+					>
 						Log in
 					</Button>
-				</Box>
-			</form>
+				</form>
+			</Box>
 		</Container>
 	);
 };

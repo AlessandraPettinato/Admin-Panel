@@ -86,13 +86,12 @@ const TableSkeleton: React.FC<{
 							);
 						})}
 					</TableBody>
-					<TableFooter>
-						<TableFooterComponent
-							policiesPerPage={policiesPerPage}
-							totalPolicies={totalPolicies}
-							paginate={paginate}
-						/>
-					</TableFooter>
+
+					<TableFooterComponent
+						policiesPerPage={policiesPerPage}
+						totalPolicies={totalPolicies}
+						paginate={paginate}
+					/>
 				</Table>
 			</TableContainer>
 		</Container>

@@ -1,4 +1,4 @@
-import { Button, TableCell } from "@mui/material";
+import { TableFooter, Button, TableCell } from "@mui/material";
 
 const Pagination: React.FC<{
 	policiesPerPage: number;
@@ -12,24 +12,24 @@ const Pagination: React.FC<{
 	}
 
 	return (
-		<>
+		<TableFooter style={{ display: "flex", padding: "1rem" }}>
+			{/* <TableCell style={{ border: "none" }}> */}
 			{pageNumbers.map((number, index) => (
-				<TableCell style={{ border: "none" }}>
-					<Button
-						key={index}
-						variant="outlined"
-						style={{
-							borderColor: "darkblue",
-							color: "darkblue",
-						}}
-						onClick={() => paginate(number)}
-						aria-current="page"
-					>
-						{number}
-					</Button>
-				</TableCell>
+				<Button
+					key={index}
+					variant="outlined"
+					style={{
+						borderColor: "darkblue",
+						color: "darkblue",
+					}}
+					onClick={() => paginate(number)}
+					aria-current="page"
+				>
+					{number}
+				</Button>
 			))}
-		</>
+			{/* </TableCell> */}
+		</TableFooter>
 	);
 };
 

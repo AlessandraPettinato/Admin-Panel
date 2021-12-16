@@ -8,6 +8,8 @@ import Login from "./components/Login/Login";
 import "./index.css";
 import Dashboard from "./components/Dashboard/Dashboard";
 
+import "./styles.css";
+
 const App: React.FC = () => {
 	return (
 		<AuthProvider>
