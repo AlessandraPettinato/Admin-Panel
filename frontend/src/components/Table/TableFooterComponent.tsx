@@ -12,15 +12,15 @@ const Pagination: React.FC<{
 	}
 
 	return (
-		<TableFooter style={{ display: "flex", padding: "1rem" }}>
-			{/* <TableCell style={{ border: "none" }}> */}
+		<TableFooter style={{ display: "flex", padding: "0.5rem" }}>
 			{pageNumbers.map((number, index) => (
 				<Button
 					key={index}
 					variant="outlined"
 					style={{
-						borderColor: "darkblue",
-						color: "darkblue",
+						borderColor: "#16161d",
+						color: "#16161d",
+						margin: "0.5rem",
 					}}
 					onClick={() => paginate(number)}
 					aria-current="page"
@@ -28,7 +28,6 @@ const Pagination: React.FC<{
 					{number}
 				</Button>
 			))}
-			{/* </TableCell> */}
 		</TableFooter>
 	);
 };

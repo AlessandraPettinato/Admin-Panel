@@ -1,7 +1,8 @@
-import { TableCell, TextField, Select, MenuItem, Button } from "@mui/material";
-
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
+
+import { TableCell, TextField, Select, MenuItem, Button } from "@mui/material";
+import useStyles from "./useStyles";
 
 import { Policy } from "../../types/Types";
 
@@ -18,6 +19,8 @@ const TableRowComponent: React.FC<Policy> = ({
 	endDate,
 	createdAt,
 }) => {
+	const classes = useStyles();
+
 	const { firstName, lastName, dateOfBirth } = customer;
 
 	const completeName: string = `${lastName} ${firstName} `;
@@ -81,16 +84,21 @@ const TableRowComponent: React.FC<Policy> = ({
 		<>
 			<TableCell>
 				<TextField
-					sx={{ fontSize: "0.5rem" }}
+					fullWidth
+					variant="outlined"
 					size="small"
 					value={edited.completeName}
 					name="completeName"
 					onChange={handleUpdate}
 					disabled={!editMode ? true : false}
+					InputProps={{
+						className: classes.textFieldActive,
+					}}
 				/>
 			</TableCell>
 			<TableCell>
 				<Select
+					fullWidth
 					size="small"
 					value={edited.insuranceType}
 					name="insuranceType"
@@ -104,6 +112,7 @@ const TableRowComponent: React.FC<Policy> = ({
 			</TableCell>
 			<TableCell>
 				<TextField
+					fullWidth
 					size="small"
 					value={edited.policyNumber}
 					name="policyNumber"
@@ -113,6 +122,7 @@ const TableRowComponent: React.FC<Policy> = ({
 			</TableCell>
 			<TableCell>
 				<Select
+					fullWidth
 					size="small"
 					value={edited.status}
 					name="status"
@@ -125,17 +135,19 @@ const TableRowComponent: React.FC<Policy> = ({
 					<MenuItem value={"PENDING"}>PENDING</MenuItem>
 				</Select>
 			</TableCell>
-			<TableCell>
+			{/* <TableCell>
 				<TextField
+					fullWidth
 					size="small"
 					value={edited.provider}
 					name="provider"
 					onChange={handleUpdate}
 					disabled={!editMode ? true : false}
 				/>
-			</TableCell>
+			</TableCell> */}
 			<TableCell>
 				<TextField
+					fullWidth
 					size="small"
 					value={edited.createdAtConverted}
 					name="createdAtConverted"

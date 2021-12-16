@@ -15,10 +15,10 @@ export const TableHeadFields = [
 		fieldName: "Status",
 		sortField: "status",
 	},
-	{
-		fieldName: "Provider",
-		sortField: "provider",
-	},
+	// {
+	// 	fieldName: "Provider",
+	// 	sortField: "provider",
+	// },
 	{
 		fieldName: "Created At",
 		sortField: "createdAt",
