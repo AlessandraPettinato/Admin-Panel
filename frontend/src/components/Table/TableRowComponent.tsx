@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useMutation } from "@apollo/client";
 
 import { TableCell, TextField, Select, MenuItem, Button } from "@mui/material";
-import useStyles from "./useStyles";
+import useStyleDashboard from "../styles/useStylesDashboard";
 
 import { Policy } from "../../types/Types";
 
@@ -19,7 +19,7 @@ const TableRowComponent: React.FC<Policy> = ({
 	endDate,
 	createdAt,
 }) => {
-	const classes = useStyles();
+	const classes = useStyleDashboard();
 
 	const { firstName, lastName, dateOfBirth } = customer;
 
@@ -118,6 +118,9 @@ const TableRowComponent: React.FC<Policy> = ({
 					name="policyNumber"
 					onChange={handleUpdate}
 					disabled={!editMode ? true : false}
+					InputProps={{
+						className: classes.textFieldActive,
+					}}
 				/>
 			</TableCell>
 			<TableCell>
@@ -153,6 +156,9 @@ const TableRowComponent: React.FC<Policy> = ({
 					name="createdAtConverted"
 					onChange={handleUpdate}
 					disabled={!editMode ? true : false}
+					InputProps={{
+						className: classes.textFieldActive,
+					}}
 				/>
 			</TableCell>
 			<TableCell>

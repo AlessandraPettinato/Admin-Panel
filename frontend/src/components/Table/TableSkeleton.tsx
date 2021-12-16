@@ -4,7 +4,6 @@ import {
 	Table,
 	TableBody,
 	TableRow,
-	TableFooter,
 	Paper,
 } from "@mui/material";
 

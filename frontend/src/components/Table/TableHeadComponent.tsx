@@ -1,5 +1,7 @@
-import { TableCell, TableHead, TableRow } from "@mui/material";
+import { TableCell, TableHead, TableRow, Container, Box } from "@mui/material";
 import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
+
+import useStyleDashboard from "../styles/useStylesDashboard";
 
 import { TableHeadFields } from "./data/TableHeadFields";
 
@@ -9,6 +11,7 @@ const TableHeadComponent: React.FC<{
 	setActiveField: Function;
 	sortedField: any;
 }> = ({ requestSort, activeField, setActiveField, sortedField }) => {
+	const classes = useStyleDashboard();
 	return (
 		<>
 			<TableHead>
@@ -16,11 +19,7 @@ const TableHeadComponent: React.FC<{
 					{TableHeadFields.map((item, index) => {
 						return (
 							<TableCell
-								style={{
-									textTransform: "uppercase",
-									color: "slategrey",
-									whiteSpace: "nowrap",
-								}}
+								className={classes.tableCell}
 								align="left"
 								component="th"
 								scope="col"
@@ -31,20 +30,21 @@ const TableHeadComponent: React.FC<{
 								}}
 							>
 								{item.fieldName}
-								<div>
+								<Box className={classes.boxHead}>
 									{item.sortField === activeField &&
 									sortedField.direction === "ascending" ? (
-										<TiArrowSortedUp />
+										<TiArrowSortedUp className={classes.arrow} />
 									) : (
 										item.sortField === activeField &&
 										sortedField.direction === "descending" && (
-											<TiArrowSortedDown />
+											<TiArrowSortedDown className={classes.arrow} />
 										)
 									)}
-								</div>
+								</Box>
 							</TableCell>
 						);
 					})}
+
 					<TableCell align="left" />
 				</TableRow>
 			</TableHead>
