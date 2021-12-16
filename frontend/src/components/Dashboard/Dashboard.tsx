@@ -1,13 +1,13 @@
-import { useState, useEffect, ChangeEventHandler, useContext } from "react";
+import { useState, ChangeEventHandler, useContext } from "react";
 import { useQuery } from "@apollo/client";
+import { Box, Container, CircularProgress } from "@mui/material";
 
 import { QUERY_GET_ALL_POLICIES } from "../../queries/Policies";
 import { AuthContext } from "../../context/auth-context";
 import { Policy } from "../../types/Types";
 
 import MenuBar from "./MenuBar";
-import Table from "../Table/TableSkeleton";
-import Pagination from "../Pagination/Pagination";
+import TableSkeleton from "../Table/TableSkeleton";
 
 const Dashboard: React.FC = () => {
 	const { user } = useContext(AuthContext);
@@ -28,9 +28,9 @@ const Dashboard: React.FC = () => {
 
 	if (loading)
 		return (
-			<div className="flex justify-center items-center">
-				<div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-400" />
-			</div>
+			<Box>
+				<CircularProgress />
+			</Box>
 		);
 
 	if (!data?.getAllPolicies?.results) return <p>No data</p>;
@@ -109,10 +109,10 @@ const Dashboard: React.FC = () => {
 	return (
 		<>
 			{user && (
-				<div className="flex flex-col justify-center items-center bg-white font-sans leading-normal tracking-normal h-screen">
+				<Container maxWidth="xl" style={{ padding: "0" }}>
 					<>
 						<MenuBar handleSearch={handleSearch} />
-						<Table
+						<TableSkeleton
 							loading={loading}
 							error={error}
 							sortedField={sortedField}
@@ -121,16 +121,12 @@ const Dashboard: React.FC = () => {
 							setActiveField={setActiveField}
 							policies={filteredPolicies}
 							searchTerm={searchTerm}
+							policiesPerPage={policiesPerPage}
+							paginate={paginate}
+							totalPolicies={policies.length}
 						/>
-						{searchTerm === "" ? (
-							<Pagination
-								policiesPerPage={policiesPerPage}
-								totalPolicies={policies.length}
-								paginate={paginate}
-							/>
-						) : null}
 					</>
-				</div>
+				</Container>
 			)}
 		</>
 	);

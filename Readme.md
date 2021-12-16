@@ -22,7 +22,7 @@ I am currently working on restyling each page using **material-ui** components, 
 
 • [React](https://reactjs.org/)
 
-• [TailwindCSS](https://tailwindcss.com/)
+• [Material-ui](https://mui.com/)
 
 • [TypeScript](https://www.typescriptlang.org/)
 
@@ -88,7 +88,7 @@ DB_PASSWORD=YourChosenPassword
 
 SECRET_KEY=YourChosenSecretKey
 
-The **SECRET_KEY** is a key the code will use to generate a token to authenticate the user login. Feel free to make it as intricate as possible. 
+The **SECRET_KEY** is a key the code will use to generate a token to authenticate the user login. Feel free to make it as intricate as possible.
 
 **_Remember to include the .env file in your .gitignore._**
 
@@ -105,7 +105,6 @@ https://user-images.githubusercontent.com/73818991/144085297-078135b2-c581-4026-
 In order to access the app, you need first to create a new account. You can do so on [Apollo Sandbox](https://www.apollographql.com/docs/apollo-server/testing/build-run-queries/). Start your server, then visit http://localhost:8080/graphql to run the **registerUser** mutation againts your GraphQL API. Provide all the variables requested as inputs: **email**, **password**, and **roles** (you can choose between _ADMIN_ or _EDITOR_). The values will be stored into a new collection of your Data database called **users**. For security concerns, the password will be hashed with [bcrypt](https://www.npmjs.com/package/bcrypt).
 
 https://user-images.githubusercontent.com/73818991/145446531-7e59becd-fb04-4eb8-9d25-e24e4da0ffd7.mov
-
 
 ## How to run
 
