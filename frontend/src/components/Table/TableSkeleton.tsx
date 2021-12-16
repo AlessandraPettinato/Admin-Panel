@@ -85,7 +85,6 @@ const TableSkeleton: React.FC<{
 							);
 						})}
 					</TableBody>
-
 					<TableFooterComponent
 						policiesPerPage={policiesPerPage}
 						totalPolicies={totalPolicies}

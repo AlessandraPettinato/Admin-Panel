@@ -10,7 +10,6 @@ const useStyleDashboard = makeStyles(() => ({
 		textTransform: "uppercase",
 		color: "slategrey",
 		whiteSpace: "nowrap",
-		// display: "flex",
 	},
 	box: {
 		padding: "1.5rem",
@@ -29,8 +28,13 @@ const useStyleDashboard = makeStyles(() => ({
 		color: "#16161d",
 	},
 	tableFooter: {
-		display: "flex",
+		display: "inline-flex",
 		padding: "0.5rem",
+	},
+	tableCellFooter: {
+		padding: "0",
+		margin: "0",
+		border: "none",
 	},
 	button: {
 		borderColor: "#16161d",

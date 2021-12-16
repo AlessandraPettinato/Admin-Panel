@@ -9,13 +9,13 @@ import {
 	Typography,
 	CssBaseline,
 	Avatar,
+	Box,
 } from "@mui/material";
 import LockIcon from "@mui/icons-material/Lock";
 
 import useStyles from "./useStyles";
 import { LOGIN_USER } from "../../queries/User";
 import { AuthContext } from "../../context/auth-context";
-import { Box } from "@mui/system";
 
 const Login: React.FC<{ props: any }> = ({ props }) => {
 	const classes = useStyles();
