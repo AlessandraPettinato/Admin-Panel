@@ -19,7 +19,6 @@ import LockIcon from "@mui/icons-material/Lock";
 import useStyles from "./useStyles";
 import { LOGIN_USER } from "../../queries/User";
 import { AuthContext } from "../../context/auth-context";
-import { Copyright } from "@mui/icons-material";
 
 const Login: React.FC<{ props: any }> = ({ props }) => {
 	const classes = useStyles();

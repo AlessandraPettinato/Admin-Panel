@@ -4,12 +4,19 @@ const useStyleDashboard = makeStyles(() => ({
 	toolbar: {
 		display: "flex",
 		justifyContent: "space-between",
-		background: "darkBlue",
+		background: "primary",
 	},
 	tableCell: {
 		textTransform: "uppercase",
 		color: "slategrey",
 		whiteSpace: "nowrap",
+	},
+	textSearch: {
+		background: "white",
+		borderRadius: "0.5rem",
+	},
+	menu: {
+		marginTop: "45px",
 	},
 	box: {
 		padding: "1.5rem",
