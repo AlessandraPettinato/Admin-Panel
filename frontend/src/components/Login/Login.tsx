@@ -16,12 +16,12 @@ import {
 } from "@mui/material";
 import LockIcon from "@mui/icons-material/Lock";
 
-import useStyles from "./useStyles";
+import useStylesLogin from "./styles/useStylesLogin";
 import { LOGIN_USER } from "../../queries/User";
 import { AuthContext } from "../../context/auth-context";
 
 const Login: React.FC<{ props: any }> = ({ props }) => {
-	const classes = useStyles();
+	const classes = useStylesLogin();
 
 	const context = useContext(AuthContext);
 

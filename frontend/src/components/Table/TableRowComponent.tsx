@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useMutation } from "@apollo/client";
 
 import { TableCell, TextField, Select, MenuItem, Button } from "@mui/material";
-import useStyleDashboard from "../styles/useStylesDashboard";
+import useStyleTable from "./styles/useStylesTable";
 
 import { Policy } from "../../types/Types";
 
@@ -19,7 +19,7 @@ const TableRowComponent: React.FC<Policy> = ({
 	endDate,
 	createdAt,
 }) => {
-	const classes = useStyleDashboard();
+	const classes = useStyleTable();
 
 	const { firstName, lastName, dateOfBirth } = customer;
 

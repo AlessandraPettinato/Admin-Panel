@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(() => ({
+const useStylesLogin = makeStyles(() => ({
 	backgroundImage: {
 		backgroundImage: "url(https://source.unsplash.com/random)",
 		backgroundRepeat: "no-repeat",
@@ -21,4 +21,4 @@ const useStyles = makeStyles(() => ({
 	},
 }));
 
-export default useStyles;
+export default useStylesLogin;

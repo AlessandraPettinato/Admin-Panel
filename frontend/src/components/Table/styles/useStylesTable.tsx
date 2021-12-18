@@ -1,29 +1,17 @@
 import { makeStyles } from "@material-ui/styles";
 
-const useStyleDashboard = makeStyles(() => ({
-	toolbar: {
-		display: "flex",
-		justifyContent: "space-between",
-		background: "primary",
-	},
-	tableCell: {
-		textTransform: "uppercase",
-		color: "slategrey",
-		whiteSpace: "nowrap",
-	},
-	textSearch: {
-		background: "white",
-		borderRadius: "0.5rem",
-	},
-	menu: {
-		marginTop: "45px",
-	},
+const useStylesTable = makeStyles(() => ({
 	box: {
 		padding: "1.5rem",
 	},
 	boxHead: {
 		display: "inline-table",
 		verticalAlign: "middle",
+	},
+	tableCell: {
+		textTransform: "uppercase",
+		color: "slategrey",
+		whiteSpace: "nowrap",
 	},
 	arrow: {
 		marginLeft: "0.2rem",
@@ -50,4 +38,4 @@ const useStyleDashboard = makeStyles(() => ({
 	},
 }));
 
-export default useStyleDashboard;
+export default useStylesTable;

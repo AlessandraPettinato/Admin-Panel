@@ -1,7 +1,7 @@
 import { TableCell, TableHead, TableRow, Container, Box } from "@mui/material";
 import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
 
-import useStyleDashboard from "../styles/useStylesDashboard";
+import useStyleTable from "./styles/useStylesTable";
 
 import { TableHeadFields } from "./data/TableHeadFields";
 
@@ -11,7 +11,8 @@ const TableHeadComponent: React.FC<{
 	setActiveField: Function;
 	sortedField: any;
 }> = ({ requestSort, activeField, setActiveField, sortedField }) => {
-	const classes = useStyleDashboard();
+	const classes = useStyleTable();
+
 	return (
 		<>
 			<TableHead>

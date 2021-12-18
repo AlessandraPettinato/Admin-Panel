@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import { StylesProvider } from "@material-ui/core";
 
-import useStyleDashboard from "../styles/useStylesDashboard";
+import useStyleDashboard from "./styles/useStylesDashboard";
 import { AuthContext } from "../../context/auth-context";
 
 const MenuBar: React.FC<{
