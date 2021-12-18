@@ -4,21 +4,24 @@ import { useMutation } from "@apollo/client";
 
 import {
 	Button,
-	Container,
 	TextField,
 	Typography,
 	CssBaseline,
 	Avatar,
 	Box,
+	Grid,
+	Paper,
+	FormControlLabel,
+	Checkbox,
 } from "@mui/material";
 import LockIcon from "@mui/icons-material/Lock";
 
-import useStyles from "./useStyles";
+import useStylesLogin from "./styles/useStylesLogin";
 import { LOGIN_USER } from "../../queries/User";
 import { AuthContext } from "../../context/auth-context";
 
 const Login: React.FC<{ props: any }> = ({ props }) => {
-	const classes = useStyles();
+	const classes = useStylesLogin();
 
 	const context = useContext(AuthContext);
 
@@ -52,19 +55,21 @@ const Login: React.FC<{ props: any }> = ({ props }) => {
 	};
 
 	return (
-		<Container component="main" maxWidth={false}>
+		<Grid container component="main" className={classes.container}>
 			<CssBaseline />
-			<Box className={classes.box}>
-				<Avatar className={classes.avatar}>
-					<LockIcon />
-				</Avatar>
-				<Typography variant="h4" className={classes.login}>
-					Login
-				</Typography>
-				<form className={classes.form} onSubmit={submitLogin}>
-					<Box component="form" noValidate>
+			<Grid item xs={false} sm={4} md={7} className={classes.backgroundImage} />
+			<Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+				<Box className={classes.box}>
+					<Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
+						<LockIcon />
+					</Avatar>
+					<Typography component="h1" variant="h5">
+						Log in your Admin Panel
+					</Typography>
+					<Box component="form" noValidate sx={{ mt: 1 }}>
 						<TextField
 							value={formState.email}
+							onChange={handleLoginInput}
 							margin="normal"
 							required
 							fullWidth
@@ -73,11 +78,10 @@ const Login: React.FC<{ props: any }> = ({ props }) => {
 							name="email"
 							autoComplete="email"
 							autoFocus
-							onChange={handleLoginInput}
 						/>
-
 						<TextField
 							value={formState.password}
+							onChange={handleLoginInput}
 							margin="normal"
 							required
 							fullWidth
@@ -86,21 +90,36 @@ const Login: React.FC<{ props: any }> = ({ props }) => {
 							type="password"
 							id="password"
 							autoComplete="current-password"
-							onChange={handleLoginInput}
 						/>
+						{/* <FormControlLabel
+							control={<Checkbox value="remember" color="primary" />}
+							label="Remember me"
+						/> */}
+						<Button
+							type="submit"
+							fullWidth
+							variant="contained"
+							className={classes.button}
+							onClick={submitLogin}
+						>
+							Log In
+						</Button>
+						{/* <Grid container>
+							<Grid item xs>
+								<Link href="#" variant="body2">
+									Forgot password?
+								</Link>
+							</Grid>
+							<Grid item>
+								<Link href="#" variant="body2">
+									{"Don't have an account? Sign Up"}
+								</Link>
+							</Grid>
+						</Grid> */}
 					</Box>
-
-					<Button
-						type="submit"
-						fullWidth
-						variant="contained"
-						className={classes.button}
-					>
-						Log in
-					</Button>
-				</form>
-			</Box>
-		</Container>
+				</Box>
+			</Grid>
+		</Grid>
 	);
 };
 

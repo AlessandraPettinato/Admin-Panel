@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useMutation } from "@apollo/client";
 
 import { TableCell, TextField, Select, MenuItem, Button } from "@mui/material";
-import useStyleDashboard from "../styles/useStylesDashboard";
+import useStyleTable from "./styles/useStylesTable";
 
 import { Policy } from "../../types/Types";
 
@@ -19,7 +19,7 @@ const TableRowComponent: React.FC<Policy> = ({
 	endDate,
 	createdAt,
 }) => {
-	const classes = useStyleDashboard();
+	const classes = useStyleTable();
 
 	const { firstName, lastName, dateOfBirth } = customer;
 
@@ -82,61 +82,74 @@ const TableRowComponent: React.FC<Policy> = ({
 
 	return (
 		<>
-			<TableCell>
-				<TextField
-					fullWidth
-					variant="outlined"
-					size="small"
-					value={edited.completeName}
-					name="completeName"
-					onChange={handleUpdate}
-					disabled={!editMode ? true : false}
-					InputProps={{
-						className: classes.textFieldActive,
-					}}
-				/>
+			<TableCell variant="body" sx={{ fontSize: "1rem" }}>
+				{!editMode ? (
+					edited.completeName
+				) : (
+					<TextField
+						fullWidth
+						variant="outlined"
+						size="small"
+						value={edited.completeName}
+						name="completeName"
+						onChange={handleUpdate}
+						InputProps={{
+							className: classes.textFieldActive,
+						}}
+					/>
+				)}
 			</TableCell>
-			<TableCell>
-				<Select
-					fullWidth
-					size="small"
-					value={edited.insuranceType}
-					name="insuranceType"
-					onChange={handleUpdate}
-					disabled={!editMode ? true : false}
-				>
-					<MenuItem value={"LIABILITY"}>LIABILITY</MenuItem>
-					<MenuItem value={"HOUSEHOLD"}>HOUSEHOLD</MenuItem>
-					<MenuItem value={"HEALTH"}>HEALTH</MenuItem>
-				</Select>
+			<TableCell variant="body" sx={{ fontSize: "1rem" }}>
+				{!editMode ? (
+					edited.insuranceType
+				) : (
+					<Select
+						fullWidth
+						size="small"
+						value={edited.insuranceType}
+						name="insuranceType"
+						onChange={handleUpdate}
+					>
+						<MenuItem value={"LIABILITY"}>LIABILITY</MenuItem>
+						<MenuItem value={"HOUSEHOLD"}>HOUSEHOLD</MenuItem>
+						<MenuItem value={"HEALTH"}>HEALTH</MenuItem>
+					</Select>
+				)}
 			</TableCell>
-			<TableCell>
-				<TextField
-					fullWidth
-					size="small"
-					value={edited.policyNumber}
-					name="policyNumber"
-					onChange={handleUpdate}
-					disabled={!editMode ? true : false}
-					InputProps={{
-						className: classes.textFieldActive,
-					}}
-				/>
+			<TableCell variant="body" sx={{ fontSize: "1rem" }}>
+				{!editMode ? (
+					edited.policyNumber
+				) : (
+					<TextField
+						fullWidth
+						size="small"
+						value={edited.policyNumber}
+						name="policyNumber"
+						onChange={handleUpdate}
+						InputProps={{
+							className: classes.textFieldActive,
+						}}
+					/>
+				)}
 			</TableCell>
-			<TableCell>
-				<Select
-					fullWidth
-					size="small"
-					value={edited.status}
-					name="status"
-					onChange={handleUpdate}
-					disabled={!editMode ? true : false}
-				>
-					<MenuItem value={"ACTIVE"}>ACTIVE</MenuItem>
-					<MenuItem value={"CANCELLED"}>CANCELLED</MenuItem>
-					<MenuItem value={"DROPPED_OUT"}>DROPPED_OUT</MenuItem>
-					<MenuItem value={"PENDING"}>PENDING</MenuItem>
-				</Select>
+			<TableCell variant="body" sx={{ fontSize: "1rem" }}>
+				{!editMode ? (
+					edited.status
+				) : (
+					<Select
+						fullWidth
+						size="small"
+						value={edited.status}
+						name="status"
+						onChange={handleUpdate}
+						disabled={!editMode ? true : false}
+					>
+						<MenuItem value={"ACTIVE"}>ACTIVE</MenuItem>
+						<MenuItem value={"CANCELLED"}>CANCELLED</MenuItem>
+						<MenuItem value={"DROPPED_OUT"}>DROPPED_OUT</MenuItem>
+						<MenuItem value={"PENDING"}>PENDING</MenuItem>
+					</Select>
+				)}
 			</TableCell>
 			{/* <TableCell>
 				<TextField
@@ -148,18 +161,21 @@ const TableRowComponent: React.FC<Policy> = ({
 					disabled={!editMode ? true : false}
 				/>
 			</TableCell> */}
-			<TableCell>
-				<TextField
-					fullWidth
-					size="small"
-					value={edited.createdAtConverted}
-					name="createdAtConverted"
-					onChange={handleUpdate}
-					disabled={!editMode ? true : false}
-					InputProps={{
-						className: classes.textFieldActive,
-					}}
-				/>
+			<TableCell variant="body" sx={{ fontSize: "1rem" }}>
+				{!editMode ? (
+					edited.createdAtConverted
+				) : (
+					<TextField
+						fullWidth
+						size="small"
+						value={edited.createdAtConverted}
+						name="createdAtConverted"
+						onChange={handleUpdate}
+						InputProps={{
+							className: classes.textFieldActive,
+						}}
+					/>
+				)}
 			</TableCell>
 			<TableCell>
 				<Button

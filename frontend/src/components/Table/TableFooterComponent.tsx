@@ -1,13 +1,13 @@
 import { TableFooter, Button, TableRow, TableCell } from "@mui/material";
 
-import useStyleDashboard from "../styles/useStylesDashboard";
+import useStyleTable from "./styles/useStylesTable";
 
 const Pagination: React.FC<{
 	policiesPerPage: number;
 	totalPolicies: number;
 	paginate: Function;
 }> = ({ policiesPerPage, totalPolicies, paginate }) => {
-	const classes = useStyleDashboard();
+	const classes = useStyleTable();
 
 	const pageNumbers: Array<number> = [];
 
