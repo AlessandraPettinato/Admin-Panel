@@ -7,6 +7,9 @@ import {
 	Paper,
 } from "@mui/material";
 
+import { styled } from '@mui/material/styles';
+import useStyleTable from "./styles/useStylesTable";
+
 import TableRowComponent from "./TableRowComponent";
 import TableHeadComponent from "./TableHeadComponent";
 import TableFooterComponent from "./TableFooterComponent";
@@ -23,6 +26,7 @@ const TableSkeleton: React.FC<{
 	searchTerm: String;
 	policies: Array<Policy>;
 	policiesPerPage: number;
+	setPoliciesPerPage: Function;
 	paginate: Function;
 	totalPolicies: number;
 }> = ({
@@ -34,23 +38,40 @@ const TableSkeleton: React.FC<{
 	setActiveField,
 	policies,
 	policiesPerPage,
+	setPoliciesPerPage,
 	paginate,
 	totalPolicies,
 }) => {
+
+	const classes = useStyleTable();
+	
+	const StyledTableRow = styled(TableRow)(() => ({
+		'&:nth-of-type(odd)': {
+		  backgroundColor: "#DADADA",
+		  color: "white"
+		},
+		'&:last-child td, &:last-child th': {
+		  border: 0,
+		},
+	  }));
+
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Something's wrong: {error.message}</p>;
 
 	return (
-		<Container style={{ paddingTop: "4rem" }}>
-			<TableContainer component={Paper}>
-				<Table aria-label="policies-table">
+		<Container style={{ padding: "4rem 0 0" }}>
+			<TableContainer>
+				<Table aria-label="policies-table" sx={{ minWidth: 650, 
+				border: "0.5px solid grey",
+				borderCollapse: "unset" }} 
+				size="small">
 					<TableHeadComponent
 						requestSort={requestSort}
 						activeField={activeField}
 						setActiveField={setActiveField}
 						sortedField={sortedField}
 					/>
-					<TableBody>
+					<TableBody className={classes.tableBody}>
 						{policies.map((policy: Policy) => {
 							const {
 								id,
@@ -64,7 +85,7 @@ const TableSkeleton: React.FC<{
 								createdAt,
 							} = policy;
 							return (
-								<TableRow
+								<StyledTableRow
 									key={id}
 									sx={{
 										"&:last-child td, &:last-child th": { border: 0 },
@@ -81,14 +102,15 @@ const TableSkeleton: React.FC<{
 										endDate={endDate}
 										createdAt={createdAt}
 									/>
-								</TableRow>
+								</StyledTableRow>
 							);
 						})}
 					</TableBody>
 					<TableFooterComponent
-						policiesPerPage={policiesPerPage}
-						totalPolicies={totalPolicies}
-						paginate={paginate}
+						 policiesPerPage={policiesPerPage}
+						 totalPolicies={totalPolicies}
+						 paginate={paginate}
+						
 					/>
 				</Table>
 			</TableContainer>

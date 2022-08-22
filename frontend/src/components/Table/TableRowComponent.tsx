@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useMutation } from "@apollo/client";
 
 import { TableCell, TextField, Select, MenuItem, Button } from "@mui/material";
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import SaveIcon from '@mui/icons-material/Save';
 import useStyleTable from "./styles/useStylesTable";
 
 import { Policy } from "../../types/Types";
@@ -82,13 +84,12 @@ const TableRowComponent: React.FC<Policy> = ({
 
 	return (
 		<>
-			<TableCell variant="body" sx={{ fontSize: "1rem" }}>
+			<TableCell variant="body" sx={{ fontSize: ".9rem" }}>
 				{!editMode ? (
 					edited.completeName
 				) : (
 					<TextField
 						fullWidth
-						variant="outlined"
 						size="small"
 						value={edited.completeName}
 						name="completeName"
@@ -99,7 +100,7 @@ const TableRowComponent: React.FC<Policy> = ({
 					/>
 				)}
 			</TableCell>
-			<TableCell variant="body" sx={{ fontSize: "1rem" }}>
+			<TableCell variant="body" sx={{ fontSize: ".9rem" }} >
 				{!editMode ? (
 					edited.insuranceType
 				) : (
@@ -109,14 +110,15 @@ const TableRowComponent: React.FC<Policy> = ({
 						value={edited.insuranceType}
 						name="insuranceType"
 						onChange={handleUpdate}
+						sx={{ fontSize: ".9rem" }}
 					>
-						<MenuItem value={"LIABILITY"}>LIABILITY</MenuItem>
-						<MenuItem value={"HOUSEHOLD"}>HOUSEHOLD</MenuItem>
-						<MenuItem value={"HEALTH"}>HEALTH</MenuItem>
+						<MenuItem value={"LIABILITY"} sx={{ fontSize: ".9rem" }}>LIABILITY</MenuItem>
+						<MenuItem value={"HOUSEHOLD"} sx={{ fontSize: ".9rem" }}>HOUSEHOLD</MenuItem>
+						<MenuItem value={"HEALTH"} sx={{ fontSize: ".9rem" }}>HEALTH</MenuItem>
 					</Select>
 				)}
 			</TableCell>
-			<TableCell variant="body" sx={{ fontSize: "1rem" }}>
+			<TableCell variant="body" sx={{ fontSize: ".9rem" }}>
 				{!editMode ? (
 					edited.policyNumber
 				) : (
@@ -132,7 +134,7 @@ const TableRowComponent: React.FC<Policy> = ({
 					/>
 				)}
 			</TableCell>
-			<TableCell variant="body" sx={{ fontSize: "1rem" }}>
+			<TableCell variant="body" sx={{ fontSize: ".9rem" }} >
 				{!editMode ? (
 					edited.status
 				) : (
@@ -143,25 +145,34 @@ const TableRowComponent: React.FC<Policy> = ({
 						name="status"
 						onChange={handleUpdate}
 						disabled={!editMode ? true : false}
+						sx={{ fontSize: ".9rem" }}
 					>
-						<MenuItem value={"ACTIVE"}>ACTIVE</MenuItem>
-						<MenuItem value={"CANCELLED"}>CANCELLED</MenuItem>
-						<MenuItem value={"DROPPED_OUT"}>DROPPED_OUT</MenuItem>
-						<MenuItem value={"PENDING"}>PENDING</MenuItem>
+						<MenuItem value={"ACTIVE"} sx={{ fontSize: ".9rem" }}>ACTIVE</MenuItem>
+						<MenuItem value={"CANCELLED"} sx={{ fontSize: ".9rem" }}>CANCELLED</MenuItem>
+						<MenuItem value={"DROPPED_OUT"} sx={{ fontSize: ".9rem" }}>DROPPED_OUT</MenuItem>
+						<MenuItem value={"PENDING"} sx={{ fontSize: ".9rem" }}>PENDING</MenuItem>
 					</Select>
 				)}
 			</TableCell>
-			{/* <TableCell>
-				<TextField
-					fullWidth
-					size="small"
-					value={edited.provider}
-					name="provider"
-					onChange={handleUpdate}
-					disabled={!editMode ? true : false}
-				/>
-			</TableCell> */}
-			<TableCell variant="body" sx={{ fontSize: "1rem" }}>
+
+			<TableCell variant="body" sx={{ fontSize: ".9rem" }}>
+				{!editMode ? (
+					edited.provider
+				) : (
+					<TextField
+						fullWidth
+						size="small"
+						value={edited.provider}
+						name="provider"
+						onChange={handleUpdate}
+						InputProps={{
+							className: classes.textFieldActive,
+						}}
+					/>
+				)}
+			</TableCell>
+
+			<TableCell variant="body" sx={{ fontSize: ".9rem" }} >
 				{!editMode ? (
 					edited.createdAtConverted
 				) : (
@@ -177,12 +188,13 @@ const TableRowComponent: React.FC<Policy> = ({
 					/>
 				)}
 			</TableCell>
+
 			<TableCell>
 				<Button
 					variant="text"
 					onClick={!editMode ? handleEdit : () => handleClickUpdate()}
 				>
-					{!editMode ? "Edit" : "Save"}
+					{!editMode ? <ModeEditIcon sx={{color: "black"}}/> : <SaveIcon sx={{color: "black"}}/>}
 				</Button>
 			</TableCell>
 		</>
