@@ -22,7 +22,7 @@ const Dashboard: React.FC = () => {
 	const [activeField, setActiveField] = useState<string>("");
 
 	const [currentPage, setCurrentPage] = useState<number>(1);
-	const [policiesPerPage] = useState<number>(5);
+	const [policiesPerPage, setPoliciesPerPage] = useState<number>(10);
 
 	const [searchTerm, setSearchTerm] = useState<string>("");
 
@@ -122,6 +122,7 @@ const Dashboard: React.FC = () => {
 							policies={filteredPolicies}
 							searchTerm={searchTerm}
 							policiesPerPage={policiesPerPage}
+							setPoliciesPerPage={setPoliciesPerPage}
 							paginate={paginate}
 							totalPolicies={policies.length}
 						/>

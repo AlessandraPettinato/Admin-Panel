@@ -8,19 +8,26 @@ const useStylesTable = makeStyles(() => ({
 		display: "inline-table",
 		verticalAlign: "middle",
 	},
+	tableBody: {
+		background: "#808080",
+		color: "darkslategray"
+	},
 	tableCell: {
 		textTransform: "uppercase",
 		color: "slategrey",
 		whiteSpace: "nowrap",
+		fontSize: ".95rem",
+		cursor: "pointer"
 	},
 	arrow: {
-		marginLeft: "0.2rem",
+		marginLeft: ".2rem",
 	},
 	textFieldInactive: {
 		color: "blue",
 	},
 	textFieldActive: {
 		color: "#16161d",
+		fontSize: ".9rem"
 	},
 	tableFooter: {
 		display: "inline-flex",
